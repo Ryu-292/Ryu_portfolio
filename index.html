@@ -66,20 +66,21 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EasePack.min.js"></script>
 
     <script>
-    // Start rotation immediately (loading effect)
-    let loadingAnimation = gsap.to(".ryu_grenouille img", {
-        rotation: 360,
-        repeat: -1,
-        duration: 1,
-        ease: "linear"
-    });
+        // Start rotation immediately (loading effect)
+        let loadingAnimation = gsap.to(".ryu_grenouille img", {
+            rotation: 360,
+            repeat: -1,
+            duration: 1,
+            ease: "linear"
+        });
 
-    // Stop rotation and instantly remove loader when the page fully loads
-    window.addEventListener("load", function () {
-        loadingAnimation.pause();  // Stop rotation
-        document.getElementById("loader").style.display = "none"; // Instantly hide the element
-    },3000);
-</script>
+        // Stop rotation and instantly remove loader when the page fully loads
+        window.addEventListener("load", function () {
+            loadingAnimation.pause();  // Stop rotation
+            document.getElementById("loader").style.display = "none"; // Instantly hide the element
+        },3000);
+
+    </script>
     
 
 
