@@ -73,14 +73,16 @@
             duration: 1,
             ease: "linear"
         });
-
-        // Stop rotation and instantly remove loader when the page fully loads
+    
+        // Stop rotation and instantly remove loader after 3 seconds when the page fully loads
         window.addEventListener("load", function () {
-            loadingAnimation.pause();  // Stop rotation
-            document.getElementById("loader").style.display = "none"; // Instantly hide the element
-        },3000);
-
+            setTimeout(() => {
+                loadingAnimation.pause();  // Stop rotation
+                document.getElementById("loader").style.display = "none"; // Instantly hide the loader
+            }, 3000); // 3 seconds delay
+        });
     </script>
+    
     
 
 
