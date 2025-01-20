@@ -1,0 +1,902 @@
+@font-face {
+    font-family: Helvetica_med;
+    src: url(HelveticaNeue-Medium.otf);
+}
+@font-face {
+    font-family: Helvetica_light;
+    src: url(HelveticaNeue-Light.otf);
+}
+@font-face {
+    font-family: Helvetica_bold;
+    src: url(HelveticaNeue-Black.otf);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica_med, sans-serif;
+}
+
+body {
+    background-color: #1C223A; /* Beige background for the page */
+    /*min-height: 300vh;*/
+}
+
+/* General Styling for the Navbar */
+.navibar {
+    background: #1c223a; /* Semi-transparent dark background */
+    height: 70px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 9999; /* Keeps navbar on top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Container */
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 50px;
+    margin: 0 auto;
+}
+
+/* Logo */
+#navbar__logo img {
+    height: 90px; /* Adjust logo size */
+    width: auto;    
+}
+
+#navbar__logo {
+    display: inline-block; /* Allows transform to work */
+    transition: transform 0.3s ease; /* Smooth scaling transition */
+}
+
+#navbar__logo:hover {
+    transform: scale(1.1);
+}
+
+/* Toggle Button (for mobile view) */
+.nav_toggle {
+    display: none; /* Hide toggle button by default */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.nav_toggle .bar {
+    background: #8c9fbd;
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+}
+
+/* Menu */
+.navbar__menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar__item {
+    margin: 0 30px;
+}
+
+.navbar__links {
+    color: #8c9fbd; /* White text for links */
+    text-decoration: none;
+    padding: 10px 15px ;
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    display: inline-block; /* Allows transform to work */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for both color and transform */
+}
+
+.navbar__links:hover {
+    color: #ce6241; /* Highlight color on hover */
+    transform: scale(1.2); /* Adjusted scale to 1.2 for a less dramatic effect */
+}
+
+.hmaa_intro {
+    background-color: #1C223A;
+}
+
+.hmaa_content {
+    margin-top: 70px;
+    background: #1C223A;
+    padding: 20px 0; /* Padding to create space around the title */
+    width: 100%; /* Ensures it spans the full width */
+    text-align: center; /* Centers the text inside */
+    box-sizing: border-box;
+}
+
+.hmaa_index {
+    /*min-height: 300vh; /* Ensure content height exceeds the viewport */
+    padding-top: 20px;
+    padding-bottom: 50px;
+    background: #1c223a;
+    box-sizing: border-box;
+}
+
+.page_title {
+    color: #ce6241;
+    font-size: clamp(2rem, 5vw, 6rem); /* Responsive font scaling */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative; /* Removed absolute positioning */
+    word-wrap: break-word; /* Ensures long words break to the next line */
+    overflow-wrap: break-word; /* Modern alternative for wrapping */
+    white-space: normal; /* Allows the text to wrap when needed */
+}
+
+/* Intro Section */
+.hmaa_intro {
+    display: flex; /* Enables flexbox layout */
+    flex-direction: row; /* Places items in a row (side by side) */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Aligns content vertically */
+    gap: 60px; /* Space between the title and description */
+    padding: 20px; /* Adjust padding for the section */
+    height: auto; /* Ensures section height adjusts */
+    box-sizing: border-box;
+}
+
+
+.intro_title {
+    font-size: clamp(2rem, 4vw, 5rem); /* Responsive font size */
+    line-height: 1.5;
+    color: #8c9fbd;
+    margin: 10px; /* Removes unnecessary margin */
+    text-align: left; /* Aligns text to the left */
+    position: relative;
+}
+
+.intro_description {
+    max-width: 600px; /* Restricts the width of the description */
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.6;
+    color: #8c9fbd;
+    margin: 0; /* Removes unnecessary margin */
+    text-align: left; /* Aligns text to the left */
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Parent container for the grid */
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100vw;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+}
+
+.container {
+    width: 100%;
+    position: relative;
+}
+
+
+.container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+.text {
+    color: #ce6241;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+.container:hover .overlay{
+    opacity: 1;
+}
+
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* General Styles */
+.projects_content {
+    background: #1C223A;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.page_title {
+    color: #ce6241;
+    font-size: clamp(2rem, 5vw, 6rem); /* Responsive font scaling */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative; /* Removed absolute positioning */
+    background: #1C223A;
+}
+
+/* Container for Doors */
+/* Door container */
+.door-container {
+    display: flex; /* Arrange doors side by side */
+    width: 100%; /* Full width of the viewport */
+    height: 100vh; /* Adjust height as needed */
+    margin: auto; /* Center the container vertically */
+    overflow: hidden; /* Prevent overflow */
+    position: fixed;
+    top: 70px;
+    box-sizing: border-box;
+
+}
+
+/* Doors */
+.door-container > div {
+    height: 100vh; /* Full height of the container */
+    position: sticky;
+    transition: transform 2s ease-out; /* Smooth animation for sliding */
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent image overflow */
+    top: 70px;
+}
+
+/* Door Sizes */
+.first-door,
+.fourth-door {
+    width: 25%; /* Outer doors are smaller */
+    height: 100%; /* Full height of the container */
+    z-index: 9;
+    background-color: #000000;
+}
+
+.second-door,
+.third-door {
+    width: 25%; /* Middle doors take more space */
+    height: 100%; /* Full height of the container */
+    z-index: 10;
+    background-color: #000000;
+}
+
+
+
+.door-container img {
+    width:100%; /* Fill the door width */
+    height: auto; /* Fill the door height */
+    object-fit: cover;
+    top: 0;
+    display: inline_block;
+}
+
+/* Ensure Middle Doors Touch at the Center */
+.door-container {
+    gap: 0; /* Remove spacing between doors */
+}
+
+
+
+/* Project Title and Subtitle */
+.project_title {
+    color: #ce6241;
+    font-size: clamp(2rem, 5vw, 6rem);
+    margin: 20px 0 30px;
+    text-align: center;
+}
+
+.project_subtitle {
+    color: #8c9fbd;
+    text-align: center;
+    margin: 10px 0;
+    font-size: clamp(1.5rem, 3vw, 4rem);
+}
+
+.black-overlay {
+    position: fixed; /* Positioned relative to the hidden_page */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width of the hidden page */
+    height: 100%; /* Full height of the hidden page */
+    background-color: #000000; /* Fully black background */
+    z-index: 0; /* Place above the hidden page initially */
+    opacity: 1; /* Fully visible initially */
+    transition: opacity 2s ease-in-out; /* Smooth fade-out effect */
+    pointer-events: none; /* Prevent interaction */
+    box-sizing: border-box;
+}
+
+/* Hidden Content Styling */
+.hidden_page {
+    margin-top: 70px;
+    background-color: #1C223A;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #8c9fbd;
+    font-size: clamp(0.5rem, 1.5vw, 1rem);
+    line-height: 1.6;
+    text-align: Left;
+    z-index: -1;
+    transition: opacity 2s ease-in-out;
+    box-sizing: border-box; /* Prevent unintended width/height issues */
+}
+
+/* When doors open */
+.scrolled .black-overlay {
+    opacity: 0; /* Fade out to transparent */
+    pointer-events: none; /* Ensure it stays non-interactive */;
+    z-index: -1000;
+}
+.scrolled .hidden_page {
+    opacity: 1; /* Make hidden page visible */
+    pointer-events: auto; /* Allow interaction */
+}
+
+.vision {
+    display: flex; /* Make .vision a flex container */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically, if needed */
+    width: 100vw; /* Ensures the .vision spans the full width */
+}
+
+/* Style for the image */
+.vision img {
+    max-width: 1vw; /* Restrict the image width */
+    height: auto; /* Maintain aspect ratio */
+    flex-shrink: 0; /* Prevent image shrinking */
+}
+
+.intro_neuro {
+    width: 100vw; /* Ensure it spans the full viewport width */
+    max-width: 100%; /* Prevent overflow beyond the viewport */
+    margin: 0 auto; /* Center it horizontally */
+    padding: 20px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding and borders in the width */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.intro_neuro > * {
+    max-width: 1200px; /* Optional: Set a maximum width for readability */
+    width: 100%; /* Ensure all child elements span the container */
+    margin: 0 auto; /* Center all elements */
+    box-sizing: border-box; /* Prevent padding or borders from causing overflow */
+}
+
+/* Style for headings */
+.project_title, .project_subtitle {
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%; /* Ensure titles fit within the parent container */
+    padding: 0 15px;
+}
+
+/* Presentation paragraphs */
+.presentation, .presentation1, .presentation2 {
+    width: 100%; /* Make the text span the container */
+    max-width: 800px; /* Optional: Set a max width for better readability */
+    margin: 20px auto; /* Center the text */
+    padding: 0 15px; /* Add some padding for spacing */
+    text-align: left; /* Align text to the left */
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+/* Vision section */
+.vision {
+    display: flex; /* Flexbox for alignment */
+    justify-content: center; /* Center image horizontally */
+    align-items: center; /* Center image vertically, if needed */
+    width: 100%; /* Ensure it spans the container */
+    margin: 20px auto; /* Add spacing */
+    padding: 0 15px; /* Add padding to prevent image from touching edges */
+    box-sizing: border-box;
+}
+
+.vision img {
+    width: 80%; /* Try setting a percentage or pixel value */
+    max-width: 800px; /* Example: limits the max width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Images with text (images_neuro1 and images_neuro2) */
+.images_neuro1, .images_neuro2 {
+    display: flex;
+    flex-direction: row; /* Arrange image and text side by side */
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px; /* Add space between image and text */
+    width: 100%; /* Ensure the section spans the parent */
+    max-width: 1200px; /* Optional: Limit maximum width for readability */
+    margin: 20px auto; /* Center the section */
+    padding: 0 15px; /* Add padding for spacing */
+    box-sizing: border-box;
+    flex-wrap: wrap; /* Ensure elements wrap on smaller screens */
+}
+
+.images_neuro1 img, .images_neuro2 img {
+    max-width: 40%; /* Image takes 40% of the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevent cropping or distortion */
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.images_neuro1 .presentation1, .images_neuro2 .presentation2 {
+    width: 55%; /* Text takes the remaining space */
+    max-width: 100%; /* Ensure text fits on smaller screens */
+    margin: 0 auto; /* Center the text */
+    padding: 0 15px; /* Add padding for spacing */
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.projects {
+    margin-top: 70px;
+    background: #1C223A;
+    padding: 20px 0; /* Padding to create space around the title */
+    width: 100%; /* Ensures it spans the full width */
+    text-align: center; /* Centers the text inside */
+    box-sizing: border-box;
+}
+
+.projects_titles {
+    color: #ce6241;
+    font-size: clamp(2rem, 5vw, 6rem); /* Responsive font scaling */
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative; /* Removed absolute positioning */
+    word-wrap: break-word; /* Ensures long words break to the next line */
+    overflow-wrap: break-word; /* Modern alternative for wrapping */
+    white-space: normal; /* Allows the text to wrap when needed */
+    
+}
+
+.projects_description {
+    max-width: 80vw; /* Restricts the width of the description */
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    line-height: 1.6;
+    color: #8c9fbd;
+    margin: 0; /* Removes unnecessary margin */
+    text-align: left; /* Aligns text to the left */
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+
+.neuro img, .kickstarter img {
+    max-width: 400px;
+    height: auto;
+    display: block; /* Prevents inline spacing issues */
+   
+}
+
+
+.neuro div{
+    order: 1; /* Keeps image on the left */ 
+}
+
+/* Second image on the right */
+.kickstarter div{
+    order: 2; /* Moves image to the right */
+}
+
+.neuro {
+    display: flex;
+    align-items: left;
+    text-align: left;
+    gap: 1em;
+    margin:50px;
+    flex-direction: row; /* Image on the left */
+    align-items: center;
+}
+
+.kickstarter {
+    display: flex;
+    align-items: right;
+    text-align: left;
+    gap: 1em;
+    margin: 50px;
+    flex-direction: row-reverse; /* Image on the right */
+    align-items: center;
+}
+
+.neuro div, .kickstarter div {
+    flex: 1;
+}
+
+.kickstarter a {
+    display: inline-block; /* Allows normal flow */
+    position: relative; /* Prevents covering content */
+    z-index: 1; /* Ensures it doesn’t interfere with scrolling */
+}
+
+
+
+
+/* Image Container */
+.imgProject {
+    display: inline-block; /* Allows normal flow */
+    position: relative; /* Prevents covering content */
+    z-index: 1; /* Ensures it doesn’t interfere with scrolling */
+    margin-right: 30px;
+    margin-left: 30px;
+    
+}
+
+.imgProject img {
+    order: 1; /* Keeps image on the left */
+    z-index: -1;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect: Show overlay only when hovering on the image */
+.imgProject:hover .overlay {
+    bottom: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.imgProject:hover img,
+.imgProject:hover .overlay {
+    transform: scale(1.05);
+}
+
+
+/* Overlay styles */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(140, 159, 189, 0.5); /* Dark transparent effect */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    pointer-events: none; /* Prevents accidental scrolling issues */
+}
+
+/* Text inside overlay */
+.Proj-name {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    max-width: 90%; /* Prevents text from overflowing */
+    box-sizing: border-box; /* Ensures consistent sizing */
+}
+
+
+/* Optional: Styling for the content below */
+.neuro h2 {
+    margin-top: 1rem;
+    font-size: var(--h2-font-size);
+}
+
+.neuro p {
+    font-size: var(--small-font-size);
+    color: var(--text-color);
+}
+
+.home_page {
+    background-color: #1C223A;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Frog image positioning */
+.ryu_grenouille {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.ryu_grenouille img {
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+}
+
+
+/* Responsive Design */
+@media screen and (aspect-ratio < 0.60){
+    .nav_toggle {
+        display: flex; /* Show toggle button on small screens */
+    }
+
+    .navbar__menu {
+        display: none; /* Hide menu by default */
+        flex-direction: column;
+        background: #1C223A;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        transform: translateY(-100%); /* Start hidden */
+        opacity: 0;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .navbar__menu.active {
+        display: flex; /* Show menu when active */
+        transform: translateY(0); /* Slide into view */
+        opacity: 1;
+    }
+
+    .navbar__item {
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    .hmaa_intro {
+        flex-direction: column; /* Stack elements vertically */
+        text-align: center; /* Center-align for mobile */
+        gap: 20px; /* Space between stacked elements */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+
+    .intro_title,
+    .intro_description {
+        text-align: left; /* Center-align text */
+        
+    }
+
+    .intro_description {
+        max-width: 90%; /* Reduce width for smaller screens */
+    }
+
+    .page_title {
+        margin-bottom: 10px;
+    }
+
+    .column1 {
+        grid-template-columns: repeat(1, 1fr); /* Single column on small screens */
+        gap: 20px; /* Increase space between items */
+    }
+
+    .column1 img {
+        max-width: 90%; /* Limit the image width */
+        margin: 0 auto; /* Center images */
+    }
+
+    .projects_content {
+        padding: 10px 0;
+    }
+
+    
+    .door-container {
+        display: flex; /* Use block layout since only one door is visible */
+        width: 100vw; /* Full viewport width */
+        min-height: 100vh; /* Full viewport height */
+        padding: 0; /* Remove any padding */
+        overflow: hidden; /* Prevent content overflow */
+        position: fixed; /* Ensure child elements are positioned correctly */
+        top: 0px;
+        left: 0;
+    }
+
+    .door-container > div {
+        position: absolute;
+        transition: transform 2s ease-out; /* Smooth animation for sliding */
+        display: flex; /* Allows centering of content inside */
+        justify-content: center;
+        align-items: center;
+        overflow: hidden; /* Prevent image overflow */
+    }
+
+    .third-door img {
+        width: 100%; /* Ensures it fills the full width */
+        height: 100vh; /* Ensures it fills the full height */
+        padding: 0%;
+        top: 0;
+        object-fit: cover; /* Prevents distortion while ensuring full coverage */
+        object-position: top; /* Keeps the top part visible, allowing the bottom to overflow */
+        position: absolute;
+    }
+    
+    
+    
+    /* Hide the first, second, and fourth doors */
+    .first-door,
+    .second-door,
+    .fourth-door {
+        display: none !important; /* Completely hide these doors */
+    }
+    
+    /* Make the third door occupy the full screen */
+    .third-door {
+        width:100%; /* Fill the door width */
+        height: 100%; /* Fill the door height */
+        object-fit: cover;
+        top: 0;
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+        box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
+        /*transform: translateX(0); /* Default position */
+        /*transition: transform 2s ease-out; /* Smooth sliding animation */
+        left: 0; /* Align to the left of the viewport */
+        position: absolute;
+        background-color: #000000;
+    }
+    
+
+    .intro_neuro {
+        padding: 20px;
+    }
+
+    .intro_neuro {
+        padding: 20px;
+    }
+
+    .page_title {
+        font-size: clamp(1.5rem, 5vw, 3rem);
+    }
+
+    .images_neuro1, .images_neuro2 {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center-align both text and images */
+        text-align: left; /* Center-align text */
+        gap: 15px; /* Adjust spacing between image and text */
+    }
+
+    .images_neuro1 img, .images_neuro2 img {
+        width: 80%; /* Reduce image width */
+        max-width: 300px; /* Limit maximum size */
+        height: auto;
+        margin: 20px;
+    }
+
+    .images_neuro1 .presentation1, .images_neuro2 .presentation2 {
+        width: 90%; /* Text takes most of the container width */
+        max-width: none; /* Remove maximum width constraint */
+        text-align: left; /* Center-align text */
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* Slightly smaller font size */
+        align-items: center;
+    }
+
+    .hidden_page {
+        margin-top: 70px; /* Adjust for smaller screens */
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* Slightly smaller font */
+    }
+    .column1 {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+    .first-door,
+    .fourth-door {
+        flex: 0 0 5%; /* Further reduce the size of outer doors */
+        clip-path: inset(0 0 0 50%); /* Crop heavily from the sides */
+    }
+
+    .second-door,
+    .third-door {
+        flex: 0 0 45%; /* Middle doors take even more space */
+    }
+
+    .row {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 0;
+    }
+    .container img {
+        
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (aspect-ratio >= 0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
+
+    .navbar__container {
+        max-width: 900px;
+        padding: 0 20px; /* Further reduce padding */
+    }
+
+    .navbar__item {
+        margin: 0 10px; /* Reduce spacing */
+    }
+
+    #navbar__logo img {
+        height: 60px; /* Adjust logo size */
+    }
+
+    .navbar__links {
+        padding: 6px 10px;
+        font-size: clamp(0.9rem, 1.3vw, 1.3rem);
+    }
+
+    .door-container {
+        display: flex;
+        flex-direction: row; /* Ensure doors are side by side */
+        justify-content: center; /* Center them horizontally */
+        
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: fixed;
+        top: 70px;
+        left: 0;
+    }
+    
+    /* Hide First and Fourth Door */
+    .first-door,
+    .fourth-door {
+        display: none !important;
+    }   
+
+    /* Ensure Second and Third Door are Visible */
+    .second-door,
+    .third-door {
+        flex: 1;
+        display: flex; /* Use flex to ensure proper sizing */
+        flex: 1; /* Each takes 50% of the container */
+        width: 50%; /* Each door takes half the viewport width */
+        height: 100vh; /* Full height */
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+    }
+
+    /* Ensure Images Fill Each Door Without Cropping */
+    .second-door img,
+    .third-door img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
