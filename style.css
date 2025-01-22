@@ -172,27 +172,54 @@ body {
 
 /* Parent container for the grid */
 
-.row {
+.hmaa_index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.bento-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    width: 100vw;
-    max-width: 1200px;
-    margin: auto;
-    padding: 10px;
+    grid-template-columns: repeat(3, 1fr); /* 3 unequal columns */
+    grid-auto-rows: 200px; /* Base height for rows */
+    width: 100%;
+    max-width: 1000px;
 }
 
-.container {
-    width: 100%;
+/* Different sizes for bento boxes */
+.bento-item {
     position: relative;
+    overflow: hidden;
+    border-radius: 12px;
 }
 
-
-.container img {
+.bento-item img {
     width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 10px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* Asymmetrical sizes */
+.bento-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.bento-item.medium {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.bento-item.small {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.bento-item:hover .overlay {
+    opacity: 1;
 }
 
 
@@ -210,9 +237,6 @@ body {
 }
 
 
-.container:hover .overlay{
-    opacity: 1;
-}
 
 /* Universal Reset */
 * {
@@ -382,88 +406,136 @@ html, body {
     flex-shrink: 0; /* Prevent image shrinking */
 }
 
+/* Main container for intro */
 .intro_neuro {
-    width: 100vw; /* Ensure it spans the full viewport width */
-    max-width: 100%; /* Prevent overflow beyond the viewport */
-    margin: 0 auto; /* Center it horizontally */
-    padding: 20px; /* Add padding for spacing */
-    box-sizing: border-box; /* Include padding and borders in the width */
+    width: 100vw; /* Full viewport width */
+    max-width: 100%;
+    margin: 0 auto; /* Center it */
+    padding: 80px; /* Spacing */
+    box-sizing: border-box;
     overflow-x: hidden; /* Prevent horizontal overflow */
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center content */
 }
 
+/* Ensure all child elements inside intro_neuro align properly */
 .intro_neuro > * {
-    max-width: 1200px; /* Optional: Set a maximum width for readability */
-    width: 100%; /* Ensure all child elements span the container */
-    margin: 0 auto; /* Center all elements */
-    box-sizing: border-box; /* Prevent padding or borders from causing overflow */
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding:0px;
 }
 
-/* Style for headings */
+/* Headings */
 .project_title, .project_subtitle {
     text-align: center;
     margin-bottom: 20px;
-    width: 100%; /* Ensure titles fit within the parent container */
+    width: 100%;
     padding: 0 15px;
 }
 
 /* Presentation paragraphs */
 .presentation, .presentation1, .presentation2 {
-    width: 100%; /* Make the text span the container */
-    max-width: 800px; /* Optional: Set a max width for better readability */
-    margin: 20px auto; /* Center the text */
-    padding: 0 15px; /* Add some padding for spacing */
-    text-align: left; /* Align text to the left */
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+    text-align: left;
     box-sizing: border-box;
     line-height: 1.6;
 }
 
 /* Vision section */
 .vision {
-    display: flex; /* Flexbox for alignment */
-    justify-content: center; /* Center image horizontally */
-    align-items: center; /* Center image vertically, if needed */
-    width: 100%; /* Ensure it spans the container */
-    margin: 20px auto; /* Add spacing */
-    padding: 0 15px; /* Add padding to prevent image from touching edges */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px auto;
+    padding: 0 15px;
     box-sizing: border-box;
 }
 
 .vision img {
-    width: 80%; /* Try setting a percentage or pixel value */
-    max-width: 800px; /* Example: limits the max width */
-    height: auto; /* Maintain aspect ratio */
+    width: 80%;
+    max-width: 800px;
+    height: auto;
 }
 
-/* Images with text (images_neuro1 and images_neuro2) */
+/* Images with text layout */
 .images_neuro1, .images_neuro2 {
     display: flex;
-    flex-direction: row; /* Arrange image and text side by side */
     justify-content: space-between;
     align-items: center;
-    gap: 20px; /* Add space between image and text */
-    width: 100%; /* Ensure the section spans the parent */
-    max-width: 1200px; /* Optional: Limit maximum width for readability */
-    margin: 20px auto; /* Center the section */
-    padding: 0 15px; /* Add padding for spacing */
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
     box-sizing: border-box;
-    flex-wrap: wrap; /* Ensure elements wrap on smaller screens */
+    flex-wrap: wrap;
 }
 
+/* Image and text sizes */
 .images_neuro1 img, .images_neuro2 img {
-    max-width: 40%; /* Image takes 40% of the container */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Prevent cropping or distortion */
-    flex-shrink: 0; /* Prevent shrinking */
+    width: 40%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
-.images_neuro1 .presentation1, .images_neuro2 .presentation2 {
-    width: 55%; /* Text takes the remaining space */
-    max-width: 100%; /* Ensure text fits on smaller screens */
-    margin: 0 auto; /* Center the text */
-    padding: 0 15px; /* Add padding for spacing */
+/* Normal positioning: Neuro1 (left), Presentation1 (right) */
+.images_neuro1 .neuro1 {
+    order: 1; /* Image on the left */
+}
+
+.images_neuro1 .presentation1 {
+    order: 2; /* Text on the right */
+    width: 55%;
+    padding: 0 0px;
     box-sizing: border-box;
     text-align: left;
 }
+
+/* Inverted positioning: Neuro2 (right), Presentation2 (left) */
+.images_neuro2 {
+    flex-direction: row-reverse; /* This inverts the order */
+}
+
+.images_neuro2 .neuro2 {
+    order: 1; /* Image should now be on the right */
+}
+
+.images_neuro2 .presentation2 {
+    order: 2; /* Text should now be on the left */
+    width: 55%;
+    padding: 0 15px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+/* 📌 Mobile Responsiveness */
+@media (max-width: 768px) {
+    .images_neuro1, .images_neuro2 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .images_neuro1 img, .images_neuro2 img {
+        width: 80%;
+        max-width: 100%;
+    }
+
+    .images_neuro1 .presentation1, .images_neuro2 .presentation2 {
+        width: 90%;
+        text-align: center;
+    }
+}
+
 
 .projects {
     margin-top: 70px;
@@ -606,6 +678,10 @@ html, body {
     max-width: 90%; /* Prevents text from overflowing */
     box-sizing: border-box; /* Ensures consistent sizing */
 }
+.neuro h2, .kickstarter h2 {
+    font-size: 3rem !important; /* Forces uniform size */
+}
+
 
 
 /* Optional: Styling for the content below */
@@ -623,26 +699,114 @@ html, body {
     background-color: #1C223A;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: relative;
     justify-content: center;
     align-items: center;
 }
 
 /* Frog image positioning */
 .ryu_grenouille {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+   
     width: 100vw;
     height: 100vh;
+    z-index: 9999 ;
+    
 }
 
 .ryu_grenouille img {
-    width: 250px;
-    height: 250px;
-    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    
 }
+
+.container2 {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%; /* Full height of .homepage */
+    width: 100%; /* Ensures it spans full width */
+}
+.text-box {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+    font-size: 50px;
+    color: #8c9fbd;
+    margin: 65px;
+    
+}
+.image-box {
+    
+    opacity: 0;
+    transform: translateX(-200%);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+    height: 100%;
+    width: auto;
+    
+}
+
+.text-box span {
+    display: block;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    
+}
+
+.overview{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Aligns the intersection at the center */
+    align-items: center;
+    position: relative;
+}
+
+#slideshow   {
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+.image {
+    flex: 0 0 25%;
+}
+.image img {
+    width: 100%;
+    height: auto;
+}
+
+#slideshow2   {
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.imgProject2 {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+/* Ensures image fills its container */
+.imgProject2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+
+
+/* Hover Effect: Show overlay only when hovering on the image */
+.imgProject2:hover .overlay {
+    bottom: 0;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
 
 
 /* Responsive Design */
