@@ -60,15 +60,29 @@
                 <span>I'm an engineering student</span>
                 <span>in Creative Technology</span>
 
+                <span>
+                    <div class="scroll-down">
+                        <div class="scroll-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="none" stroke="#ce6241" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="7 13 12 18 17 13"></polyline>
+                                <line x1="12" y1="18" x2="12" y2="6"></line>
+                            </svg>
+                        </div>
+                        <a href="#overview" class="smoothscroll">
+                            <span class="scroll-text">Scroll for more</span>
+                        </a>
+                    </div>
+                    
+                </span>
+
             </div>
             <img src="images/main-ryu.jpg" alt="Image" class="image-box" id="image">
-        </div>
-
-        
+        </div>  
+       
     </section>
 
     
-    <section class="overview">
+    <section class="overview" id="overview">
         
         <div id="slideshow" class="slideshow">
             <div class="image">
@@ -156,15 +170,109 @@
         </div>
         
         <div id="slideshow2" class="slideshow2">
-            <div class="image"><img src="images/Arduino/RyuVsLucas.png" alt="Image 1"></div>
-            <div class="image"><img src="images/Cutting/image20.png" alt="Image 2"></div>
-            <div class="image"><img src="images/3D/HondaJet3D1.png" alt="Image 3"></div>
-            <div class="image"><img src="images/Arduino/laser1.png" alt="Image 4"></div>
+            <div class="image">
+                <a href="./ryuVSlucas.html">
+                    <div class="imgProject2">
+                        <img src="images/Arduino/RyuVsLucas.png" alt="RyuVsLucas">
+                        <div class="overlay">
+                            <div class="Proj-name">Ryu Vs Lucas</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./3design.html">
+                    <div class="imgProject2">
+                        <img src="images/3D/HondaJet3D1.png" alt="3D Design">
+                        <div class="overlay">
+                            <div class="Proj-name">3D Design</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./photo.html">
+                    <div class="imgProject2">
+                        <img src="images/ryu_photo2.png" alt="Photography">
+                        <div class="overlay">
+                            <div class="Proj-name">Photography</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./laser.html">
+                    <div class="imgProject2">
+                        <img src="images/Arduino/laser1.png" alt="Arduino Laser">
+                        <div class="overlay">
+                            <div class="Proj-name">Arduino Laser</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./antenna.html">
+                    <div class="imgProject2">
+                        <img src="images/Antenna.png" alt="Antenna">
+                        <div class="overlay">
+                            <div class="Proj-name">Antenna</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
             <!-- Duplicate images for seamless looping -->
-            <div class="image"><img src="images/Arduino/RyuVsLucas.png" alt="Image 1"></div>
-            <div class="image"><img src="images/Cutting/image20.png" alt="Image 2"></div>
-            <div class="image"><img src="images/3D/HondaJet3D1.png" alt="Image 3"></div>
-            <div class="image"><img src="images/Arduino/laser1.png" alt="Image 4"></div>
+            <div class="image">
+                <a href="./ryuVSlucas.html">
+                    <div class="imgProject2">
+                        <img src="images/Arduino/RyuVsLucas.png" alt="RyuVsLucas">
+                        <div class="overlay">
+                            <div class="Proj-name">Ryu Vs Lucas</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./3design.html">
+                    <div class="imgProject2">
+                        <img src="images/3D/HondaJet3D1.png" alt="3D Design">
+                        <div class="overlay">
+                            <div class="Proj-name">3D Design</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./photo.html">
+                    <div class="imgProject2">
+                        <img src="images/ryu_photo2.png" alt="Photography">
+                        <div class="overlay">
+                            <div class="Proj-name">Photography</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./laser.html">
+                    <div class="imgProject2">
+                        <img src="images/Arduino/laser1.png" alt="Arduino Laser">
+                        <div class="overlay">
+                            <div class="Proj-name">Arduino Laser</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="image">
+                <a href="./antenna.html">
+                    <div class="imgProject2">
+                        <img src="images/Antenna.png" alt="Antenna">
+                        <div class="overlay">
+                            <div class="Proj-name">Antenna</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -174,7 +282,7 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 
     <!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->    
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EasePack.min.js"></script>
@@ -207,20 +315,22 @@
     
     <script>
         let index1 = 0;
-        let index2 = 0; // Separate indices for each slideshow
-
+        let index2 = 5; // Separate indices for each slideshow
+        
         const slideshow1 = document.getElementById("slideshow");
         const slideshow2 = document.getElementById("slideshow2");
-
+        
         const images1 = slideshow1.querySelectorAll(".image");
         const images2 = slideshow2.querySelectorAll(".image");
-
+        
         const totalImages1 = images1.length / 2; // Count original images
         const totalImages2 = images2.length / 2; 
-
-        // Initialize Slideshow 2 at the last image position
+        
+        slideshow2.style.transition = "none"; // Prevent animation on initial position setting
+        slideshow2.style.transform = `translateX(-125%)`;// Initialize Slideshow 2 at the last image position
         
         function displayImages1() {
+
             index1++;
             const offset = -index1 * 25; // Move by 50% width per slide
             slideshow1.style.transition = "transform 1s ease-in-out"; 
@@ -239,22 +349,18 @@
         function displayImages2() {
             index2--; // Move right to left
             const offset = -index2 * 25; // Move leftward
+            slideshow2.style.transition = "transform 1s ease-in-out"; 
+            slideshow2.style.transform = `translateX(${offset}%)`;
 
-            
             // Seamless looping logic for Display 2
-            if (index2 <= 0) { // Check if it's the last image
+            if (index2 <= 0) { 
                 setTimeout(() => {
-                    slideshow2.style.transition = "none"; 
-                    
-                    slideshow2.style.transform = `translateX(${-totalImages2 * 25}%)`; // Reset to last image position
-                    index2 = totalImages2;
-                }, 1000);
-            }
-            else{
-                slideshow2.style.transition = "transform 1s ease-in-out"; 
-                slideshow2.style.transform = `translateX(${offset}%)`;
-
-            }
+                slideshow2.style.transition = "none";
+                slideshow2.style.transform = `translateX(-125%)`; // Reset to start
+                index2 = 5;
+            }, 1000);
+        }
+            
         }    
         // Start both slideshows independently
         setInterval(displayImages1, 3500);
@@ -263,6 +369,13 @@
 
     </script>
 
+    <script>
+        document.querySelector(".smoothscroll").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            gsap.to(window, { duration: 1.5, scrollTo: ".overview", ease: "power2.out" });
+        });
+
+    </script>
     
 
 

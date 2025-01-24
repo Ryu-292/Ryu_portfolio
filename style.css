@@ -151,7 +151,7 @@ body {
 
 
 .intro_title {
-    font-size: clamp(2rem, 4vw, 5rem); /* Responsive font size */
+    font-size: clamp(2rem, 3vw, 4rem); /* Responsive font size */
     line-height: 1.5;
     color: #8c9fbd;
     margin: 10px; /* Removes unnecessary margin */
@@ -346,6 +346,12 @@ html, body {
     font-size: clamp(1.5rem, 3vw, 4rem);
 }
 
+.project_subtitleW {
+    color: #1C223A;
+    text-align: center;
+    margin: 10px 0;
+    font-size: clamp(1.5rem, 3vw, 4rem);
+}
 .black-overlay {
     position: fixed; /* Positioned relative to the hidden_page */
     top: 0;
@@ -373,6 +379,26 @@ html, body {
     flex-direction: column;
     align-items: center;
     color: #8c9fbd;
+    font-size: clamp(0.5rem, 1.5vw, 1rem);
+    line-height: 1.6;
+    text-align: Left;
+    z-index: -1;
+    transition: opacity 2s ease-in-out;
+    box-sizing: border-box; /* Prevent unintended width/height issues */
+}
+
+.hidden_pageW {
+    margin-top: 70px;
+    background-color: #ffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #1C223A;
     font-size: clamp(0.5rem, 1.5vw, 1rem);
     line-height: 1.6;
     text-align: Left;
@@ -755,7 +781,7 @@ html, body {
 }
 
 .overview{
-    height: 100vh;
+    height: calc(100vh - 70px);
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -804,6 +830,93 @@ html, body {
     bottom: 0;
     opacity: 1;
     pointer-events: auto;
+}
+
+/* ---------------- SCROLL-DOWN BUTTON ---------------- */
+.scroll-down {
+    display: flex;
+    flex-direction: row; /* Aligns icon and text side by side */
+    align-items: center; /* Ensures proper vertical alignment */
+    justify-content: flex-start; /* Aligns to the left */
+    gap: 20px; /* Space between the icon and text */
+    text-align: center;
+
+    /* Fade-in and slide-in effect */
+    opacity: 0;
+    transform: translateX(-30px); /* Start off-screen */
+    animation: fadeSlideIn 1s ease-in-out forwards;
+    animation-delay: 1.2s; /* Appears after text */
+}
+
+/* ---- Scroll Icon (LEFT) ---- */
+.scroll-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Fixed width */
+    height: 50px;
+    animation: bounce 1.5s infinite; /* Keeps bounce animation */
+}
+
+/* Custom styling for the text inside the link */
+.scroll-down a {
+    text-decoration: none; /* Removes underline */
+    
+}
+
+/* Optional: Change color on hover */
+.scroll-down :hover {
+    color: #ce6241; /* Slightly darker green */
+}
+
+
+/* SVG Arrow Styling */
+.scroll-icon svg {
+    stroke: #8c9fbd;
+    transition: transform 0.3s ease-in-out;
+    width: 40px;
+    height: 40px;
+}
+
+.scroll-icon:hover svg {
+    transform: scale(1.1);
+}
+
+/* ---- Scroll Text (RIGHT) ---- */
+.scroll-down span {
+    font-size: 30px;
+    color: #8c9fbd;
+    font-weight: 500;
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+/* Bounce animation for the icon */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+/* Smooth Fade & Slide-in Animation */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+        filter: blur(4px); /* Adds a subtle blur effect for a smoother feel */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+/* Apply the animation */
+.scroll-down {
+    animation: fadeSlideIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 
