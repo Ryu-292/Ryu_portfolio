@@ -644,7 +644,9 @@ html, body {
     z-index: 1; /* Ensures it doesn’t interfere with scrolling */
 }
 
-
+.project_index{
+    width: 100vw;
+}
 
 
 /* Image Container */
@@ -652,8 +654,8 @@ html, body {
     display: inline-block; /* Allows normal flow */
     position: relative; /* Prevents covering content */
     z-index: 1; /* Ensures it doesn’t interfere with scrolling */
-    margin-right: 30px;
-    margin-left: 30px;
+    margin-right: 0px;
+    margin-left: 0px;
     
 }
 
@@ -752,14 +754,15 @@ html, body {
     position: relative;
     height: 100%; /* Full height of .homepage */
     width: 100%; /* Ensures it spans full width */
+    margin-top: 60px;
 }
 .text-box {
     opacity: 0;
     transform: translateX(-50px);
     transition: opacity 1s ease-out, transform 1s ease-out;
-    font-size: 50px;
+    font-size: clamp(20px, 5vw, 50px);
     color: #8c9fbd;
-    margin: 65px;
+    margin: 5vw; /* Responsive margin */
     
 }
 .image-box {
@@ -769,7 +772,8 @@ html, body {
     transition: opacity 2s ease-out, transform 2s ease-out;
     height: 100%;
     width: auto;
-    
+    display: block;
+    object-fit: cover;
 }
 
 .text-box span {
@@ -1111,6 +1115,69 @@ html, body {
         height: 180px;
         cursor: pointer;
     }
+
+    .image {
+        flex: 0 0 100%;
+    }
+
+    .container2 {
+        position: relative;
+        flex-direction: column;
+       
+        align-items: center;
+    }
+    .text-box {
+        position: relative;
+        font-size: 8vw;
+        max-width: 80%;
+        text-align: left;
+        z-index: 2;
+        top: 63vh;
+    }
+    .image-box {
+        max-width: 100vw;
+        height: auto;
+        object-fit: cover;
+        z-index: 1;
+        position: absolute;
+    }
+
+    .project_index {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        max-width: 100vw; /* Restricts max width */
+        padding: 20px; /* Adds padding to prevent cropping */
+        overflow: hidden; /* Ensures content doesn't overflow */
+        margin: auto; /* Centers it */
+    }
+    
+    .neuro, .kickstarter {
+        flex-direction: column; /* Stack image on top, text below */
+        text-align: left;
+        align-items: center;
+        
+    }
+    .neuro div, .kickstarter div {
+        width: 100%;
+        text-align: left; /* Ensures text is centered */
+    }
+    
+    .imgProject {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .imgProject img {
+        max-width: 100%; /* Ensures image doesn't stretch */
+        height: auto;
+        display: block;
+        margin: 0 auto; /* Fix: Centers image horizontally */
+    }
+       
 }
 
 @media screen and (aspect-ratio >= 0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
@@ -1179,7 +1246,33 @@ html, body {
     .row {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .image {
+        flex: 0 0 50%;
+    }
+
+
+    .homepage{
+        height: 50vh;
+    }
+
+    .container2 {
+        height: 50vh;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .text-box {
+        font-size: 4vw;
+        max-width: 50%;
+    }
+    .image-box {
+        max-width: auto;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .overview{
+        height: 80vh;
+    }
 }
-
-
 
