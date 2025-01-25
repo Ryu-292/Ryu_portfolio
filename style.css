@@ -700,14 +700,15 @@ html, body {
 /* Text inside overlay */
 .Proj-name {
     color: white;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: bold;
     text-align: center;
     max-width: 90%; /* Prevents text from overflowing */
     box-sizing: border-box; /* Ensures consistent sizing */
 }
 .neuro h2, .kickstarter h2 {
-    font-size: 3rem !important; /* Forces uniform size */
+    font-size: clamp(1.5rem, 4vw, 3rem) !important;
+
 }
 
 
@@ -1177,6 +1178,8 @@ html, body {
         display: block;
         margin: 0 auto; /* Fix: Centers image horizontally */
     }
+
+    
        
 }
 
