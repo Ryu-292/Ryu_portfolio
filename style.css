@@ -2,10 +2,12 @@
     font-family: Helvetica_med;
     src: url(HelveticaNeue-Medium.otf);
 }
+
 @font-face {
     font-family: Helvetica_light;
     src: url(HelveticaNeue-Light.otf);
 }
+
 @font-face {
     font-family: Helvetica_bold;
     src: url(HelveticaNeue-Black.otf);
@@ -19,13 +21,15 @@
 }
 
 body {
-    background-color: #ffff; /* Beige background for the page */
+    background-color: #ffff;
+    /* Beige background for the page */
     /*min-height: 300vh;*/
 }
 
 /* General Styling for the Navbar */
 .navibar {
-    background: #1c223a; /* Semi-transparent dark background */
+    background: #1c223a;
+    /* Semi-transparent dark background */
     height: 70px;
     width: 100vw;
     display: flex;
@@ -33,8 +37,10 @@ body {
     align-items: center;
     position: fixed;
     top: 0;
-    z-index: 9999; /* Keeps navbar on top */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    z-index: 9999;
+    /* Keeps navbar on top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
 }
 
 /* Container */
@@ -50,13 +56,16 @@ body {
 
 /* Logo */
 #navbar__logo img {
-    height: 90px; /* Adjust logo size */
-    width: auto;    
+    height: 90px;
+    /* Adjust logo size */
+    width: auto;
 }
 
 #navbar__logo {
-    display: inline-block; /* Allows transform to work */
-    transition: transform 0.3s ease; /* Smooth scaling transition */
+    display: inline-block;
+    /* Allows transform to work */
+    transition: transform 0.3s ease;
+    /* Smooth scaling transition */
 }
 
 #navbar__logo:hover {
@@ -65,7 +74,8 @@ body {
 
 /* Toggle Button (for mobile view) */
 .nav_toggle {
-    display: none; /* Hide toggle button by default */
+    display: none;
+    /* Hide toggle button by default */
     flex-direction: column;
     cursor: pointer;
 }
@@ -91,17 +101,22 @@ body {
 }
 
 .navbar__links {
-    color: #8c9fbd; /* White text for links */
+    color: #8c9fbd;
+    /* White text for links */
     text-decoration: none;
-    padding: 10px 15px ;
+    padding: 10px 15px;
     font-size: clamp(1.2rem, 2vw, 2rem);
-    display: inline-block; /* Allows transform to work */
-    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for both color and transform */
+    display: inline-block;
+    /* Allows transform to work */
+    transition: color 0.3s ease, transform 0.3s ease;
+    /* Smooth transition for both color and transform */
 }
 
 .navbar__links:hover {
-    color: #ce6241; /* Highlight color on hover */
-    transform: scale(1.2); /* Adjusted scale to 1.2 for a less dramatic effect */
+    color: #ce6241;
+    /* Highlight color on hover */
+    transform: scale(1.2);
+    /* Adjusted scale to 1.2 for a less dramatic effect */
 }
 
 .hmaa_intro {
@@ -111,9 +126,12 @@ body {
 .hmaa_content {
     margin-top: 70px;
     background: #1C223A;
-    padding: 20px 0; /* Padding to create space around the title */
-    width: 100%; /* Ensures it spans the full width */
-    text-align: center; /* Centers the text inside */
+    padding: 20px 0;
+    /* Padding to create space around the title */
+    width: 100%;
+    /* Ensures it spans the full width */
+    text-align: center;
+    /* Centers the text inside */
     box-sizing: border-box;
 }
 
@@ -127,45 +145,63 @@ body {
 
 .page_title {
     color: #ce6241;
-    font-size: clamp(2rem, 5vw, 6rem); /* Responsive font scaling */
+    font-size: clamp(2rem, 5vw, 6rem);
+    /* Responsive font scaling */
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px;
-    position: relative; /* Removed absolute positioning */
-    word-wrap: break-word; /* Ensures long words break to the next line */
-    overflow-wrap: break-word; /* Modern alternative for wrapping */
-    white-space: normal; /* Allows the text to wrap when needed */
+    position: relative;
+    /* Removed absolute positioning */
+    word-wrap: break-word;
+    /* Ensures long words break to the next line */
+    overflow-wrap: break-word;
+    /* Modern alternative for wrapping */
+    white-space: normal;
+    /* Allows the text to wrap when needed */
 }
 
 /* Intro Section */
 .hmaa_intro {
-    display: flex; /* Enables flexbox layout */
-    flex-direction: row; /* Places items in a row (side by side) */
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Aligns content vertically */
-    gap: 60px; /* Space between the title and description */
-    padding: 20px; /* Adjust padding for the section */
-    height: auto; /* Ensures section height adjusts */
+    display: flex;
+    /* Enables flexbox layout */
+    flex-direction: row;
+    /* Places items in a row (side by side) */
+    justify-content: center;
+    /* Centers content horizontally */
+    align-items: center;
+    /* Aligns content vertically */
+    gap: 60px;
+    /* Space between the title and description */
+    padding: 20px;
+    /* Adjust padding for the section */
+    height: auto;
+    /* Ensures section height adjusts */
     box-sizing: border-box;
 }
 
 
 .intro_title {
-    font-size: clamp(2rem, 3vw, 4rem); /* Responsive font size */
+    font-size: clamp(2rem, 3vw, 4rem);
+    /* Responsive font size */
     line-height: 1.5;
     color: #8c9fbd;
-    margin: 10px; /* Removes unnecessary margin */
-    text-align: left; /* Aligns text to the left */
+    margin: 10px;
+    /* Removes unnecessary margin */
+    text-align: left;
+    /* Aligns text to the left */
     position: relative;
 }
 
 .intro_description {
-    max-width: 600px; /* Restricts the width of the description */
+    max-width: 600px;
+    /* Restricts the width of the description */
     font-size: clamp(1rem, 2vw, 1.5rem);
     line-height: 1.6;
     color: #8c9fbd;
-    margin: 0; /* Removes unnecessary margin */
-    text-align: left; /* Aligns text to the left */
+    margin: 0;
+    /* Removes unnecessary margin */
+    text-align: left;
+    /* Aligns text to the left */
     position: relative;
     box-sizing: border-box;
 }
@@ -182,8 +218,10 @@ body {
 .bento-grid {
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(3, 1fr); /* 3 unequal columns */
-    grid-auto-rows: 200px; /* Base height for rows */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 unequal columns */
+    grid-auto-rows: 200px;
+    /* Base height for rows */
     width: 100%;
     max-width: 1000px;
 }
@@ -245,7 +283,8 @@ body {
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -263,22 +302,29 @@ html, body {
 
 .page_title {
     color: #ce6241;
-    font-size: clamp(2rem, 5vw, 6rem); /* Responsive font scaling */
+    font-size: clamp(2rem, 5vw, 6rem);
+    /* Responsive font scaling */
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px;
-    position: relative; /* Removed absolute positioning */
+    position: relative;
+    /* Removed absolute positioning */
     background: #1C223A;
 }
 
 /* Container for Doors */
 /* Door container */
 .door-container {
-    display: flex; /* Arrange doors side by side */
-    width: 100%; /* Full width of the viewport */
-    height: 100vh; /* Adjust height as needed */
-    margin: auto; /* Center the container vertically */
-    overflow: hidden; /* Prevent overflow */
+    display: flex;
+    /* Arrange doors side by side */
+    width: 100%;
+    /* Full width of the viewport */
+    height: 100vh;
+    /* Adjust height as needed */
+    margin: auto;
+    /* Center the container vertically */
+    overflow: hidden;
+    /* Prevent overflow */
     position: fixed;
     top: 70px;
     box-sizing: border-box;
@@ -286,30 +332,37 @@ html, body {
 }
 
 /* Doors */
-.door-container > div {
-    height: 100vh; /* Full height of the container */
+.door-container>div {
+    height: 100vh;
+    /* Full height of the container */
     position: sticky;
-    transition: transform 2s ease-out; /* Smooth animation for sliding */
+    transition: transform 2s ease-out;
+    /* Smooth animation for sliding */
     display: inline;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Prevent image overflow */
+    overflow: hidden;
+    /* Prevent image overflow */
     top: 70px;
 }
 
 /* Door Sizes */
 .first-door,
 .fourth-door {
-    width: 25%; /* Outer doors are smaller */
-    height: 100%; /* Full height of the container */
+    width: 25%;
+    /* Outer doors are smaller */
+    height: 100%;
+    /* Full height of the container */
     z-index: 9;
     background-color: #000000;
 }
 
 .second-door,
 .third-door {
-    width: 25%; /* Middle doors take more space */
-    height: 100%; /* Full height of the container */
+    width: 25%;
+    /* Middle doors take more space */
+    height: 100%;
+    /* Full height of the container */
     z-index: 10;
     background-color: #000000;
 }
@@ -317,8 +370,10 @@ html, body {
 
 
 .door-container img {
-    width:100%; /* Fill the door width */
-    height: auto; /* Fill the door height */
+    width: 100%;
+    /* Fill the door width */
+    height: auto;
+    /* Fill the door height */
     object-fit: cover;
     top: 0;
     display: inline_block;
@@ -326,7 +381,8 @@ html, body {
 
 /* Ensure Middle Doors Touch at the Center */
 .door-container {
-    gap: 0; /* Remove spacing between doors */
+    gap: 0;
+    /* Remove spacing between doors */
 }
 
 
@@ -352,17 +408,26 @@ html, body {
     margin: 10px 0;
     font-size: clamp(1.5rem, 3vw, 4rem);
 }
+
 .black-overlay {
-    position: fixed; /* Positioned relative to the hidden_page */
+    position: fixed;
+    /* Positioned relative to the hidden_page */
     top: 0;
     left: 0;
-    width: 100vw; /* Full width of the hidden page */
-    height: 100%; /* Full height of the hidden page */
-    background-color: #000000; /* Fully black background */
-    z-index: 0; /* Place above the hidden page initially */
-    opacity: 1; /* Fully visible initially */
-    transition: opacity 2s ease-in-out; /* Smooth fade-out effect */
-    pointer-events: none; /* Prevent interaction */
+    width: 100vw;
+    /* Full width of the hidden page */
+    height: 100%;
+    /* Full height of the hidden page */
+    background-color: #000000;
+    /* Fully black background */
+    z-index: 0;
+    /* Place above the hidden page initially */
+    opacity: 1;
+    /* Fully visible initially */
+    transition: opacity 2s ease-in-out;
+    /* Smooth fade-out effect */
+    pointer-events: none;
+    /* Prevent interaction */
     box-sizing: border-box;
 }
 
@@ -384,7 +449,8 @@ html, body {
     text-align: Left;
     z-index: -1;
     transition: opacity 2s ease-in-out;
-    box-sizing: border-box; /* Prevent unintended width/height issues */
+    box-sizing: border-box;
+    /* Prevent unintended width/height issues */
 }
 
 .hidden_pageW {
@@ -404,58 +470,79 @@ html, body {
     text-align: Left;
     z-index: -1;
     transition: opacity 2s ease-in-out;
-    box-sizing: border-box; /* Prevent unintended width/height issues */
+    box-sizing: border-box;
+    /* Prevent unintended width/height issues */
 }
 
 /* When doors open */
 .scrolled .black-overlay {
-    opacity: 0; /* Fade out to transparent */
-    pointer-events: none; /* Ensure it stays non-interactive */;
+    opacity: 0;
+    /* Fade out to transparent */
+    pointer-events: none;
+    /* Ensure it stays non-interactive */
+    ;
     z-index: -1000;
 }
+
 .scrolled .hidden_page {
-    opacity: 1; /* Make hidden page visible */
-    pointer-events: auto; /* Allow interaction */
+    opacity: 1;
+    /* Make hidden page visible */
+    pointer-events: auto;
+    /* Allow interaction */
 }
 
 .vision {
-    display: flex; /* Make .vision a flex container */
-    justify-content: center; /* Center the image horizontally */
-    align-items: center; /* Center the image vertically, if needed */
-    width: 100vw; /* Ensures the .vision spans the full width */
+    display: flex;
+    /* Make .vision a flex container */
+    justify-content: center;
+    /* Center the image horizontally */
+    align-items: center;
+    /* Center the image vertically, if needed */
+    width: 100vw;
+    /* Ensures the .vision spans the full width */
 }
 
 /* Style for the image */
 .vision img {
-    max-width: 1vw; /* Restrict the image width */
-    height: auto; /* Maintain aspect ratio */
-    flex-shrink: 0; /* Prevent image shrinking */
+    max-width: 1vw;
+    /* Restrict the image width */
+    height: auto;
+    /* Maintain aspect ratio */
+    flex-shrink: 0;
+    /* Prevent image shrinking */
 }
 
 /* Main container for intro */
 .intro_neuro {
-    width: 100vw; /* Full viewport width */
+    width: 100vw;
+    /* Full viewport width */
     max-width: 100%;
-    margin: 0 auto; /* Center it */
-    padding: 80px; /* Spacing */
+    margin: 0 auto;
+    /* Center it */
+    padding: 80px;
+    /* Spacing */
     box-sizing: border-box;
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    /* Prevent horizontal overflow */
     display: flex;
-    flex-direction: column; /* Stack sections vertically */
-    align-items: center; /* Center content */
+    flex-direction: column;
+    /* Stack sections vertically */
+    align-items: center;
+    /* Center content */
 }
 
 /* Ensure all child elements inside intro_neuro align properly */
-.intro_neuro > * {
+.intro_neuro>* {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    padding:0px;
+    padding: 0px;
 }
 
 /* Headings */
-.project_title, .project_subtitle {
+.project_title,
+.project_subtitle {
     text-align: center;
     margin-bottom: 20px;
     width: 100%;
@@ -463,7 +550,9 @@ html, body {
 }
 
 /* Presentation paragraphs */
-.presentation, .presentation1, .presentation2 {
+.presentation,
+.presentation1,
+.presentation2 {
     width: 100%;
     max-width: 800px;
     margin: 20px auto;
@@ -491,7 +580,8 @@ html, body {
 }
 
 /* Images with text layout */
-.images_neuro1, .images_neuro2 {
+.images_neuro1,
+.images_neuro2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -505,7 +595,8 @@ html, body {
 }
 
 /* Image and text sizes */
-.images_neuro1 img, .images_neuro2 img {
+.images_neuro1 img,
+.images_neuro2 img {
     width: 40%;
     max-width: 100%;
     height: auto;
@@ -515,11 +606,13 @@ html, body {
 
 /* Normal positioning: Neuro1 (left), Presentation1 (right) */
 .images_neuro1 .neuro1 {
-    order: 1; /* Image on the left */
+    order: 1;
+    /* Image on the left */
 }
 
 .images_neuro1 .presentation1 {
-    order: 2; /* Text on the right */
+    order: 2;
+    /* Text on the right */
     width: 55%;
     padding: 0 0px;
     box-sizing: border-box;
@@ -528,15 +621,18 @@ html, body {
 
 /* Inverted positioning: Neuro2 (right), Presentation2 (left) */
 .images_neuro2 {
-    flex-direction: row-reverse; /* This inverts the order */
+    flex-direction: row-reverse;
+    /* This inverts the order */
 }
 
 .images_neuro2 .neuro2 {
-    order: 1; /* Image should now be on the right */
+    order: 1;
+    /* Image should now be on the right */
 }
 
 .images_neuro2 .presentation2 {
-    order: 2; /* Text should now be on the left */
+    order: 2;
+    /* Text should now be on the left */
     width: 55%;
     padding: 0 15px;
     box-sizing: border-box;
@@ -545,18 +641,22 @@ html, body {
 
 /* 📌 Mobile Responsiveness */
 @media (max-width: 768px) {
-    .images_neuro1, .images_neuro2 {
+
+    .images_neuro1,
+    .images_neuro2 {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    .images_neuro1 img, .images_neuro2 img {
+    .images_neuro1 img,
+    .images_neuro2 img {
         width: 80%;
         max-width: 100%;
     }
 
-    .images_neuro1 .presentation1, .images_neuro2 .presentation2 {
+    .images_neuro1 .presentation1,
+    .images_neuro2 .presentation2 {
         width: 90%;
         text-align: center;
     }
@@ -566,52 +666,67 @@ html, body {
 .projects {
     margin-top: 70px;
     background: #1C223A;
-    padding: 20px 0; /* Padding to create space around the title */
-    width: 100%; /* Ensures it spans the full width */
-    text-align: center; /* Centers the text inside */
+    padding: 20px 0;
+    /* Padding to create space around the title */
+    width: 100%;
+    /* Ensures it spans the full width */
+    text-align: center;
+    /* Centers the text inside */
     box-sizing: border-box;
 }
 
 .projects_titles {
     color: #ce6241;
-    font-size: clamp(2rem, 5vw, 6rem); /* Responsive font scaling */
+    font-size: clamp(2rem, 5vw, 6rem);
+    /* Responsive font scaling */
     text-align: center;
     margin-top: 20px;
     margin-bottom: 30px;
-    position: relative; /* Removed absolute positioning */
-    word-wrap: break-word; /* Ensures long words break to the next line */
-    overflow-wrap: break-word; /* Modern alternative for wrapping */
-    white-space: normal; /* Allows the text to wrap when needed */
-    
+    position: relative;
+    /* Removed absolute positioning */
+    word-wrap: break-word;
+    /* Ensures long words break to the next line */
+    overflow-wrap: break-word;
+    /* Modern alternative for wrapping */
+    white-space: normal;
+    /* Allows the text to wrap when needed */
+
 }
 
 .projects_description {
-    max-width: 80vw; /* Restricts the width of the description */
+    max-width: 80vw;
+    /* Restricts the width of the description */
     font-size: clamp(1rem, 2vw, 1.5rem);
     line-height: 1.6;
     color: #8c9fbd;
-    margin: 0; /* Removes unnecessary margin */
-    text-align: left; /* Aligns text to the left */
+    margin: 0;
+    /* Removes unnecessary margin */
+    text-align: left;
+    /* Aligns text to the left */
     position: relative;
     box-sizing: border-box;
     margin-bottom: 30px;
 }
 
-.neuro img, .kickstarter img {
+.neuro img,
+.kickstarter img {
     max-width: 400px;
     height: auto;
-    display: block; /* Prevents inline spacing issues */
-   
+    display: block;
+    /* Prevents inline spacing issues */
+
 }
 
 
-.neuro div{
-    order: 1; /* Keeps image on the left */ 
+.neuro div {
+    order: 1;
+    /* Keeps image on the left */
 }
 
 /* Second image on the right */
-.kickstarter div{
-    order: 2; /* Moves image to the right */
+.kickstarter div {
+    order: 2;
+    /* Moves image to the right */
 }
 
 .neuro {
@@ -619,8 +734,9 @@ html, body {
     align-items: left;
     text-align: left;
     gap: 1em;
-    margin:50px;
-    flex-direction: row; /* Image on the left */
+    margin: 50px;
+    flex-direction: row;
+    /* Image on the left */
     align-items: center;
 }
 
@@ -630,37 +746,46 @@ html, body {
     text-align: left;
     gap: 1em;
     margin: 50px;
-    flex-direction: row-reverse; /* Image on the right */
+    flex-direction: row-reverse;
+    /* Image on the right */
     align-items: center;
 }
 
-.neuro div, .kickstarter div {
+.neuro div,
+.kickstarter div {
     flex: 1;
 }
 
 .kickstarter a {
-    display: inline-block; /* Allows normal flow */
-    position: relative; /* Prevents covering content */
-    z-index: 1; /* Ensures it doesn’t interfere with scrolling */
+    display: inline-block;
+    /* Allows normal flow */
+    position: relative;
+    /* Prevents covering content */
+    z-index: 1;
+    /* Ensures it doesn’t interfere with scrolling */
 }
 
-.project_index{
+.project_index {
     width: 100vw;
 }
 
 
 /* Image Container */
 .imgProject {
-    display: inline-block; /* Allows normal flow */
-    position: relative; /* Prevents covering content */
-    z-index: 1; /* Ensures it doesn’t interfere with scrolling */
+    display: inline-block;
+    /* Allows normal flow */
+    position: relative;
+    /* Prevents covering content */
+    z-index: 1;
+    /* Ensures it doesn’t interfere with scrolling */
     margin-right: 0px;
     margin-left: 0px;
-    
+
 }
 
 .imgProject img {
-    order: 1; /* Keeps image on the left */
+    order: 1;
+    /* Keeps image on the left */
     z-index: -1;
     width: 100%;
     transition: transform 0.3s ease-in-out;
@@ -686,7 +811,8 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(140, 159, 189, 0.5); /* Dark transparent effect */
+    background: rgba(140, 159, 189, 0.5);
+    /* Dark transparent effect */
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     display: flex;
@@ -694,7 +820,8 @@ html, body {
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    pointer-events: none; /* Prevents accidental scrolling issues */
+    pointer-events: none;
+    /* Prevents accidental scrolling issues */
 }
 
 /* Text inside overlay */
@@ -703,10 +830,14 @@ html, body {
     font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: bold;
     text-align: center;
-    max-width: 90%; /* Prevents text from overflowing */
-    box-sizing: border-box; /* Ensures consistent sizing */
+    max-width: 90%;
+    /* Prevents text from overflowing */
+    box-sizing: border-box;
+    /* Ensures consistent sizing */
 }
-.neuro h2, .kickstarter h2 {
+
+.neuro h2,
+.kickstarter h2 {
     font-size: clamp(1.5rem, 4vw, 3rem) !important;
 
 }
@@ -736,38 +867,43 @@ html, body {
 /* Frog image positioning */
 .ryu_grenouille {
     position: absolute;
-   
+
     width: 100vw;
     height: 100vh;
-    z-index: 9999 ;
-    
+    z-index: 9999;
+
 }
 
 .ryu_grenouille img {
     width: 200px;
     height: 200px;
-    
+
 }
 
 .container2 {
     display: flex;
     align-items: center;
     position: relative;
-    height: 100%; /* Full height of .homepage */
-    width: 100%; /* Ensures it spans full width */
+    height: 100%;
+    /* Full height of .homepage */
+    width: 100%;
+    /* Ensures it spans full width */
     margin-top: 60px;
 }
+
 .text-box {
     opacity: 0;
     transform: translateX(-50px);
     transition: opacity 1s ease-out, transform 1s ease-out;
     font-size: clamp(20px, 5vw, 50px);
     color: #8c9fbd;
-    margin: 5vw; /* Responsive margin */
-    
+    margin: 5vw;
+    /* Responsive margin */
+
 }
+
 .image-box {
-    
+
     opacity: 0;
     transform: translateX(-200%);
     transition: opacity 2s ease-out, transform 2s ease-out;
@@ -782,32 +918,35 @@ html, body {
     opacity: 0;
     transform: translateX(-30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    
+
 }
 
-.overview{
+.overview {
     height: calc(100vh - 70px);
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Aligns the intersection at the center */
+    justify-content: center;
+    /* Aligns the intersection at the center */
     align-items: center;
     position: relative;
 }
 
-#slideshow   {
+#slideshow {
     display: flex;
     transition: transform 1s ease-in-out;
 }
+
 .image {
     flex: 0 0 25%;
 }
+
 .image img {
     width: 100%;
     height: auto;
 }
 
-#slideshow2   {
+#slideshow2 {
     display: flex;
     transition: transform 1s ease-in-out;
 }
@@ -840,17 +979,23 @@ html, body {
 /* ---------------- SCROLL-DOWN BUTTON ---------------- */
 .scroll-down {
     display: flex;
-    flex-direction: row; /* Aligns icon and text side by side */
-    align-items: center; /* Ensures proper vertical alignment */
-    justify-content: flex-start; /* Aligns to the left */
-    gap: 20px; /* Space between the icon and text */
+    flex-direction: row;
+    /* Aligns icon and text side by side */
+    align-items: center;
+    /* Ensures proper vertical alignment */
+    justify-content: flex-start;
+    /* Aligns to the left */
+    gap: 20px;
+    /* Space between the icon and text */
     text-align: center;
 
     /* Fade-in and slide-in effect */
     opacity: 0;
-    transform: translateX(-30px); /* Start off-screen */
+    transform: translateX(-30px);
+    /* Start off-screen */
     animation: fadeSlideIn 1s ease-in-out forwards;
-    animation-delay: 1.2s; /* Appears after text */
+    animation-delay: 1.2s;
+    /* Appears after text */
 }
 
 /* ---- Scroll Icon (LEFT) ---- */
@@ -858,20 +1003,24 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px; /* Fixed width */
+    width: 50px;
+    /* Fixed width */
     height: 50px;
-    animation: bounce 1.5s infinite; /* Keeps bounce animation */
+    animation: bounce 1.5s infinite;
+    /* Keeps bounce animation */
 }
 
 /* Custom styling for the text inside the link */
 .scroll-down a {
-    text-decoration: none; /* Removes underline */
-    
+    text-decoration: none;
+    /* Removes underline */
+
 }
 
 /* Optional: Change color on hover */
 .scroll-down :hover {
-    color: #ce6241; /* Slightly darker green */
+    color: #ce6241;
+    /* Slightly darker green */
 }
 
 
@@ -892,14 +1041,18 @@ html, body {
     font-size: 30px;
     color: #8c9fbd;
     font-weight: 500;
-    white-space: nowrap; /* Prevents text wrapping */
+    white-space: nowrap;
+    /* Prevents text wrapping */
 }
 
 /* Bounce animation for the icon */
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(5px);
     }
@@ -910,8 +1063,10 @@ html, body {
     from {
         opacity: 0;
         transform: translateX(-30px);
-        filter: blur(4px); /* Adds a subtle blur effect for a smoother feel */
+        filter: blur(4px);
+        /* Adds a subtle blur effect for a smoother feel */
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -924,54 +1079,92 @@ html, body {
     animation: fadeSlideIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
+.image_video {
+    display: flex;
+    align-items: center; /* Ensures items are aligned at the same height */
+    gap: 30px; /* Space between image and video */
+    justify-content: center; /* Centers the row horizontally */
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
 
+.image_video img,
+.image_video video {
+    height: 300px; /* Sets the same height for both */
+    width: auto; /* Maintains aspect ratio */
+    object-fit: cover; /* Ensures content fills the container properly */
+    
+}
 
+.bottom-content {
+    display: flex;
+    gap: 30px; /* Ensures consistent spacing */
+    justify-content: center;
+}
+
+.top-image {
+    height: 300px;
+    object-fit: cover;
+    
+}
 
 /* Responsive Design */
-@media screen and (aspect-ratio < 0.60){
+@media screen and (aspect-ratio < 0.60) {
     .nav_toggle {
-        display: flex; /* Show toggle button on small screens */
+        display: flex;
+        /* Show toggle button on small screens */
     }
 
     .navbar__menu {
-        display: none; /* Hide menu by default */
+        display: none;
+        /* Hide menu by default */
         flex-direction: column;
         background: #1C223A;
         position: absolute;
         top: 80px;
         right: 0;
         width: 100%;
-        transform: translateY(-100%); /* Start hidden */
+        transform: translateY(-100%);
+        /* Start hidden */
         opacity: 0;
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     }
 
     .navbar__menu.active {
-        display: flex; /* Show menu when active */
-        transform: translateY(0); /* Slide into view */
+        display: flex;
+        /* Show menu when active */
+        transform: translateY(-5%);
+        /* Slide into view */
         opacity: 1;
     }
+
 
     .navbar__item {
         text-align: center;
         margin: 10px 0;
     }
-    
+
     .hmaa_intro {
-        flex-direction: column; /* Stack elements vertically */
-        text-align: center; /* Center-align for mobile */
-        gap: 20px; /* Space between stacked elements */
-        padding: 20px; /* Adjust padding for smaller screens */
+        flex-direction: column;
+        /* Stack elements vertically */
+        text-align: center;
+        /* Center-align for mobile */
+        gap: 20px;
+        /* Space between stacked elements */
+        padding: 20px;
+        /* Adjust padding for smaller screens */
     }
 
     .intro_title,
     .intro_description {
-        text-align: left; /* Center-align text */
-        
+        text-align: left;
+        /* Center-align text */
+
     }
 
     .intro_description {
-        max-width: 90%; /* Reduce width for smaller screens */
+        max-width: 90%;
+        /* Reduce width for smaller screens */
     }
 
     .page_title {
@@ -979,75 +1172,99 @@ html, body {
     }
 
     .column1 {
-        grid-template-columns: repeat(1, 1fr); /* Single column on small screens */
-        gap: 20px; /* Increase space between items */
+        grid-template-columns: repeat(1, 1fr);
+        /* Single column on small screens */
+        gap: 20px;
+        /* Increase space between items */
     }
 
     .column1 img {
-        max-width: 90%; /* Limit the image width */
-        margin: 0 auto; /* Center images */
+        max-width: 90%;
+        /* Limit the image width */
+        margin: 0 auto;
+        /* Center images */
     }
 
     .projects_content {
         padding: 10px 0;
     }
 
-    
+
     .door-container {
-        display: flex; /* Use block layout since only one door is visible */
-        width: 100vw; /* Full viewport width */
-        min-height: 100vh; /* Full viewport height */
-        padding: 0; /* Remove any padding */
-        overflow: hidden; /* Prevent content overflow */
-        position: fixed; /* Ensure child elements are positioned correctly */
+        display: flex;
+        /* Use block layout since only one door is visible */
+        width: 100vw;
+        /* Full viewport width */
+        min-height: 100vh;
+        /* Full viewport height */
+        padding: 0;
+        /* Remove any padding */
+        overflow: hidden;
+        /* Prevent content overflow */
+        position: fixed;
+        /* Ensure child elements are positioned correctly */
         top: 0px;
         left: 0;
     }
 
-    .door-container > div {
+    .door-container>div {
         position: absolute;
-        transition: transform 2s ease-out; /* Smooth animation for sliding */
-        display: flex; /* Allows centering of content inside */
+        transition: transform 2s ease-out;
+        /* Smooth animation for sliding */
+        display: flex;
+        /* Allows centering of content inside */
         justify-content: center;
         align-items: center;
-        overflow: hidden; /* Prevent image overflow */
+        overflow: hidden;
+        /* Prevent image overflow */
     }
 
     .third-door img {
-        width: 100%; /* Ensures it fills the full width */
-        height: 100vh; /* Ensures it fills the full height */
+        width: 100%;
+        /* Ensures it fills the full width */
+        height: 100vh;
+        /* Ensures it fills the full height */
         padding: 0%;
         top: 0;
-        object-fit: cover; /* Prevents distortion while ensuring full coverage */
-        object-position: top; /* Keeps the top part visible, allowing the bottom to overflow */
+        object-fit: cover;
+        /* Prevents distortion while ensuring full coverage */
+        object-position: top;
+        /* Keeps the top part visible, allowing the bottom to overflow */
         position: absolute;
     }
-    
-    
-    
+
+
+
     /* Hide the first, second, and fourth doors */
     .first-door,
     .second-door,
     .fourth-door {
-        display: none !important; /* Completely hide these doors */
+        display: none !important;
+        /* Completely hide these doors */
     }
-    
+
     /* Make the third door occupy the full screen */
     .third-door {
-        width:100%; /* Fill the door width */
-        height: 100%; /* Fill the door height */
+        width: 100%;
+        /* Fill the door width */
+        height: 100%;
+        /* Fill the door height */
         object-fit: cover;
         top: 0;
-        margin: 0; /* Remove any margin */
-        padding: 0; /* Remove any padding */
-        box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
+        margin: 0;
+        /* Remove any margin */
+        padding: 0;
+        /* Remove any padding */
+        box-sizing: border-box;
+        /* Ensure padding doesn't affect dimensions */
         /*transform: translateX(0); /* Default position */
         /*transition: transform 2s ease-out; /* Smooth sliding animation */
-        left: 0; /* Align to the left of the viewport */
+        left: 0;
+        /* Align to the left of the viewport */
         position: absolute;
         background-color: #000000;
     }
-    
+
 
     .intro_neuro {
         padding: 20px;
@@ -1061,53 +1278,74 @@ html, body {
         font-size: clamp(1.5rem, 5vw, 3rem);
     }
 
-    .images_neuro1, .images_neuro2 {
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center-align both text and images */
-        text-align: left; /* Center-align text */
-        gap: 15px; /* Adjust spacing between image and text */
+    .images_neuro1,
+    .images_neuro2 {
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        /* Center-align both text and images */
+        text-align: left;
+        /* Center-align text */
+        gap: 15px;
+        /* Adjust spacing between image and text */
     }
 
-    .images_neuro1 img, .images_neuro2 img {
-        width: 80%; /* Reduce image width */
-        max-width: 300px; /* Limit maximum size */
+    .images_neuro1 img,
+    .images_neuro2 img {
+        width: 80%;
+        /* Reduce image width */
+        max-width: 300px;
+        /* Limit maximum size */
         height: auto;
         margin: 20px;
     }
 
-    .images_neuro1 .presentation1, .images_neuro2 .presentation2 {
-        width: 90%; /* Text takes most of the container width */
-        max-width: none; /* Remove maximum width constraint */
-        text-align: left; /* Center-align text */
-        font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* Slightly smaller font size */
+    .images_neuro1 .presentation1,
+    .images_neuro2 .presentation2 {
+        width: 90%;
+        /* Text takes most of the container width */
+        max-width: none;
+        /* Remove maximum width constraint */
+        text-align: left;
+        /* Center-align text */
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+        /* Slightly smaller font size */
         align-items: center;
     }
 
     .hidden_page {
-        margin-top: 70px; /* Adjust for smaller screens */
-        font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* Slightly smaller font */
+        margin-top: 70px;
+        /* Adjust for smaller screens */
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+        /* Slightly smaller font */
     }
+
     .column1 {
         flex: 1 1 100%;
         max-width: 100%;
     }
+
     .first-door,
     .fourth-door {
-        flex: 0 0 5%; /* Further reduce the size of outer doors */
-        clip-path: inset(0 0 0 50%); /* Crop heavily from the sides */
+        flex: 0 0 5%;
+        /* Further reduce the size of outer doors */
+        clip-path: inset(0 0 0 50%);
+        /* Crop heavily from the sides */
     }
 
     .second-door,
     .third-door {
-        flex: 0 0 45%; /* Middle doors take even more space */
+        flex: 0 0 45%;
+        /* Middle doors take even more space */
     }
 
     .row {
         grid-template-columns: repeat(1, 1fr);
         gap: 0;
     }
+
     .container img {
-        
+
         margin-bottom: 10px;
     }
 
@@ -1124,9 +1362,10 @@ html, body {
     .container2 {
         position: relative;
         flex-direction: column;
-       
+
         align-items: center;
     }
+
     .text-box {
         position: relative;
         font-size: 8vw;
@@ -1135,6 +1374,7 @@ html, body {
         z-index: 2;
         top: 65vh;
     }
+
     .image-box {
         max-width: 100vw;
         height: auto;
@@ -1149,53 +1389,123 @@ html, body {
         align-items: center;
         justify-content: center;
         width: 100vw;
-        max-width: 100vw; /* Restricts max width */
-        padding: 20px; /* Adds padding to prevent cropping */
-        overflow: hidden; /* Ensures content doesn't overflow */
-        margin: auto; /* Centers it */
+        max-width: 100vw;
+        /* Restricts max width */
+        padding: 20px;
+        /* Adds padding to prevent cropping */
+        overflow: hidden;
+        /* Ensures content doesn't overflow */
+        margin: auto;
+        /* Centers it */
     }
-    
-    .neuro, .kickstarter {
-        flex-direction: column; /* Stack image on top, text below */
+
+    .neuro,
+    .kickstarter {
+        flex-direction: column;
+        /* Stack image on top, text below */
         text-align: left;
         align-items: center;
-        
+
     }
-    .neuro div, .kickstarter div {
+
+    .neuro div,
+    .kickstarter div {
         width: 100%;
-        text-align: left; /* Ensures text is centered */
+        text-align: left;
+        /* Ensures text is centered */
     }
-    
+
     .imgProject {
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    
+
     .imgProject img {
-        max-width: 100%; /* Ensures image doesn't stretch */
+        max-width: 100%;
+        /* Ensures image doesn't stretch */
         height: auto;
         display: block;
-        margin: 0 auto; /* Fix: Centers image horizontally */
+        margin: 0 auto;
+        /* Fix: Centers image horizontally */
     }
 
-    
-       
+
+    /* First image (full width) */
+    .top-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: auto;
+        bottom: 0;
+        object-fit: cover;
+    }
+
+    .image_video img,
+    .image_video video {
+        width: 100%;
+        /* Ensures they fit their parent container */
+        height: auto;
+        /* Maintains aspect ratio */
+        display: block;
+        /* Removes extra space below inline elements */
+    }
+
+    /* Container for the second image and video */
+    .bottom-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0px;
+        width: 80%;
+        object-fit: cover;
+    }
+
+    .image_video {
+        display: flex;
+        flex-direction: column;
+        /* Stack items vertically */
+        align-items: center;
+        gap: 0px;
+        /* Space between elements */
+        max-width: 100%;
+    }
+
+    .top-image,
+    .bottom-content {
+        width: 100%;
+        /* Ensures they take the full width of the parent */
+        display: flex;
+        justify-content: center;
+    }
+
+    .bottom-content img,
+    .bottom-content video {
+        max-width: 50%;
+        height: auto;
+        /* Ensures images and videos maintain aspect ratio */
+        object-fit: fill;
+        /* Ensures content fits inside the container without cropping */
+    }
 }
 
-@media screen and (aspect-ratio >= 0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
+@media screen and (aspect-ratio >=0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
 
     .navbar__container {
         max-width: 900px;
-        padding: 0 20px; /* Further reduce padding */
+        padding: 0 20px;
+        /* Further reduce padding */
     }
 
     .navbar__item {
-        margin: 0 10px; /* Reduce spacing */
+        margin: 0 10px;
+        /* Reduce spacing */
     }
 
     #navbar__logo img {
-        height: 60px; /* Adjust logo size */
+        height: 60px;
+        /* Adjust logo size */
     }
 
     .navbar__links {
@@ -1205,9 +1515,11 @@ html, body {
 
     .door-container {
         display: flex;
-        flex-direction: row; /* Ensure doors are side by side */
-        justify-content: center; /* Center them horizontally */
-        
+        flex-direction: row;
+        /* Ensure doors are side by side */
+        justify-content: center;
+        /* Center them horizontally */
+
         width: 100vw;
         height: 100vh;
         margin: 0;
@@ -1217,21 +1529,25 @@ html, body {
         top: 70px;
         left: 0;
     }
-    
+
     /* Hide First and Fourth Door */
     .first-door,
     .fourth-door {
         display: none !important;
-    }   
+    }
 
     /* Ensure Second and Third Door are Visible */
     .second-door,
     .third-door {
         flex: 1;
-        display: flex; /* Use flex to ensure proper sizing */
-        flex: 1; /* Each takes 50% of the container */
-        width: 50%; /* Each door takes half the viewport width */
-        height: 100vh; /* Full height */
+        display: flex;
+        /* Use flex to ensure proper sizing */
+        flex: 1;
+        /* Each takes 50% of the container */
+        width: 50%;
+        /* Each door takes half the viewport width */
+        height: 100vh;
+        /* Full height */
         overflow: hidden;
         justify-content: center;
         align-items: center;
@@ -1246,6 +1562,19 @@ html, body {
         object-fit: cover;
     }
 
+    .images_neuro1 .presentation1,
+    .images_neuro2 .presentation2 {
+        width: 90%;
+        /* Text takes most of the container width */
+        max-width: none;
+        /* Remove maximum width constraint */
+        text-align: left;
+        /* Center-align text */
+        
+        /* Slightly smaller font size */
+        align-items: center;
+    }
+
     .row {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1255,7 +1584,7 @@ html, body {
     }
 
 
-    .homepage{
+    .homepage {
         height: 50vh;
     }
 
@@ -1264,18 +1593,50 @@ html, body {
         flex-direction: row;
         justify-content: space-between;
     }
+
     .text-box {
         font-size: 4vw;
         max-width: 50%;
     }
+
     .image-box {
         max-width: auto;
         height: 100%;
         object-fit: cover;
     }
 
-    .overview{
+    .overview {
         height: 80vh;
     }
-}
 
+    .image_video {
+        display: flex;
+        align-items: center; /* Ensures items are aligned at the same height */
+        gap: 30px; /* Space between image and video */
+        justify-content: center; /* Centers the row horizontally */
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .image_video img,
+    .image_video video {
+        height: 200px; /* Sets the same height for both */
+        width: auto; /* Maintains aspect ratio */
+        object-fit: cover; /* Ensures content fills the container properly */
+        
+    }
+    
+    .bottom-content {
+        display: flex;
+        gap: 30px; /* Ensures consistent spacing */
+        justify-content: center;
+    }
+    
+    .top-image {
+        height: 200px;
+        object-fit: cover;
+        
+    }
+    
+
+}
