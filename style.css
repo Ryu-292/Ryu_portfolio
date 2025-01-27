@@ -1119,7 +1119,7 @@ body {
 
 .responsive-media {
     max-height: 450px; /* Maximum height limit */
-    height: 30vh; /* Scale based on viewport height */
+    height: 50vh; /* Scale based on viewport height */
     width: auto; /* Keeps aspect ratio */
     max-width: 100%; /* Prevents overflow */
     object-fit: contain; /* Ensures no cropping or distortion */
