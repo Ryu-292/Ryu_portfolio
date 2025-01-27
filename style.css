@@ -1108,6 +1108,22 @@ body {
     
 }
 
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: nowrap; /* Prevent wrapping by default */
+}
+
+.responsive-media {
+    height: 450px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive Design */
 @media screen and (aspect-ratio < 0.60) {
     .nav_toggle {
@@ -1488,7 +1504,18 @@ body {
         object-fit: fill;
         /* Ensures content fits inside the container without cropping */
     }
+
+    .image-container {
+        flex-wrap: wrap;
+    }
     
+    .responsive-media {
+        height: auto;
+        width: 80%;
+        max-width: 100%;
+        object-fit: contain;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 }
 
 @media screen and (aspect-ratio >=0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
