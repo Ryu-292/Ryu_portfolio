@@ -1127,6 +1127,16 @@ body {
     transition: all 0.3s ease-in-out; /* Smooth resizing */
 }
 
+.responsive-media2 {
+    max-height: 55vh; /* Max height based on viewport */
+    height: auto; /* Allows proportional shrinking */
+    width: auto; /* Keeps aspect ratio */
+    max-width: 100%; /* Prevents overflow */
+    object-fit: contain; /* Ensures no cropping or distortion */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out; /* Smooth resizing */
+}
+
 /* Responsive Design */
 @media screen and (aspect-ratio < 0.60) {
     .nav_toggle {
@@ -1513,6 +1523,14 @@ body {
     }
     
     .responsive-media {
+        height: auto;
+        width: 70%;
+        max-width: 100%;
+        object-fit: contain;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .responsive-media2 {
         height: auto;
         width: 70%;
         max-width: 100%;
