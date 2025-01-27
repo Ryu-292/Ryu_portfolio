@@ -1672,4 +1672,8 @@ body {
     .responsive-media {
         max-height: 25vh;
     }
+
+    .responsive-media2 {
+        max-height: 20vh;
+    }
 }
