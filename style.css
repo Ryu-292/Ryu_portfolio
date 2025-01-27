@@ -1118,7 +1118,7 @@ body {
 }
 
 .responsive-media {
-    max-height: 450px; /* Maximum height limit */
+    max-height: 600px; /* Maximum height limit */
     height: 55vh; /* Scale based on viewport height */
     width: auto; /* Keeps aspect ratio */
     max-width: 100%; /* Prevents overflow */
