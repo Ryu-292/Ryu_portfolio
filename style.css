@@ -1666,5 +1666,9 @@ body {
         
     }
     
+    .responsive-media {
+        max-height: 350px;
+        width: 28%;
+    }
 
 }
