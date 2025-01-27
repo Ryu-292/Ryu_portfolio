@@ -1488,6 +1488,10 @@ body {
         object-fit: fill;
         /* Ensures content fits inside the container without cropping */
     }
+
+    .image-container {
+        flex-wrap: wrap;
+    }
 }
 
 @media screen and (aspect-ratio >=0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
