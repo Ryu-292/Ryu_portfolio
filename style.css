@@ -1118,7 +1118,8 @@ body {
 }
 
 .responsive-media {
-    height: 55vh; /* Scale based on viewport height */
+    max-height: 55vh; /* Max height based on viewport */
+    height: auto; /* Allows proportional shrinking */
     width: auto; /* Keeps aspect ratio */
     max-width: 100%; /* Prevents overflow */
     object-fit: contain; /* Ensures no cropping or distortion */
