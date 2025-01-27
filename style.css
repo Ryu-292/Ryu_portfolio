@@ -1117,7 +1117,7 @@ body {
 }
 
 .responsive-media {
-    height: 450px;
+    max-height: 450px;
     width: auto;
     max-width: 100%;
     object-fit: contain;
@@ -1511,7 +1511,7 @@ body {
     
     .responsive-media {
         height: auto;
-        width: 50%;
+        width: 80%;
         max-width: 100%;
         object-fit: contain;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
