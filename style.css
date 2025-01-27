@@ -1118,11 +1118,13 @@ body {
 }
 
 .responsive-media {
-    max-height: 450px;
-    height: 30%;
-    max-width: 100%;
-    object-fit: contain;
+    max-height: 450px; /* Maximum height limit */
+    height: 30vh; /* Scale based on viewport height */
+    width: auto; /* Keeps aspect ratio */
+    max-width: 100%; /* Prevents overflow */
+    object-fit: contain; /* Ensures no cropping or distortion */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out; /* Smooth resizing */
 }
 
 /* Responsive Design */
