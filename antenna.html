@@ -2,20 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
-
 
     <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
 </head>
 
 <body>
@@ -23,7 +22,7 @@
         <div class="navbar__container">
             <div class="logo">
                 <a href="index.html" id="navbar__logo">
-                    <img src="images/LogoR.png" alt="Logo">
+                    <img src="images/LogoR.png" alt="Logo" />
                 </a>
             </div>
             <div class="nav_toggle" id="mobile-menu">
@@ -51,119 +50,125 @@
         </div>
     </nav>
 
-
     <section class="hidden_page">
         <div class="black-overlay"></div>
         <div class="intro_neuro">
-
-            <h1 class="project_title">
-                Antenna
-            </h1>
-            <h2 class="project_subtitle">
-                - Capture satellites images -
-            </h2>
+            <h1 class="project_title">Antenna</h1>
+            <h2 class="project_subtitle">- Capture satellites images -</h2>
             <div class="intro">
-
                 <div class="vision">
-                    <img src="images/Antenna/Antenna.png" alt="Antenna">
+                    <img src="images/Antenna/Antenna.png" alt="Antenna" />
                 </div>
-
             </div>
 
             <div class="presentation1">
                 <p>
-                    As part of my major, we built a low-tech device to intercept signals from old satellites. The
-                    project focused on receiving transmissions from NOAA weather satellites, which operate in the
-                    137 - 138 MHz range and use Right Hand Circular Polarization (RHCP). Our goal was to construct a
-                    simple yet effective receiving system using basic materials and accessible technology.
-
+                    As part of my major, we built a low-tech device to intercept signals
+                    from old satellites. The project focused on receiving transmissions
+                    from NOAA weather satellites, which operate in the 137 - 138 MHz
+                    range and use Right Hand Circular Polarization (RHCP). Our goal was
+                    to construct a simple yet effective receiving system using basic
+                    materials and accessible technology.
                 </p>
             </div>
 
             <div class="images_neuro1">
-                <img src="images/Antenna/Antenna2.png" alt="Antenna2">
+                <img src="images/Antenna/Antenna2.png" alt="Antenna2" />
                 <p class="presentation1">
-                    For the antenna, we chose a V-dipole design, which offered a balance between ease of construction
-                    and reliable reception. Each dipole element was cut to approximately 53.4 cm, optimized for the
-                    target frequency. We mounted the antenna in a horizontal plane to minimize interference from
-                    vertically polarized signals, such as commercial radio transmissions.
+                    For the antenna, we chose a V-dipole design, which offered a balance
+                    between ease of construction and reliable reception. Each dipole
+                    element was cut to approximately 53.4 cm, optimized for the target
+                    frequency. We mounted the antenna in a horizontal plane to minimize
+                    interference from vertically polarized signals, such as commercial
+                    radio transmissions.
                 </p>
             </div>
             <div class="presentation1">
                 <p>
-                    Once the antenna was assembled, we connected it to an RTL-SDR (Software-Defined Radio) dongle via a
-                    coaxial cable. The SDR allowed us to tune into different frequencies and process the received
-                    signals using a computer. To decode the satellite transmissions, we used WXtoImg, a specialized
-                    program for processing NOAA satellite images.
+                    Once the antenna was assembled, we connected it to an RTL-SDR
+                    (Software-Defined Radio) dongle via a coaxial cable. The SDR allowed
+                    us to tune into different frequencies and process the received
+                    signals using a computer. To decode the satellite transmissions, we
+                    used WXtoImg, a specialized program for processing NOAA satellite
+                    images.
                 </p>
             </div>
 
             <div class="image-container">
-                <img src="images/Antenna/Antenna1.png" alt="Antenna1" class="responsive-media">
-                <img src="images/Antenna/Antenna3.jpg" alt="Antenna3" class="responsive-media">
-                <video controls class="responsive-media">
-                    <source src="images/Antenna/Antenna.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div>
+                    <img src="images/Antenna/Antenna1bis.png" alt="Antenna1" class="responsive-media" />
+                </div>
+                <div>
+                    <img src="images/Antenna/Antenna3.jpg" alt="Antenna3" class="responsive-media" />
+                </div>
+                <div>
+                    <video controls class="responsive-media">
+                        <source src="images/Antenna/Antenna.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
-            
-            
 
             <div class="presentation1">
                 <p>
-                    The first test was a complete failure. Our satellite image was filled with too much noise and only
-                    displayed a small portion of the expected transmission. To obtain a clear image, we had to capture
-                    the satellite's signals three separate times, which significantly extended the process. <br>
+                    The first test was a complete failure. Our satellite image was
+                    filled with too much noise and only displayed a small portion of the
+                    expected transmission. To obtain a clear image, we had to capture
+                    the satellite's signals three separate times, which significantly
+                    extended the process. <br />
 
-                    This delay was mainly due to the need for precise timing and orientation. We had to carefully check
-                    the satellite pass schedules to determine when they would be directly above us. Additionally, we
-                    needed to constantly adjust the antenna's direction to ensure optimal signal reception, making the
-                    process both time-consuming and challenging. <br>
-                    <br>
-                    On our last trial, we were finally able to capture a good image with minimal noise. While some
-                    interference remained, the overall result was remarkably clear.
+                    This delay was mainly due to the need for precise timing and
+                    orientation. We had to carefully check the satellite pass schedules
+                    to determine when they would be directly above us. Additionally, we
+                    needed to constantly adjust the antenna's direction to ensure
+                    optimal signal reception, making the process both time-consuming and
+                    challenging. <br />
+                    <br />
+                    On our last trial, we were finally able to capture a good image with
+                    minimal noise. While some interference remained, the overall result
+                    was remarkably clear. This time, the satellite transmission revealed
+                    a wide view of Western Europe, including France, Italy, the UK, and
+                    surrounding regions. The level of detail in the image was
+                    impressive, allowing us to distinguish cloud formations, coastlines,
+                    and major landmasses.
+                </p>
+            </div>
 
-                    This time, the satellite transmission revealed a wide view of Western Europe, including France,
-                    Italy, the UK, and surrounding regions. The level of detail in the image was impressive, allowing us
-                    to distinguish cloud formations, coastlines, and major landmasses.
+            <div class="image-container1">
+                <img src="images/Antenna/Antenna4.jpg" alt="Antenna4" class="responsive-image1">
+            </div>
+
+            <div class="presentation1">
+                <p>
+                    Lastly, we took the satellite images, inverted the colors to create
+                    a negative, and printed them onto transparent film. Using these
+                    negatives, we experimented with **cyanotype printing**, a
+                    photographic process that uses sunlight to develop images. <br />
+
+                    By placing the transparencies on light-sensitive paper and exposing
+                    them to the sun, we created deep blue-toned prints of the satellite
+                    images. This final step transformed our digital captures into
+                    physical artworks, merging technology with traditional photographic
+                    techniques to produce unique visual representations of the satellite
+                    data.
                 </p>
             </div>
 
             <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
-                <img src="images/Antenna/Antenna4.jpg" alt="Antenna4"
-                    style="max-width: 100%; height: auto; flex-basis: 8h0%; min-width: 350px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="images/Antenna/Antenna5.png" alt="Antenna5" style=" max-width: 100%; height: auto; flex-basis: 60%; min-width: 300px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" />
             </div>
-            
 
             <div class="presentation1">
                 <p>
-                    Lastly, we took the satellite images, inverted the colors to create a negative, and printed them
-                    onto transparent film. Using these negatives, we experimented with **cyanotype printing**, a
-                    photographic process that uses sunlight to develop images. <br>
-
-                    By placing the transparencies on light-sensitive paper and exposing them to the sun, we created deep
-                    blue-toned prints of the satellite images. This final step transformed our digital captures into
-                    physical artworks, merging technology with traditional photographic techniques to produce unique
-                    visual representations of the satellite data.
+                    Overall, this project demonstrated that with a well-positioned
+                    V-dipole antenna, a simple SDR receiver, and proper signal
+                    processing, it is possible to intercept and decode satellite
+                    transmissions using a low-tech approach. This hands-on experience
+                    reinforced our understanding of radio signal propagation, antenna
+                    design, and signal decoding, making it a valuable part of our
+                    studies. <br />
                 </p>
             </div>
-
-            <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
-                <img src="images/Antenna/Antenna5.png" alt="Antenna5"
-                    style="max-width: 100%; height: auto; flex-basis: 60%; min-width: 300px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            </div>
-            
-
-            <div class="presentation1">
-                <p>
-                    Overall, this project demonstrated that with a well-positioned V-dipole antenna, a simple SDR
-                    receiver, and proper signal processing, it is possible to intercept and decode satellite
-                    transmissions using a low-tech approach. This hands-on experience reinforced our understanding of
-                    radio signal propagation, antenna design, and signal decoding, making it a valuable part of our
-                    studies. <br>
-                    
-            </div>
-
         </div>
     </section>
 
@@ -171,37 +176,39 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-
     <!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EasePack.min.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener("DOMContentLoaded", () => {
             // Register the ScrollTrigger plugin
             gsap.registerPlugin(ScrollTrigger);
 
             // Fade out the black overlay and fade in the hidden page
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".door_container", // Element to trigger the animation
-                    start: "top top", // When the top of the trigger meets the top of the viewport
-                    end: "bottom top", // End animation when the bottom of the trigger leaves the top of the viewport
-                    scrub: true, // Smooth animation syncing with scroll
-                }
-            })
+            gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: ".door_container", // Element to trigger the animation
+                        start: "top top", // When the top of the trigger meets the top of the viewport
+                        end: "bottom top", // End animation when the bottom of the trigger leaves the top of the viewport
+                        scrub: true, // Smooth animation syncing with scroll
+                    },
+                })
                 .to(".black-overlay", {
                     opacity: 0, // Fade out
                     duration: 0, // Animation duration
                     ease: "power2.out", // Easing function
                 })
-                .to(".hidden_page", {
-                    opacity: 1, // Fade in hidden page content
-                    duration: 0,
-                    ease: "power2.out",
-                }, "<"); // Synchronize with the previous animation
+                .to(
+                    ".hidden_page",
+                    {
+                        opacity: 1, // Fade in hidden page content
+                        duration: 0,
+                        ease: "power2.out",
+                    },
+                    "<"
+                ); // Synchronize with the previous animation
         });
-
-
     </script>
 </body>
 

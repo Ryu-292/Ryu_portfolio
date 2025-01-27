@@ -1110,30 +1110,53 @@ body {
 
 .image-container {
     display: flex;
+    justify-content: space-between;
+    width: 100%; /* Full width */
+    height: auto;
+    gap: 2%; /* Space between elements */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.image-container div {
+    flex: 1; /* Distributes space evenly */
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    flex-wrap: nowrap; /* Prevent wrapping by default */
-    
+    height: auto;
 }
 
 .responsive-media {
-    max-height: 55vh; /* Max height based on viewport */
-    height: auto; /* Allows proportional shrinking */
-    width: auto; /* Keeps aspect ratio */
+    width: 100%; /* Ensures media takes full width of its container */
+    height: auto; /* Keeps aspect ratio */
     max-width: 100%; /* Prevents overflow */
-    object-fit: contain; /* Ensures no cropping or distortion */
+    object-fit: contain; /* Ensures images/videos are fully visible */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out; /* Smooth resizing */
 }
 
 .responsive-media2 {
-    max-height: 55vh; /* Max height based on viewport */
+    max-height: 65vh; /* Max height based on viewport */
     height: auto; /* Allows proportional shrinking */
     width: auto; /* Keeps aspect ratio */
     max-width: 100%; /* Prevents overflow */
     object-fit: contain; /* Ensures no cropping or distortion */
     transition: all 0.3s ease-in-out; /* Smooth resizing */
 }
+.image-container1 {
+    width: 100%; /* Makes sure image takes full width */
+    display: flex;
+    justify-content: center;
+}
+
+.responsive-image1 {
+    width: 100%; /* Ensures the image takes full width */
+    height: auto; /* Keeps aspect ratio */
+    max-width: 100%; /* Prevents exceeding parent width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 15px;
+}
+
 
 /* Responsive Design */
 @media screen and (aspect-ratio < 0.60) {
@@ -1517,15 +1540,12 @@ body {
     }
 
     .image-container {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* Adds space between elements */
     }
-    
-    .responsive-media {
-        height: auto;
-        width: 70%;
-        max-width: 100%;
-        object-fit: contain;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .image-container div {
+        width: 100%;
     }
 
     .responsive-media2 {
