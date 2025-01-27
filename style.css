@@ -1669,5 +1669,7 @@ body {
         
     }
     
-
+    .responsive-media {
+        max-height: 45vh;
+    }
 }
