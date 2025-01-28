@@ -53,122 +53,77 @@
     <section class="hidden_page">
         <div class="black-overlay"></div>
         <div class="intro_neuro">
-            <h1 class="project_title">Antenna</h1>
-            <h2 class="project_subtitle">- Capture satellites images -</h2>
+            <h1 class="project_title">Ryu VS Lucas</h1>
+            <h2 class="project_subtitle">- Mini game using ESP32 -</h2>
             <div class="intro">
                 <div class="vision">
-                    <img src="images/Antenna/Antenna.png" alt="Antenna" />
+                    <img src="images/Arduino/RyuVsLucas.png" alt="RyuVsLucas" />
                 </div>
             </div>
 
             <div class="presentation1">
                 <p>
-                    As part of my major, we built a low-tech device to intercept signals
-                    from old satellites. The project focused on receiving transmissions
-                    from NOAA weather satellites, which operate in the 137 - 138 MHz
-                    range and use Right Hand Circular Polarization (RHCP). Our goal was
-                    to construct a simple yet effective receiving system using basic
-                    materials and accessible technology.
+                    For this project, we were tasked with creating a mini-game using two custom made ESP32 boards. With
+                    my friend
+                    Lucas we
+                    decided to develop a 1-vs-1 fighting game. We started by designing two
+                    pixel art characters, each equipped with four different moves, laying the foundation for an engaging
+                    and competitive gameplay experience.
                 </p>
             </div>
 
-            <div class="images_neuro1">
-                <img src="images/Antenna/Antenna2.png" alt="Antenna2" />
-                <p class="presentation1">
-                    For the antenna, we chose a V-dipole design, which offered a balance
-                    between ease of construction and reliable reception. Each dipole
-                    element was cut to approximately 53.4 cm, optimized for the target
-                    frequency. We mounted the antenna in a horizontal plane to minimize
-                    interference from vertically polarized signals, such as commercial
-                    radio transmissions.
-                </p>
+            <div class="image-container1">
+                <img src="images/Arduino/characters.png" alt="characters" class="responsive-image1">
             </div>
+
             <div class="presentation1">
                 <p>
-                    Once the antenna was assembled, we connected it to an RTL-SDR
-                    (Software-Defined Radio) dongle via a coaxial cable. The SDR allowed
-                    us to tune into different frequencies and process the received
-                    signals using a computer. To decode the satellite transmissions, we
-                    used WXtoImg, a specialized program for processing NOAA satellite
-                    images.
+                    We first tried to display the characters on the 128x64 screen and make them move when pressing a
+                    button. Initially, we wanted to control the characters' movements with a joystick, but we couldn't
+                    display it correctly. So, we decided to focus solely on the attacking mechanics.
                 </p>
             </div>
 
             <div class="image-container">
                 <div>
-                    <img src="images/Antenna/Antenna1bis.png" alt="Antenna1" class="responsive-media" />
+                    <img src="images/Arduino/board.jpg" alt="Board" class="responsive-media" />
                 </div>
                 <div>
-                    <img src="images/Antenna/Antenna3.jpg" alt="Antenna3" class="responsive-media" />
+                    <img src="images/Arduino/board2.jpg" alt="Board2" class="responsive-media" />
                 </div>
                 <div>
-                    <video controls class="responsive-media">
-                        <source src="images/Antenna/Antenna.mp4" type="video/mp4" />
+                    <video autoplay loop class="responsive-media">
+                        <source src="images/Arduino/chMoving.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
             </div>
 
-            <div class="presentation1">
-                <p>
-                    The first test was a complete failure. Our satellite image was
-                    filled with too much noise and only displayed a small portion of the
-                    expected transmission. To obtain a clear image, we had to capture
-                    the satellite's signals three separate times, which significantly
-                    extended the process. <br />
-
-                    This delay was mainly due to the need for precise timing and
-                    orientation. We had to carefully check the satellite pass schedules
-                    to determine when they would be directly above us. Additionally, we
-                    needed to constantly adjust the antenna's direction to ensure
-                    optimal signal reception, making the process both time-consuming and
-                    challenging. <br />
-                    <br />
-                    On our last trial, we were finally able to capture a good image with
-                    minimal noise. While some interference remained, the overall result
-                    was remarkably clear. This time, the satellite transmission revealed
-                    a wide view of Western Europe, including France, Italy, the UK, and
-                    surrounding regions. The level of detail in the image was
-                    impressive, allowing us to distinguish cloud formations, coastlines,
-                    and major landmasses.
-                </p>
-            </div>
-
-            <div class="image-container1">
-                <img src="images/Antenna/Antenna4.jpg" alt="Antenna4" class="responsive-image1">
-            </div>
 
             <div class="presentation1">
                 <p>
-                    Lastly, we took the satellite images, inverted the colors to create
-                    a negative, and printed them onto transparent film. Using these
-                    negatives, we experimented with **cyanotype printing**, a
-                    photographic process that uses sunlight to develop images. <br />
+                    We used WebSocket to connect both boards by creating a server on Lucas's board and connecting
+                    my board to it. <br>
+                    We successfully created a mini-game with the two boards, where the objective was to press the button
+                    as fast as possible to drain the opponent's life point and secure victory.
+                    However, we couldn't implement the character animations in the game, which was a bit disappointing. <br>
+                    Overall, even though it was a bit challenging, it was a really fun project to work on.
 
-                    By placing the transparencies on light-sensitive paper and exposing
-                    them to the sun, we created deep blue-toned prints of the satellite
-                    images. This final step transformed our digital captures into
-                    physical artworks, merging technology with traditional photographic
-                    techniques to produce unique visual representations of the satellite
-                    data.
                 </p>
             </div>
 
-            <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap;">
-                <img src="images/Antenna/Antenna5.png" alt="Antenna5" style=" max-width: 100%; height: auto; flex-basis: 60%; min-width: 300px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" />
+            <div class="image-container">
+                <div>
+                    <img src="images/Arduino/board3.jpg" alt="Board3" class="responsive-media" />
+                </div>
+                <div>
+                    <video autoplay loop muted class="responsive-media">
+                        <source src="images/Arduino/game.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
             </div>
-
-            <div class="presentation1">
-                <p>
-                    Overall, this project demonstrated that with a well-positioned
-                    V-dipole antenna, a simple SDR receiver, and proper signal
-                    processing, it is possible to intercept and decode satellite
-                    transmissions using a low-tech approach. This hands-on experience
-                    reinforced our understanding of radio signal propagation, antenna
-                    design, and signal decoding, making it a valuable part of our
-                    studies. <br />
-                </p>
-            </div>
+            
         </div>
     </section>
 

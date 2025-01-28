@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+</head>
+
+<body>
+    <nav class="navibar">
+        <div class="navbar__container">
+            <div class="logo">
+                <a href="index.html" id="navbar__logo">
+                    <img src="images/LogoR.png" alt="Logo">
+                </a>
+            </div>
+            <div class="nav_toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="index.html" class="navbar__links">Home</a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="projects.html" class="navbar__links">Projects</a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="lab.html" class="navbar__links">My Lab</a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="contact.html" class="navbar__links">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <section class="hidden_pageW">
+        <div class="black-overlay"></div>
+        <div class="intro_neuro">
+
+            <h1 class="project_title">
+                Honda HA-420
+            </h1>
+            <h2 class="project_subtitleW">
+                - Flying with renewable fuel -
+            </h2>
+
+            <div class="ligne"> 
+                <div class="colonne">
+                  <img src="images/photo/shimonaga1.jpg" style="width:100%">
+                  <img src="images/photo/shimonaga2.jpg" style="width:100%">
+                  <img src="images/photo/2R.jpg" style="width:100%">
+                  <img src="images/photo/barcelone.JPG" style="width:100%">
+                  <img src="images/photo/spain.jpg" style="width:100%">
+                  <img src="images/photo/busan.JPG" style="width:100%">
+                  <img src="images/photo/dune.JPG" style="width:100%">
+                </div>
+                <div class="colonne">
+                  <img src="images/photo/dance.jpg" style="width:100%">
+                  <img src="images/photo/tour_eiffel.jpg" style="width:100%">
+                  <img src="images/photo/vasque.jpg" style="width:100%">
+                  <img src="images/photo/fuji.jpg" style="width:100%">
+                  <img src="images/photo/etoiles.JPG" style="width:100%">
+                  <img src="images/photo/fire.jpg" style="width:100%">
+                </div>  
+                <div class="colonne">
+                  <img src="images/photo/photo1.png" style="width:100%">
+                  <img src="images/photo/Photo2.png" style="width:100%">
+                  <img src="images/photo/photo3.png" style="width:100%">
+                  <img src="images/photo/lune.JPG" style="width:100%">
+                  <img src="images/photo/sagrada.jpg" style="width:100%">
+                  <img src="images/photo/malaysie.jpg" style="width:100%">
+                  <img src="images/photo/temple1.jpg" style="width:100%">
+                </div>
+                <div class="colonne">
+                  <img src="images/photo/temple2.jpg" style="width:100%">
+                  <img src="images/photo/pont.jpg" style="width:100%">
+                  <img src="images/photo/miroir.jpg" style="width:100%">
+                  <img src="images/photo/bulles.jpg" style="width:100%">
+                  <img src="images/photo/chien.jpg" style="width:100%">
+                  <img src="images/photo/velo.jpg" style="width:100%">
+                </div>
+              </div>
+        </div>    
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+
+    <!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EasePack.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Register the ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Fade out the black overlay and fade in the hidden page
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".door_container", // Element to trigger the animation
+                    start: "top top", // When the top of the trigger meets the top of the viewport
+                    end: "bottom top", // End animation when the bottom of the trigger leaves the top of the viewport
+                    scrub: true, // Smooth animation syncing with scroll
+                }
+            })
+                .to(".black-overlay", {
+                    opacity: 0, // Fade out
+                    duration: 0, // Animation duration
+                    ease: "power2.out", // Easing function
+                })
+                .to(".hidden_page", {
+                    opacity: 1, // Fade in hidden page content
+                    duration: 0,
+                    ease: "power2.out",
+                }, "<"); // Synchronize with the previous animation
+        });
+
+
+    </script>
+</body>
+
+</html>

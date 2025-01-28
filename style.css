@@ -1157,6 +1157,29 @@ body {
     margin-bottom: 15px;
 }
 
+.ligne {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+    width: 80vw;
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .colonne {
+    -ms-flex: 25%; /* IE10 */
+    flex: 25%;
+    max-width: 25;
+    padding: 0 4px;
+  }
+  
+  .colonne img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+  }
+
 
 /* Responsive Design */
 @media screen and (aspect-ratio < 0.60) {
@@ -1555,6 +1578,12 @@ body {
         object-fit: contain;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
+    .colonne {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+      }
 }
 
 @media screen and (aspect-ratio >=0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
@@ -1712,4 +1741,10 @@ body {
     .responsive-media2 {
         max-height: 20vh;
     }
+
+    .colonne {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+      }
 }
