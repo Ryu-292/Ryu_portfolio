@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer ></script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
 
-
-     <!-- favicons
+    <!-- favicons
     ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
         <div class="navbar__container">
             <div class="logo">
                 <a href="index.html" id="navbar__logo">
-                    <img src="images/LogoR.png" alt="Logo">
+                    <img src="images/LogoR.png" alt="Logo" />
                 </a>
             </div>
             <div class="nav_toggle" id="mobile-menu">
@@ -38,16 +38,41 @@
                 <li class="navbar__item">
                     <a href="projects.html" class="navbar__links">Projects</a>
                 </li>
-                
+
                 <li class="navbar__item">
                     <a href="lab.html" class="navbar__links">My Lab</a>
                 </li>
-                
+
                 <li class="navbar__item">
                     <a href="contact.html" class="navbar__links">Contact</a>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <section class="hidden_page">
+        <h1 class="project_title">Contact</h1>
+        <div class="contact">
+            <form action="action_page.php" method="post">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name.." required>
+        
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name.." required>
+        
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your email.." required>
+        
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px" required></textarea>
+        
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        
+            
+    </section>
+
 </body>
+
 </html>

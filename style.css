@@ -17,7 +17,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Helvetica_med, sans-serif;
+    font-family: Helvetica_light, sans-serif;
 }
 
 body {
@@ -105,7 +105,7 @@ body {
     /* White text for links */
     text-decoration: none;
     padding: 10px 15px;
-    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
     display: inline-block;
     /* Allows transform to work */
     transition: color 0.3s ease, transform 0.3s ease;
@@ -1178,6 +1178,40 @@ body {
     margin-top: 8px;
     vertical-align: middle;
     width: 100%;
+  }
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  
+  /* Style the submit button with a specific background color etc */
+  input[type=submit] {
+    background-color: #ce6241;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* When moving the mouse over the submit button, add a darker green color */
+  input[type=submit]:hover {
+    background-color: #ce6241;
+    transform: scale(1.1);
+  }
+  
+  /* Add a background color and some padding around the form */
+  .contact {
+    border-radius: 5px;
+    padding: 20px;
   }
 
 
