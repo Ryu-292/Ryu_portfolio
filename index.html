@@ -68,7 +68,7 @@
                             </svg>
                         </div>
                         <a href="#overview" class="smoothscroll">
-                            <span class="scroll-text">Scroll for more</span>
+                            <span class="scroll-text">Here is an overview of what I do</span>
                         </a>
                     </div>
 
@@ -308,7 +308,8 @@
 
             // Apply animation
             imageBox.style.opacity = "1";
-            imageBox.style.transform = "translateX(0)";
+            imageBox.style.transform = `translateX(calc(100vw - ${imageBox.clientWidth}px))`;
+
 
             // Text animation (line by line)
             textBox.style.opacity = "1";

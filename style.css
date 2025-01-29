@@ -866,18 +866,21 @@ body {
 /* Frog image positioning */
 .ryu_grenouille {
     position: absolute;
-
     width: 100vw;
     height: 100vh;
-    z-index: 9999;
-
+    display: flex;
+    justify-content: center; /* Centers image horizontally */
+    align-items: center; /* Centers image vertically */
+    overflow: hidden; /* Prevents overflow */
 }
 
 .ryu_grenouille img {
-    width: 200px;
-    height: 200px;
-
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensures the full image is visible */
 }
+
+
 
 .container2 {
     display: flex;
@@ -901,6 +904,8 @@ body {
 
 }
 
+
+
 .image-box {
     opacity: 0;
     transform: translateX(-200%);
@@ -908,7 +913,15 @@ body {
     height: 100%;
     width: auto;
     display: block;
-    object-fit: cover;
+    object-fit: contain; /* Prevents cropping */
+    max-width: 100%; /* Ensures it does not exceed the screen */
+    position: absolute;
+    left: 0; /* Start from the left */
+}
+
+.image-box.show {
+    opacity: 1;
+    transform: translateX(calc(100vw - 100%)); /* Moves image to the right without overflow */
 }
 
 
@@ -1275,7 +1288,7 @@ a {
         flex-direction: column;
         background: #1C223A;
         position: absolute;
-        top: 80px;
+        top:75px;
         right: 0;
         width: 100%;
         transform: translateY(-100%);
@@ -1683,6 +1696,15 @@ a {
         text-align: center;
         margin: 0 auto;
     }
+
+    .scroll-down span {
+        font-size: 24px; /* Reduce font size for smaller screens */
+        white-space: normal; /* Allow wrapping */
+        word-break: break-word; /* Ensure long words wrap */
+        text-align: left;
+        margin-top: 10px;
+    }
+
 }
 
 @media screen and (aspect-ratio >=0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
