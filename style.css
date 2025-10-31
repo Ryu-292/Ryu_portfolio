@@ -638,6 +638,30 @@ body {
     text-align: left;
 }
 
+/* style.css */
+.tiny-3d {
+  position: relative;
+  width: 100%;
+  min-height: 520px;   /* give it space */
+}
+
+#card3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#card3d canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
+  pointer-events: auto;
+}
+
+
 /* 📌 Mobile Responsiveness */
 @media (max-width: 768px) {
 

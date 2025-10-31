@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.180.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.180.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="images/android-chrome-512x512.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-chrome-192x192.png" />
+</head>
+
+<body>
+    <nav class="navibar">
+        <div class="navbar__container">
+            <div class="logo">
+                <a href="index.html" id="navbar__logo">
+                    <img src="images/LogoR.png" alt="Logo" />
+                </a>
+            </div>
+            <div class="nav_toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="index.html" class="navbar__links">Home</a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="projects.html" class="navbar__links">Projects</a>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="lab.html" class="navbar__links">My Lab</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hidden_page">
+        <div class="black-overlay"></div>
+        <div class="intro_neuro">
+            <h1 class="project_title">Sakekagami</h1>
+            <h2 class="project_subtitle">- Connection and reconnection to tradition, to others, and to ourselves. -</h2>
+            <div class="intro">
+                <div class="vision">
+                    <img src="images/Sakekagami/sakekagami1.JPG" alt="RyuVsLucas" />
+                </div>
+            </div>
+
+            <div class="presentation1">
+                <p>
+                    My project began with a simple question: "How can technology bring us closer to tradition, to others, and to ourselves?" <br>
+                    <br>
+                    In continuity with my vision to bridge technology and tradition I started asking my self which direction I wanted to explore next. 
+                    As I was in Kyoto, the spiritual heart of Japan, surrounded by Shinto Shrines, I got quite interested into shinto beliefs and rituals. <br>
+                    As I learned more about Japanese rituals and traditions, one word kept returning to me — connection. <br>
+                    
+                </p>
+            </div>
+
+            <div class="image-container1">
+                <img src="images/Sakekagami/sakekagami2.JPG" alt="sakekagami" class="responsive-image1">
+            </div>
+
+            <div class="presentation1">
+                <p>
+                    One of the centeral element that caught my attention was Sake, a traditional Japanese rice wine, often used in rituals. <br>
+                    Sake is more than just a drink; it is a symbol of connection, a medium through which people come together to share moments, stories, and memories. <br>
+                    In ancient times, the process of fermentation invisible to the human eye was believed to be the work of Gods, transforming rice into a sacred beverage. <br>
+                    Sake was used in ceremonies to connect with the divine, purify the body and spirits, and build bonds. <br>
+                    <br>
+                    One other element i was inspired by was the Mirror. An element that have a strong significance in Shinto religion as a symbol of truth and self-reflection. <br>
+                    The mirror is believed to reflect not just physical appearance but also the inner self, encouraging individuals to look inward and connect with their true nature. <br>
+                    One specific type of mirror that intrigued me was the "Mizukagami", which translates to water (mizu) mirror (kagami). <br> 
+                    This natural mirror forms on the surface of still water, reflecting the surrounding environment and creating a serene and contemplative space. 
+                    The water does not just mirror the present, but evokes the passing of time, the change of seasons, and a connection between heaven and earth. 
+                    Some believed that water mirrors acted as portals to the other world, linking us with those who lived before us.<br>
+                    <br>
+                    As you might have guessed from the name, this project "Sakekagami" is a fusion of these two concepts: Sake and Mizukagami. <br>
+                    I thought what if I could create a mirror portal throught a cup of sake that connects us to tradition, to others, and to ourselves. <br>
+                    A mirror that connects the past and the present, the physical and the spiritual, the individual and the collective. <br>
+                    A cup that forges bonds across time and space, letting us share a drink and connect. <br>
+                </p>
+            </div>
+
+            <div class="image-container">
+                <div>
+                    <img src="images/Sakekagami/sketch1.png" alt="MasuSketch1" class="responsive-media" />
+                </div>
+                <div>
+                    <img src="images/Sakekagami/sketch2.png" alt="MasuSketch2" class="responsive-media" />
+                </div>
+                <div>
+                    <img src="images/Sakekagami/sketch3.png" alt="MasuSketch3" class="responsive-media" />
+                </div>
+            </div>
+
+
+            <div class="presentation1">
+                <p>
+                    Each custom masu cup is equipped with a Raspberry Pi, a miniature camera, and a small display. 
+                    The cups communicate over a network: the camera in each cup captures the user's face, which is processed via TouchDesigner and StreamDiffusion to generate real-time images. 
+                    These visuals are then projected inside the opposite cup, letting users encounter one another through a digital reflection.
+                </p>
+            </div>
+
+            <div class="image-container">
+                <div>
+                    <img src="images/Sakekagami/masu1.png" alt="masu1" class="responsive-media" />
+                </div>
+                <div>
+                    <video autoplay loop muted class="responsive-media">
+                        <source src="images/Sakekagami/SAKEKAGAMI_video.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <div class="tiny-3d" id="card3d" > 
+
+            </div>
+
+        </div>
+
+
+        <footer class="footer-bg text-white padding">
+            <div class="footer-container">
+                <div class="footer-links">
+                    <a href="#" class="hover-color" onclick="copyToClipboard('ryuosada12@gmail.com')">ryuosada12@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/ryu-osada" target="_blank" class="hover-color">LinkedIn</a>
+                    <a href="./fichier/CV_Ryu_OSADA.pdf" download="CV_Ryu_OSADA.pdf" type="application/pdf" class="download-btn">Download CV</a>
+
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script type="module" src="./script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EasePack.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Register the ScrollTrigger plugin
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Fade out the black overlay and fade in the hidden page
+            gsap
+                .timeline({
+                    scrollTrigger: {
+                        trigger: ".door_container", // Element to trigger the animation
+                        start: "top top", // When the top of the trigger meets the top of the viewport
+                        end: "bottom top", // End animation when the bottom of the trigger leaves the top of the viewport
+                        scrub: true, // Smooth animation syncing with scroll
+                    },
+                })
+                .to(".black-overlay", {
+                    opacity: 0, // Fade out
+                    duration: 0, // Animation duration
+                    ease: "power2.out", // Easing function
+                })
+                .to(
+                    ".hidden_page",
+                    {
+                        opacity: 1, // Fade in hidden page content
+                        duration: 0,
+                        ease: "power2.out",
+                    },
+                    "<"
+                ); // Synchronize with the previous animation
+        });
+    </script>
+
+    
+</body>
+
+</html>
