@@ -1773,6 +1773,14 @@ a {
         margin-top: 10px;
     }
 
+    .tiny-3d {
+    position: relative;
+    width: 100%;
+    min-height: 220px;   /* give it space */
+    }
+
+    
+
 }
 
 @media screen and (aspect-ratio >=0.60) and (aspect-ratio < 4/3) and (orientation: portrait) {
