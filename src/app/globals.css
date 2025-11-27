@@ -1,0 +1,599 @@
+@import "tailwindcss";
+
+:root {
+  --background: linear-gradient(135deg, #0b0b0f, #00A4FF);
+  --foreground: #ffffff;
+  --accent: #0101FF;
+}
+
+/* Global */
+html {
+  height: 100%;
+ 
+}
+
+body {
+  height: 100%;
+  background: radial-gradient(
+    circle at top left,
+    #000021 0%,
+    #000021 40%,
+    #000021 100%
+  );
+}
+
+/* Main content wrapper - prevent overlap with navbar */
+main {
+  padding-left: 60px;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-left: 0;
+    padding-top: 120px;
+  }
+}
+/* The container of your intro page */
+.holo-root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden; /* keeps canvas from spilling */
+  background: transparent;
+}
+
+
+/* Navbar container */
+.nav-container {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 9999;
+  gap: 0.5rem;
+}
+
+/* Logo */
+.logo {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Vertical Menu */
+.menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.navi-link {
+  text-decoration: none;
+  color: var(--foreground);
+  font-weight: 400;
+  font-size: 1.2rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+  display: inline-block;
+}
+
+.navi-link:hover {
+  transform: scale(1.1);
+  color: var(--accent);
+}
+
+/* Vertical Japanese text */
+.ambient-jp {
+  position: fixed;
+  left: 10vw;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-size: 0.7rem;
+  letter-spacing: 0.8em;
+  opacity: 0.14;
+  color: #8abaff;
+  pointer-events: none;
+  font-weight: 300;
+}
+
+/* Toggle (for future mobile menu if needed) */
+.toggle {
+  display: none;
+  flex-direction: column;
+  gap: 0.4rem;
+  cursor: pointer;
+  z-index: 1001;
+  margin-left: 0.5rem;
+}
+
+.toggle .bar {
+  width: 1.5rem;
+  height: 0.2rem;
+  background: var(--foreground);
+  transition: all 0.3s ease;
+  border-radius: 0.1rem;
+}
+
+/* Mobile Menu Active State */
+.menu.active {
+  display: flex !important;
+  position: fixed;
+  top: 5rem;
+  left: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(0, 0, 33, 0.95);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 164, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .toggle {
+    display: flex;
+    margin-left: 1rem;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .menu.active {
+    display: flex !important;
+  }
+
+  .nav-container {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .logo {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 0;
+  }
+
+  .navi-link {
+    font-size: 1rem;
+  }
+}
+
+/* Hero / Banner */
+.banner {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  perspective: 3000px;
+  perspective-origin: 50% 25%;
+}
+
+.banner .slider {
+  position: absolute;
+  width: clamp(10rem, 15vw, 16rem);
+  height: clamp(15rem, 18vw, 125rem);
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  --radius: clamp(150px, 25vw, 350px);
+  --tilt: 12deg;
+  animation: ring-spin 10s linear infinite;
+}
+
+.banner .slider .item {
+  position: absolute;
+  inset: 0;
+  transform:
+    rotateY(calc((var(--position) - 1) * 360deg / var(--quantity)))
+    translateZ(var(--radius));
+}
+
+.banner .slider .item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.banner .slider .item:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+/*.intro-block {
+  position: absolute;
+  left: min(25vw, 300px);
+  top: 50%;
+  transform: translateY(-50%) translateY(16px);
+  max-width: 460px;
+  color: #f5f5f0;
+  opacity: 0;
+  animation: intro-fade 0.9s ease-out forwards;
+  animation-delay: 0.35s;
+  pointer-events: auto;
+  z-index: 1;
+} */
+
+.intro-katakana {
+  margin: 0 0 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  color: rgba(190, 215, 255, 0.95);
+}
+
+.intro-name {
+  margin: 0 0 0.5rem;
+  font-size: 2.4rem;
+  letter-spacing: 0.02em;
+}
+
+.intro-tagline {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.intro-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.82;
+}
+
+.holo-root {
+  position: relative;
+  height: 100vh;               /* exact viewport height for perfect centering */
+  box-sizing: border-box;      /* include padding in height calc */
+  padding: 0 5vw;              /* horizontal padding only, no vertical offset */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;     /* center the group horizontally */
+  align-items: center;         /* center vertically */
+
+  gap: clamp(2rem, 4vw, 4rem); /* space between text and holo */
+}
+
+/* Text block on the left */
+.intro-block {
+  position: static;
+  transform: translateY(30px);
+  max-width: 480px;
+  margin: 0;
+  z-index: 1;                  /* in case you add stuff later */
+  opacity: 0;
+  animation: intro-fade 0.9s ease-out forwards;
+  pointer-events: auto;
+  color: #f5f5f0;
+}
+
+/* 3D canvas on the right */
+.holo-canvas {
+  position: relative;
+  flex-shrink: 0;
+  width: min(720px, 50vw);     /* responsive width */
+  aspect-ratio: 3 / 4;         /* nice portrait ratio */
+  /* If you want the Three gradient visible, no bg here */
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000021;
+  z-index: 9999;
+}
+
+.loader-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.loader-percent {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.loader-text {
+  margin-top: 32px;
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  color: #f5f7ff;
+}
+
+
+.loader-circle {
+  --loader-size: 350px;
+  --loader-progress: 0;
+  position: relative;
+  width: var(--loader-size);
+  height: var(--loader-size);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- OUTER SEMI RING ---------- */
+.loader-outer-arc {
+  position: absolute;
+  inset: 0; /* full size */
+  border-radius: 50%;
+  background: conic-gradient(
+    #ffffff 0deg 280deg,
+    transparent 280deg 360deg
+  );
+  mask: radial-gradient(farthest-side, transparent 98%, #000 99%);
+  animation: loader-spin 3s linear infinite;
+}
+
+/* ---------- INNER SEMI RING ---------- */
+.loader-inner-arc {
+  position: absolute;
+  inset: 52px; /* shrinks inward but same thickness! */
+  border-radius: 50%;
+  background: conic-gradient(
+    #ffffff 0deg 280deg,
+    transparent 280deg 360deg
+  );
+  mask: radial-gradient(farthest-side, transparent 97%, #000 98%);
+  animation: loader-spin-reverse 2.4s linear infinite;
+}
+
+.progress-dots {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+
+/* one rectangular dash */
+.dot-segment {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;          /* dash thickness */
+  height: 16px;        /* dash length */
+  background: #ffffff;
+  border-radius: 3px;
+  opacity: 0.15;
+
+  /* we rotate around the center of the dot */
+  transform-origin: center center;
+
+  /* center → rotate → push outward by the radius */
+  transform:
+    translate(-50%, -50%)          /* put the dot center at the container center */
+    rotate(var(--rotation))        /* spin */
+    translateY(-149px);            /* radius of the ring: adjust to match your ring */
+
+  transition: opacity 0.15s linear;
+}
+
+
+
+
+
+/* rotations */
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+
+
+/* (Optional) Stack on tiny mobile screens instead of squishing */
+@media (max-width: 768px) {
+  .holo-root {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .intro-block {
+    text-align: center;
+  }
+
+  /* On small screens, show the holo canvas first (top) and intro below */
+  .holo-canvas {
+    order: -1;
+    width: 80vw; /* make the portrait more prominent on mobile */
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-block {
+    order: 0;
+  }
+}
+
+
+/* Animations */
+@keyframes intro-fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ring-spin {
+  from {
+    transform: perspective(1000px) rotateZ(-20deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateZ(-20deg) rotateY(360deg);
+  }
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 1024px) {
+  .intro-block {
+    left: 8vw;
+    max-width: 420px;
+  }
+
+  .banner .slider {
+    --radius: clamp(120px, 22vw, 280px);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .menu {
+    gap: 0.75rem;
+  }
+
+  .navi-link {
+    font-size: 0.95rem;
+  }
+
+  .ambient-jp {
+    left: 5vw;
+    font-size: 0.6rem;
+    letter-spacing: 0.6em;
+  }
+
+  .banner {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .banner .slider {
+    width: clamp(9rem, 40vw, 12rem);
+    height: auto;
+    top: 55%;
+    left: 50%;
+    --radius: clamp(110px, 33vw, 200px);
+  }
+
+  .intro-block {
+    position: static;
+    transform: none;
+    max-width: 80vw;
+    margin: 5rem auto 2.5rem;
+    text-align: left;
+  }
+
+  .intro-name {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+
+  .logo {
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .ambient-jp {
+    display: none;
+  }
+
+  .intro-name {
+    font-size: 1.85rem;
+  }
+
+  .intro-tagline {
+    font-size: 0.95rem;
+  }
+
+  .intro-body {
+    font-size: 0.9rem;
+  }
+
+  .banner .slider {
+    width: 60vw;
+    --radius: 140px;
+  }
+}
+
+/* 3D Masu Viewer */
+.tiny-3d {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+}
+
+#card3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#card3d canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
+  pointer-events: auto;
+}
+
+/* Parallax Scrolling Styles */
+.parallax-container {
+  height: 300vh; /* 3 sections * 100vh */
+  position: relative;
+}
+
+.parallax-section {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
