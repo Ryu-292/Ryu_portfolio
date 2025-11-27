@@ -5,7 +5,7 @@
   "regions": ["iad1"],
   "functions": {
     "app/**/*.tsx": {
-      "maxDuration": 15
+      "maxDuration": 30
     }
   },
   "headers": [
@@ -19,6 +19,10 @@
         {
           "key": "Cross-Origin-Opener-Policy",
           "value": "same-origin"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         }
       ]
     }

@@ -23,6 +23,10 @@ export default function ThreeCanvas() {
 
     setIsLoading(true);
 
+    // Add production environment check
+    const isProduction = process.env.NODE_ENV === 'production';
+    console.log('Environment:', { isProduction, NODE_ENV: process.env.NODE_ENV });
+
     try {
       // Check WebGL support
       const canvas = document.createElement('canvas');
@@ -31,6 +35,8 @@ export default function ThreeCanvas() {
         throw new Error('WebGL not supported');
       }
 
+      console.log('Initializing 3D Carousel - WebGL supported');
+
     // --- IMAGES + LINKS -----------------------------------------------------
     const items: Item[] = [
       { src: "/images/NeuroPortals/neuroIntro.png", href: "/projects/neuroPortals" },
@@ -38,6 +44,8 @@ export default function ThreeCanvas() {
       { src: "/images/Sakekagami/Poster.JPG", href: "/projects/sakekagami" },
       
     ];
+
+    console.log('Loading images:', items.map(item => item.src));
 
     // --- LAYOUT -------------------------------------------------------------
     const PANEL_HEIGHT = 1.2; // world units
@@ -89,8 +97,11 @@ export default function ThreeCanvas() {
 
     (async () => {
       try {
+        console.log('Starting texture loading...');
         const textures = await Promise.all(items.map(i => loadAsync(i.src)));
         if (!running) return;
+
+        console.log('Textures loaded successfully:', textures.length);
 
         textures.forEach((t) => {
           t.colorSpace = THREE.SRGBColorSpace;
@@ -304,6 +315,7 @@ export default function ThreeCanvas() {
 
         // Mark as loaded after successful initialization
         setIsLoading(false);
+        console.log('3D Carousel initialized successfully');
 
         // --- CLEANUP ---------------------------------------------------------
         return () => {
@@ -334,6 +346,11 @@ export default function ThreeCanvas() {
         };
       } catch (e) {
         console.error('3D Carousel initialization error:', e);
+        console.error('Error details:', {
+          message: e instanceof Error ? e.message : String(e),
+          stack: e instanceof Error ? e.stack : undefined,
+          environment: typeof window !== 'undefined' ? 'browser' : 'server'
+        });
         setError(String(e));
         setIsLoading(false);
       }
@@ -369,17 +386,43 @@ export default function ThreeCanvas() {
   }
 
   if (error) {
+    // Fallback display when 3D fails
+    const items = [
+      { src: "/images/NeuroPortals/neuroIntro.png", href: "/projects/neuroPortals", title: "NeuroPortals" },
+      { src: "/images/Elastup/Elastup1.png", href: "/projects/elastup", title: "Elastup" },
+      { src: "/images/Sakekagami/Poster.JPG", href: "/projects/sakekagami", title: "Sakekagami" },
+    ];
+
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <p className="text-red-400 mb-4">{error}</p>
-          <button 
-            onClick={() => window.location.reload()} 
-            className="px-4 py-2 bg-[#00A4FF] text-white rounded"
-          >
-            Reload
-          </button>
+      <div className="min-h-screen flex flex-col items-center justify-center p-8">
+        <div className="text-center mb-8">
+          <p className="text-red-400 mb-4">3D visualization unavailable</p>
+          <p className="text-[#f5f5f0] text-sm opacity-70 mb-8">Here are my projects:</p>
         </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl">
+          {items.map((item, i) => (
+            <a 
+              key={i}
+              href={item.href}
+              className="group relative overflow-hidden rounded-lg border border-[#00A4FF]/40 bg-[#00A4FF]/5 hover:bg-[#00A4FF]/10 transition-all duration-300"
+            >
+              <img 
+                src={item.src} 
+                alt={item.title}
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-4">
+                <h3 className="text-[#f5f5f0] font-medium">{item.title}</h3>
+              </div>
+            </a>
+          ))}
+        </div>
+        <button 
+          onClick={() => window.location.reload()} 
+          className="mt-8 px-4 py-2 bg-[#00A4FF] text-white rounded hover:bg-[#0088cc] transition-colors"
+        >
+          Retry 3D View
+        </button>
       </div>
     );
   }
