@@ -4,8 +4,7 @@ export default function useRealProgress() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    let currentProgress = 0;
-    setProgress(currentProgress);
+    setProgress(0); // Reset progress
 
     // Increment 1% every 50ms (smooth animation)
     const interval = setInterval(() => {

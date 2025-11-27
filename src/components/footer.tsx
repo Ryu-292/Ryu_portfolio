@@ -1,16 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 
 const Footer = () => {
-  const [copied, setCopied] = useState(false);
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const openMail = () => {
     window.location.href = 'mailto:ryuosada12@gmail.com';
   };
@@ -49,13 +41,6 @@ const Footer = () => {
             </svg>
           </a>
         </div>
-
-        {/* Copy notification */}
-        {copied && (
-          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-[#00A4FF] text-white px-4 py-2 rounded-lg text-sm">
-            Email copied to clipboard!
-          </div>
-        )}
       </div>
     </footer>
   );

@@ -1,13 +1,11 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useState } from "react";
 
 const ThreeCanvas = dynamic(() => import("../../components/3DCarrousel"), { ssr: false });
 
 
 export default function Projects() {
-  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <main className="scanlines">

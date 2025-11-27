@@ -166,7 +166,7 @@ export default function MyLabPage() {
     return () => {
       container.removeEventListener("wheel", onWheel);
     };
-  }, [isAnimating]);
+  }, [isAnimating, goToSlide]);
 
   // Touch (mobile) → change project
   const handleTouchStart = (e: ReactTouchEvent<HTMLDivElement>) => {

@@ -294,10 +294,10 @@ export default function Intro({
           クリエイティブテクノロジーエンジニア · 東京／パリ
         </p>
 
-        <h1 className="intro-name">Hi, I'm Ryu!</h1>
+        <h1 className="intro-name">Hi, I&apos;m Ryu!</h1>
 
         <p className="intro-tagline">
-          I'm a creative technology engineering student in Paris.
+          I&apos;m a creative technology engineering student in Paris.
         </p>
 
         <p className="intro-body">

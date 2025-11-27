@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 import * as THREE from "three";
 
 type Item = { src: string; href: string };
 
 export default function ThreeCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
-  const pathname = usePathname();
 
   useEffect(() => {
     const mount = mountRef.current;
