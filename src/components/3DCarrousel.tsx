@@ -13,6 +13,14 @@ export default function ThreeCanvas() {
 
   useEffect(() => {
     setIsClient(true);
+    
+    // Fallback timeout to prevent infinite loading
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false);
+      setError('Loading timeout - 3D carousel failed to initialize');
+    }, 15000); // 15 second timeout
+
+    return () => clearTimeout(loadingTimeout);
   }, []);
 
   useEffect(() => {
@@ -88,18 +96,49 @@ export default function ThreeCanvas() {
 
     // --- LOADING ------------------------------------------------------------
     const loader = new THREE.TextureLoader();
-    const loadAsync = (u: string) =>
-      new Promise<THREE.Texture>((resolve, reject) => {
-        loader.load(u, (t) => resolve(t), undefined, (e) => reject(e));
+    
+    // Simple texture loading with individual error handling
+    const loadTexture = (url: string): Promise<THREE.Texture> => {
+      return new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => {
+          reject(new Error(`Timeout loading texture: ${url}`));
+        }, 5000);
+        
+        loader.load(
+          url, 
+          (texture) => {
+            clearTimeout(timeout);
+            console.log(`Loaded texture: ${url}`);
+            resolve(texture);
+          },
+          undefined,
+          (error) => {
+            clearTimeout(timeout);
+            console.error(`Failed to load texture: ${url}`, error);
+            reject(error);
+          }
+        );
       });
+    };
 
     let running = true;
 
     (async () => {
       try {
         console.log('Starting texture loading...');
-        const textures = await Promise.all(items.map(i => loadAsync(i.src)));
-        if (!running) return;
+        
+        // Add timeout to prevent infinite loading
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('Texture loading timeout after 10 seconds')), 10000);
+        });
+        
+        const texturePromise = Promise.all(items.map(i => loadTexture(i.src)));
+        const textures = await Promise.race([texturePromise, timeoutPromise]) as THREE.Texture[];
+        
+        if (!running) {
+          setIsLoading(false);
+          return;
+        }
 
         console.log('Textures loaded successfully:', textures.length);
 
@@ -359,6 +398,7 @@ export default function ThreeCanvas() {
     // outer cleanup in case async exits early
     return () => {
       running = false;
+      setIsLoading(false); // Ensure loading state is cleared
       renderer.setAnimationLoop(null);
       renderer.dispose();
       if (renderer.domElement.parentElement) {
@@ -368,9 +408,9 @@ export default function ThreeCanvas() {
     } catch (err) {
       console.error('3D Carousel Error:', err);
       setError('Failed to load 3D carousel');
-      setIsLoading(false);
+      setIsLoading(false); // Ensure loading state is cleared on error
     }
-  }, [isClient]);
+  }, [isClient, setIsLoading, setError]);
 
   if (!isClient || isLoading) {
     return (
