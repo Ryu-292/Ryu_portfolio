@@ -1,16 +1,32 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 type Item = { src: string; href: string };
 
 export default function ThreeCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
+  const [isClient, setIsClient] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+    
     const mount = mountRef.current;
     if (!mount) return;
+
+    try {
+      // Check WebGL support
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) {
+        throw new Error('WebGL not supported');
+      }
 
     // --- IMAGES + LINKS -----------------------------------------------------
     const items: Item[] = [
@@ -324,7 +340,38 @@ export default function ThreeCanvas() {
         renderer.domElement.parentElement.removeChild(renderer.domElement);
       }
     };
-  }, []);
+    } catch (err) {
+      console.error('3D Carousel Error:', err);
+      setError('Failed to load 3D carousel');
+    }
+  }, [isClient]);
+
+  if (!isClient) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-[#00A4FF]/20 border-t-[#00A4FF] rounded-full animate-spin mb-4 mx-auto"></div>
+          <p className="text-[#f5f5f0] text-sm opacity-70">Initializing 3D Scene...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <p className="text-red-400 mb-4">{error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-4 py-2 bg-[#00A4FF] text-white rounded"
+          >
+            Reload
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

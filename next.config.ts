@@ -13,6 +13,13 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ['three']
+  },
+  webpack: (config) => {
+    config.externals = config.externals || [];
+    config.externals.push({
+      'three': 'three'
+    });
+    return config;
   }
 };
 
