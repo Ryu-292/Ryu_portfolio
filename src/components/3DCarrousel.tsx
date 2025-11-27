@@ -9,6 +9,7 @@ export default function ThreeCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const [isClient, setIsClient] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsClient(true);
@@ -19,6 +20,8 @@ export default function ThreeCanvas() {
     
     const mount = mountRef.current;
     if (!mount) return;
+
+    setIsLoading(true);
 
     try {
       // Check WebGL support
@@ -32,7 +35,7 @@ export default function ThreeCanvas() {
     const items: Item[] = [
       { src: "/images/NeuroPortals/neuroIntro.png", href: "/projects/neuroPortals" },
       { src: "/images/Elastup/Elastup1.png", href: "/projects/elastup" },
-      { src: "/images/Sakekagami/Poster.jpg", href: "/projects/sakekagami" },
+      { src: "/images/Sakekagami/Poster.JPG", href: "/projects/sakekagami" },
       
     ];
 
@@ -299,6 +302,9 @@ export default function ThreeCanvas() {
           renderer.render(scene, camera);
         });
 
+        // Mark as loaded after successful initialization
+        setIsLoading(false);
+
         // --- CLEANUP ---------------------------------------------------------
         return () => {
           window.removeEventListener("resize", onResize);
@@ -327,7 +333,9 @@ export default function ThreeCanvas() {
           }
         };
       } catch (e) {
-        console.error(e);
+        console.error('3D Carousel initialization error:', e);
+        setError(String(e));
+        setIsLoading(false);
       }
     })();
 
@@ -343,15 +351,18 @@ export default function ThreeCanvas() {
     } catch (err) {
       console.error('3D Carousel Error:', err);
       setError('Failed to load 3D carousel');
+      setIsLoading(false);
     }
   }, [isClient]);
 
-  if (!isClient) {
+  if (!isClient || isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-[#00A4FF]/20 border-t-[#00A4FF] rounded-full animate-spin mb-4 mx-auto"></div>
-          <p className="text-[#f5f5f0] text-sm opacity-70">Initializing 3D Scene...</p>
+          <p className="text-[#f5f5f0] text-sm opacity-70">
+            {!isClient ? 'Initializing 3D Scene...' : 'Loading 3D Projects...'}
+          </p>
         </div>
       </div>
     );
