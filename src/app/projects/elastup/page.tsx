@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import useRealProgress from "@/hooks/useRealProgress";
 import Reveal from "@/components/Reveal";
@@ -103,12 +104,12 @@ export default function ElastupPage() {
               </h3>
               <p className="text-sm md:text-base leading-relaxed text-white/90">
                 We organised several brainstorming sessions lasting several hours to come up with an idea we could all agree on. 
-                Despite all our efforts, the idea didn&apos;t come to us during a brainstorming session 
+                Despite all our efforts, the idea didn't come to us during a brainstorming session 
                 but when one of our team members arrived one lunchtime with a tupperware on which his cutlery was held with a rubber band.
               </p>
               <p className="text-sm md:text-base leading-relaxed text-white/90">
-                The cutlery wasn&apos;t stable at all and the aesthetics of the elastic band on the tupperware clearly needed to be reviewed. 
-                That&apos;s when we realized the potential for a <span className="text-[#00A4FF] font-medium">fashionable cutlery holder</span>.
+                The cutlery wasn't stable at all and the aesthetics of the elastic band on the tupperware clearly needed to be reviewed. 
+                That's when we realized the potential for a <span className="text-[#00A4FF] font-medium">fashionable cutlery holder</span>.
               </p>
             </div>
           </Reveal>
@@ -132,7 +133,7 @@ export default function ElastupPage() {
               <p className="text-sm md:text-base leading-relaxed text-white/90">
                 After some thought, we realised that the project could be adapted to many more everyday objects: 
                 a notebook and its pen, an iPad and its apple pencil, lunchbox and its cutlery, etc. <br />
-                That&apos;s how the Elastup was born!
+                That's how the Elastup was born!
               </p>
               <p className="text-sm md:text-base leading-relaxed text-white/90">
                 We started by sketching the product on paper, then created a model using Solidworks.
@@ -191,7 +192,7 @@ export default function ElastupPage() {
               <p className="text-sm md:text-base leading-relaxed text-white/90">
                 Perfectly adaptable, it can be wrapped around lunchboxes, tablets, notebooks, or any other personal items, 
                 offering a practical way to keep everything in place. 
-                Whether you&apos;re at school, the office, or on the go, the Elastup is designed to adapt to your needs.
+                Whether you're at school, the office, or on the go, the Elastup is designed to adapt to your needs.
               </p>
               <p className="text-sm md:text-base leading-relaxed text-white/90">
                 After numerous prototypes and brainstorming sessions, we settled on a size that could adapt to most lunchboxes, notebooks, and tablets.
@@ -214,10 +215,10 @@ export default function ElastupPage() {
               <p className="text-sm md:text-base leading-relaxed text-white/90">
                 For the colors, we wanted something simple and versatile — shades that anyone could wear. 
                   We first chose <span className="text-[#00A4FF] font-medium">black leather</span>, a timeless option that pairs easily with any style. 
-                  Then, we introduced red and blue as a nod to the French flag and the <span className="text-[#00A4FF] font-medium">&ldquo;Made in France&rdquo;</span> label.
+                  Then, we introduced red and blue as a nod to the French flag and the <span className="text-[#00A4FF] font-medium">"Made in France"</span> label.
               </p>
               <p className="text-sm md:text-base leading-relaxed text-white/90">
-                Later on, we added &ldquo;mystery colors&rdquo; to reduce leather waste by using pieces too small to be crafted into bags or other leather goods.
+                Later on, we added "mystery colors" to reduce leather waste by using pieces too small to be crafted into bags or other leather goods.
               </p>
               <p className="text-sm md:text-base leading-relaxed text-white/90">
                 With the final product ready, we launched a Kickstarter campaign to fund the production of our first series.
@@ -301,7 +302,7 @@ export default function ElastupPage() {
             <p className="mx-auto max-w-2xl text-center text-sm md:text-base leading-relaxed text-white/85">
               Our goal was to produce at least 50 Elastups with a funding target of €335. 
               By the end of the 20-day campaign, we had reached 177% of our goal. 
-              Now it&apos;s time to begin production and deliver the Elastups to our amazing backers from around the world.
+              Now it's time to begin production and deliver the Elastups to our amazing backers from around the world.
             </p>
           </Reveal>
         </section>

@@ -1,49 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import * as THREE from "three";
 
 type Item = { src: string; href: string };
 
 export default function ThreeCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
-  const [isClient, setIsClient] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const pathname = usePathname();
 
   useEffect(() => {
-    setIsClient(true);
-    
-    // Fallback timeout to prevent infinite loading
-    const loadingTimeout = setTimeout(() => {
-      setIsLoading(false);
-      setError('Loading timeout - 3D carousel failed to initialize');
-    }, 15000); // 15 second timeout
-
-    return () => clearTimeout(loadingTimeout);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-    
     const mount = mountRef.current;
     if (!mount) return;
-
-    setIsLoading(true);
-
-    // Add production environment check
-    const isProduction = process.env.NODE_ENV === 'production';
-    console.log('Environment:', { isProduction, NODE_ENV: process.env.NODE_ENV });
-
-    try {
-      // Check WebGL support
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      if (!gl) {
-        throw new Error('WebGL not supported');
-      }
-
-      console.log('Initializing 3D Carousel - WebGL supported');
 
     // --- IMAGES + LINKS -----------------------------------------------------
     const items: Item[] = [
@@ -52,8 +21,6 @@ export default function ThreeCanvas() {
       { src: "/images/Sakekagami/Poster.JPG", href: "/projects/sakekagami" },
       
     ];
-
-    console.log('Loading images:', items.map(item => item.src));
 
     // --- LAYOUT -------------------------------------------------------------
     const PANEL_HEIGHT = 1.2; // world units
@@ -96,53 +63,20 @@ export default function ThreeCanvas() {
 
     // --- LOADING ------------------------------------------------------------
     const loader = new THREE.TextureLoader();
-    
-    // Simple texture loading with individual error handling
-    const loadTexture = (url: string): Promise<THREE.Texture> => {
-      return new Promise((resolve, reject) => {
-        const timeout = setTimeout(() => {
-          reject(new Error(`Timeout loading texture: ${url}`));
-        }, 5000);
-        
-        loader.load(
-          url, 
-          (texture) => {
-            clearTimeout(timeout);
-            console.log(`Loaded texture: ${url}`);
-            resolve(texture);
-          },
-          undefined,
-          (error) => {
-            clearTimeout(timeout);
-            console.error(`Failed to load texture: ${url}`, error);
-            reject(error);
-          }
-        );
+    const loadAsync = (u: string) =>
+      new Promise<THREE.Texture>((resolve, reject) => {
+        loader.load(u, (t) => resolve(t), undefined, (e) => reject(e));
       });
-    };
 
     let running = true;
 
     (async () => {
       try {
-        console.log('Starting texture loading...');
-        
-        // Add timeout to prevent infinite loading
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Texture loading timeout after 10 seconds')), 10000);
-        });
-        
-        const texturePromise = Promise.all(items.map(i => loadTexture(i.src)));
-        const textures = await Promise.race([texturePromise, timeoutPromise]) as THREE.Texture[];
-        
-        if (!running) {
-          setIsLoading(false);
-          return;
-        }
-
-        console.log('Textures loaded successfully:', textures.length);
+        const textures = await Promise.all(items.map(i => loadAsync(i.src)));
+        if (!running) return;
 
         textures.forEach((t) => {
+          // @ts-ignore
           t.colorSpace = THREE.SRGBColorSpace;
           t.anisotropy = renderer.capabilities.getMaxAnisotropy();
           t.wrapS = THREE.ClampToEdgeWrapping;
@@ -151,9 +85,9 @@ export default function ThreeCanvas() {
 
         // widths from source aspect
         const widths = textures.map((t) => {
-          const img = t.image as HTMLImageElement | HTMLCanvasElement;
-          const iw = 'naturalWidth' in img ? img.naturalWidth : img.width;
-          const ih = 'naturalHeight' in img ? img.naturalHeight : img.height;
+          const img = t.image as HTMLImageElement | { width: number; height: number };
+          const iw = (img as any).naturalWidth ?? img.width;
+          const ih = (img as any).naturalHeight ?? img.height;
           const aspect = iw / ih || 1;
           return PANEL_HEIGHT * aspect;
         });
@@ -352,22 +286,18 @@ export default function ThreeCanvas() {
           renderer.render(scene, camera);
         });
 
-        // Mark as loaded after successful initialization
-        setIsLoading(false);
-        console.log('3D Carousel initialized successfully');
-
         // --- CLEANUP ---------------------------------------------------------
         return () => {
           window.removeEventListener("resize", onResize);
           document.removeEventListener("visibilitychange", resetSpin);
           renderer.setAnimationLoop(null);
-          renderer.domElement.removeEventListener("wheel", onWheel);
-          renderer.domElement.removeEventListener("click", onClick);
-          renderer.domElement.removeEventListener("pointermove", onPointerMove);
-          renderer.domElement.removeEventListener("mousedown", onMouseDown);
-          renderer.domElement.removeEventListener("mousemove", onMouseMove);
-          renderer.domElement.removeEventListener("mouseup", onMouseUp);
-          renderer.domElement.removeEventListener("mouseleave", onMouseLeave);
+          renderer.domElement.removeEventListener("wheel", onWheel as any);
+          renderer.domElement.removeEventListener("click", onClick as any);
+          renderer.domElement.removeEventListener("pointermove", onPointerMove as any);
+          renderer.domElement.removeEventListener("mousedown", onMouseDown as any);
+          renderer.domElement.removeEventListener("mousemove", onMouseMove as any);
+          renderer.domElement.removeEventListener("mouseup", onMouseUp as any);
+          renderer.domElement.removeEventListener("mouseleave", onMouseLeave as any);
 
           ringGroup.children.forEach((g) => {
             for (const child of (g as THREE.Group).children) {
@@ -384,88 +314,20 @@ export default function ThreeCanvas() {
           }
         };
       } catch (e) {
-        console.error('3D Carousel initialization error:', e);
-        console.error('Error details:', {
-          message: e instanceof Error ? e.message : String(e),
-          stack: e instanceof Error ? e.stack : undefined,
-          environment: typeof window !== 'undefined' ? 'browser' : 'server'
-        });
-        setError(String(e));
-        setIsLoading(false);
+        console.error(e);
       }
     })();
 
     // outer cleanup in case async exits early
     return () => {
       running = false;
-      setIsLoading(false); // Ensure loading state is cleared
       renderer.setAnimationLoop(null);
       renderer.dispose();
       if (renderer.domElement.parentElement) {
         renderer.domElement.parentElement.removeChild(renderer.domElement);
       }
     };
-    } catch (err) {
-      console.error('3D Carousel Error:', err);
-      setError('Failed to load 3D carousel');
-      setIsLoading(false); // Ensure loading state is cleared on error
-    }
-  }, [isClient, setIsLoading, setError]);
-
-  if (!isClient || isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <div className="w-16 h-16 border-4 border-[#00A4FF]/20 border-t-[#00A4FF] rounded-full animate-spin mb-4 mx-auto"></div>
-          <p className="text-[#f5f5f0] text-sm opacity-70">
-            {!isClient ? 'Initializing 3D Scene...' : 'Loading 3D Projects...'}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    // Fallback display when 3D fails
-    const items = [
-      { src: "/images/NeuroPortals/neuroIntro.png", href: "/projects/neuroPortals", title: "NeuroPortals" },
-      { src: "/images/Elastup/Elastup1.png", href: "/projects/elastup", title: "Elastup" },
-      { src: "/images/Sakekagami/Poster.JPG", href: "/projects/sakekagami", title: "Sakekagami" },
-    ];
-
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-8">
-        <div className="text-center mb-8">
-          <p className="text-red-400 mb-4">3D visualization unavailable</p>
-          <p className="text-[#f5f5f0] text-sm opacity-70 mb-8">Here are my projects:</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl">
-          {items.map((item, i) => (
-            <a 
-              key={i}
-              href={item.href}
-              className="group relative overflow-hidden rounded-lg border border-[#00A4FF]/40 bg-[#00A4FF]/5 hover:bg-[#00A4FF]/10 transition-all duration-300"
-            >
-              <img 
-                src={item.src} 
-                alt={item.title}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-4">
-                <h3 className="text-[#f5f5f0] font-medium">{item.title}</h3>
-              </div>
-            </a>
-          ))}
-        </div>
-        <button 
-          onClick={() => window.location.reload()} 
-          className="mt-8 px-4 py-2 bg-[#00A4FF] text-white rounded hover:bg-[#0088cc] transition-colors"
-        >
-          Retry 3D View
-        </button>
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div

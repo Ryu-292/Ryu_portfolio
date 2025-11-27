@@ -11,14 +11,13 @@ export default function Navbar() {
     <header className="header">
       <div className="nav-container">
         {/* Logo */}
-        <div className="logo group">
-          <Link href="/" className="block w-full h-full">
+        <div className="logo">
+          <Link href="/">
             <Image
               src="/images/logo/Logo.png"
               alt="Homepage"
               fill
               priority
-              className="transition-all duration-300 ease-in-out group-hover:scale-110 group-hover:rotate-6 group-hover:drop-shadow-lg filter group-hover:brightness-110"
             />
           </Link>
         </div>

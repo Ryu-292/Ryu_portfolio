@@ -4,7 +4,6 @@ import React, {
   useState,
   useRef,
   useEffect,
-  useCallback,
   TouchEvent as ReactTouchEvent,
 } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -142,7 +141,7 @@ export default function MyLabPage() {
   };
 
   // ---- Helpers ----
-  const goToSlide = useCallback((dir: Direction) => {
+  const goToSlide = (dir: Direction) => {
     if (isAnimating) return;
     setDirection(dir);
     setIsAnimating(true);
@@ -151,7 +150,7 @@ export default function MyLabPage() {
       const next = (prev + dir + PROJECTS.length) % PROJECTS.length;
       return next;
     });
-  }, [isAnimating]);
+  };
 
   // Mouse wheel → change project
   useEffect(() => {
@@ -167,7 +166,7 @@ export default function MyLabPage() {
     return () => {
       container.removeEventListener("wheel", onWheel);
     };
-  }, [isAnimating, goToSlide]);
+  }, [isAnimating]);
 
   // Touch (mobile) → change project
   const handleTouchStart = (e: ReactTouchEvent<HTMLDivElement>) => {

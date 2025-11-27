@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import useRealProgress from "@/hooks/useRealProgress";
 import Reveal from "@/components/Reveal";
@@ -47,7 +48,7 @@ export default function SakekagamiPage() {
               <div className="absolute -inset-6 rounded-3xl bg-[#00A4FF]/20 blur-3xl opacity-40" />
               <div className="relative overflow-hidden h-full">
                 <Image
-                  src="/images/Sakekagami/poster.jpg"
+                  src="/images/Sakekagami/Poster.JPG"
                   alt="Sakekagami"
                   width={700}
                   height={400}
@@ -63,7 +64,7 @@ export default function SakekagamiPage() {
           <Reveal delay={0.2}>
             <div className="overflow-hidden bg-white/5">
               <Image
-                src="/images/Sakekagami/MasuB_Y.jpg"
+                src="/images/Sakekagami/MasuB_Y.JPG"
                 alt="Sake ritual"
                 width={900}
                 height={600}
@@ -125,7 +126,7 @@ export default function SakekagamiPage() {
                   The mirror is believed to reflect not just physical appearance but also the inner self, 
                   encouraging individuals to look inward and connect with their true nature. <br />
                   One specific type of mirror that intrigued me was the 
-                  &ldquo;<span className="text-[#00A4FF] font-medium">Mizukagami</span>&rdquo;, which translates to water (mizu) mirror (kagami).
+                  "<span className="text-[#00A4FF] font-medium">Mizukagami</span>", which translates to water (mizu) mirror (kagami).
                   This natural mirror forms on the surface of still water, 
                   reflecting the surrounding environment and creating a serene and contemplative space. 
                   The water does not just mirror the present, but evokes the passing of time, the change of seasons, 
@@ -134,7 +135,7 @@ export default function SakekagamiPage() {
                 </p>
                 <p className="text-sm md:text-base leading-relaxed text-white/90">
                   As you might have guessed from the name, this project 
-                  &ldquo;<span className="text-[#00A4FF] font-medium">Sakekagami</span>&rdquo; is a fusion of these two concepts: Sake and Mizukagami. <br />
+                  "<span className="text-[#00A4FF] font-medium">Sakekagami</span>" is a fusion of these two concepts: Sake and Mizukagami. <br />
                   I thought what if I could create a mirror portal throught a cup of sake that connects us to tradition, to others, and to ourselves. <br />
                   A mirror that connects the past and the present, the physical and the spiritual, the individual and the collective. <br />
                   A cup that forges bonds across time and space, letting us share a drink and connect.
