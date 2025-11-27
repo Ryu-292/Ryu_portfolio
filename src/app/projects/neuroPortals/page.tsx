@@ -256,10 +256,10 @@ export default function NeuroPortalsPage() {
                   Building the Shoji Doors
                 </h3>
                 <p className="text-sm md:text-base leading-relaxed text-white/90">
-                  For the final installation, we built a larger model of our "doors"—the architectural structure that housed the projections. This made the experience more immersive and deepened the installation's meditative quality.
+                  For the final installation, we built a larger model of our &ldquo;doors&rdquo;&mdash;the architectural structure that housed the projections. This made the experience more immersive and deepened the installation&apos;s meditative quality.
                 </p>
                 <p className="text-sm md:text-base leading-relaxed text-white/90">
-                  Since we didn't have actual shoji windows, we made our own shoji-style doors using wooden battens, wood strips, and calligraphy paper. Each brainwave type was connected to a different color and pattern, with heartbeat data controlling the speed of the animations.
+                  Since we didn&apos;t have actual shoji windows, we made our own shoji-style doors using wooden battens, wood strips, and calligraphy paper. Each brainwave type was connected to a different color and pattern, with heartbeat data controlling the speed of the animations.
                 </p>
               </div>
             </Reveal>

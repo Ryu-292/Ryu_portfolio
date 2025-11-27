@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { usePathname } from "next/navigation";
 import * as THREE from "three";
 
 type Item = { src: string; href: string };
 
 export default function ThreeCanvas() {
   const mountRef = useRef<HTMLDivElement | null>(null);
-  const pathname = usePathname();
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -76,7 +74,6 @@ export default function ThreeCanvas() {
         if (!running) return;
 
         textures.forEach((t) => {
-          // @ts-ignore
           t.colorSpace = THREE.SRGBColorSpace;
           t.anisotropy = renderer.capabilities.getMaxAnisotropy();
           t.wrapS = THREE.ClampToEdgeWrapping;
@@ -85,9 +82,9 @@ export default function ThreeCanvas() {
 
         // widths from source aspect
         const widths = textures.map((t) => {
-          const img = t.image as HTMLImageElement | { width: number; height: number };
-          const iw = (img as any).naturalWidth ?? img.width;
-          const ih = (img as any).naturalHeight ?? img.height;
+          const img = t.image as HTMLImageElement | HTMLCanvasElement;
+          const iw = 'naturalWidth' in img ? img.naturalWidth : img.width;
+          const ih = 'naturalHeight' in img ? img.naturalHeight : img.height;
           const aspect = iw / ih || 1;
           return PANEL_HEIGHT * aspect;
         });
@@ -291,13 +288,13 @@ export default function ThreeCanvas() {
           window.removeEventListener("resize", onResize);
           document.removeEventListener("visibilitychange", resetSpin);
           renderer.setAnimationLoop(null);
-          renderer.domElement.removeEventListener("wheel", onWheel as any);
-          renderer.domElement.removeEventListener("click", onClick as any);
-          renderer.domElement.removeEventListener("pointermove", onPointerMove as any);
-          renderer.domElement.removeEventListener("mousedown", onMouseDown as any);
-          renderer.domElement.removeEventListener("mousemove", onMouseMove as any);
-          renderer.domElement.removeEventListener("mouseup", onMouseUp as any);
-          renderer.domElement.removeEventListener("mouseleave", onMouseLeave as any);
+          renderer.domElement.removeEventListener("wheel", onWheel);
+          renderer.domElement.removeEventListener("click", onClick);
+          renderer.domElement.removeEventListener("pointermove", onPointerMove);
+          renderer.domElement.removeEventListener("mousedown", onMouseDown);
+          renderer.domElement.removeEventListener("mousemove", onMouseMove);
+          renderer.domElement.removeEventListener("mouseup", onMouseUp);
+          renderer.domElement.removeEventListener("mouseleave", onMouseLeave);
 
           ringGroup.children.forEach((g) => {
             for (const child of (g as THREE.Group).children) {

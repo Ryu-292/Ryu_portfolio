@@ -5,11 +5,11 @@ import React, { useState } from 'react';
 const Footer = () => {
   const [copied, setCopied] = useState(false);
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  // const copyToClipboard = (text: string) => {
+  //   navigator.clipboard.writeText(text);
+  //   setCopied(true);
+  //   setTimeout(() => setCopied(false), 2000);
+  // };
 
   const openMail = () => {
     window.location.href = 'mailto:ryuosada12@gmail.com';

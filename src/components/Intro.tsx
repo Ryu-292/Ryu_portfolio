@@ -91,7 +91,7 @@ export default function Intro({
     // --- Postprocessing: Bloom ----------------------------------------------
     const composer = new EffectComposer(renderer);
     const renderPass = new RenderPass(scene, camera);
-    (renderPass as any).clearAlpha = 0;
+    renderPass.clearAlpha = 0;
     composer.addPass(renderPass);
     const bloom = new UnrealBloomPass(new THREE.Vector2(w, h), 0.23, 0.6, 0.3);
     composer.addPass(bloom);
@@ -151,7 +151,7 @@ export default function Intro({
     // --- Feathered Base Image (unlit) ---------------------------------------
     const fadeMat = new THREE.ShaderMaterial({
       uniforms: {
-        uTex: { value: null as any },
+        uTex: { value: null as THREE.Texture | null },
         uEdgeSoftness: { value: 0.15 },
       },
       transparent: true,
@@ -187,12 +187,12 @@ export default function Intro({
       imageSrc,
       (t) => {
         if (!running) return;
-        // @ts-ignore
         t.colorSpace = THREE.SRGBColorSpace;
         t.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
 
-        const iw = (t.image as any).width ?? 1;
-        const ih = (t.image as any).height ?? 1;
+        const img = t.image as HTMLImageElement | HTMLCanvasElement;
+        const iw = 'naturalWidth' in img ? img.naturalWidth : img.width || 1;
+        const ih = 'naturalHeight' in img ? img.naturalHeight : img.height || 1;
         const aspect = iw / ih || 1;
 
         const targetH = 2.3;
@@ -245,7 +245,7 @@ export default function Intro({
       if (scan && base) {
         scan.position.y = floatY;
         scan.rotation.copy(base.rotation);
-        (scanMat.uniforms.uTime as any).value = time;
+        scanMat.uniforms.uTime.value = time;
       }
 
       composer.render();
@@ -294,10 +294,10 @@ export default function Intro({
           クリエイティブテクノロジーエンジニア · 東京／パリ
         </p>
 
-        <h1 className="intro-name">Hi, I'm Ryu!</h1>
+        <h1 className="intro-name">Hi, I&apos;m Ryu!</h1>
 
         <p className="intro-tagline">
-          I'm a creative technology engineering student in Paris.
+          I&apos;m a creative technology engineering student in Paris.
         </p>
 
         <p className="intro-body">
