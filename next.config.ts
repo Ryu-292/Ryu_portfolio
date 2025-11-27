@@ -12,13 +12,24 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: false,
   },
   experimental: {
-    optimizePackageImports: ['three']
+    optimizePackageImports: ['three'],
+    esmExternals: true
   },
-  webpack: (config) => {
-    config.externals = config.externals || [];
-    config.externals.push({
-      'three': 'three'
+  webpack: (config, { isServer }) => {
+    // Only externalize on server-side to prevent SSR issues
+    if (isServer) {
+      config.externals = config.externals || [];
+      config.externals.push({
+        'three': 'three'
+      });
+    }
+    
+    // Ensure proper handling of Three.js modules
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/,
+      type: 'asset/source',
     });
+
     return config;
   }
 };

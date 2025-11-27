@@ -5,9 +5,24 @@
   "regions": ["iad1"],
   "functions": {
     "app/**/*.tsx": {
-      "maxDuration": 10
+      "maxDuration": 15
     }
   },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "credentialless"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
