@@ -2,10 +2,38 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLUListElement>(null);
+  const toggleRef = useRef<HTMLDivElement>(null);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        toggleRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        !toggleRef.current.contains(event.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   return (
     <header className="header">
@@ -24,6 +52,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <div
+          ref={toggleRef}
           className="toggle"
           onClick={() => setMenuOpen(!menuOpen)}
         >
@@ -33,21 +62,21 @@ export default function Navbar() {
         </div>
 
         {/* Navigation Menu */}
-        <ul className={`menu ${menuOpen ? "active" : ""}`}>
+        <ul ref={menuRef} className={`menu ${menuOpen ? "active" : ""}`}>
           <li className="section">
-            <Link href="/" className="navi-link">
+            <Link href="/" className="navi-link" onClick={closeMenu}>
               Home
             </Link>
           </li>
 
           <li className="section">
-            <Link href="/projects" className="navi-link">
+            <Link href="/projects" className="navi-link" onClick={closeMenu}>
               Projects
             </Link>
           </li>
 
           <li className="section">
-            <Link href="/mylab" className="navi-link">
+            <Link href="/mylab" className="navi-link" onClick={closeMenu}>
               My Lab
             </Link>
           </li>

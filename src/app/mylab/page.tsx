@@ -121,6 +121,7 @@ export default function MyLabPage() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
 
   const current = PROJECTS[index];
@@ -170,18 +171,28 @@ export default function MyLabPage() {
 
   // Touch (mobile) → change project
   const handleTouchStart = (e: ReactTouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
   };
 
   const handleTouchEnd = (e: ReactTouchEvent<HTMLDivElement>) => {
-    if (touchStartY.current == null) return;
-    const delta = e.changedTouches[0].clientY - touchStartY.current;
-
-    if (Math.abs(delta) > 40) {
-      // swipe up → next, swipe down → previous
-      goToSlide(delta < 0 ? 1 : -1);
+    if (touchStartX.current == null || touchStartY.current == null) return;
+    
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+    
+    // Check if it's primarily a horizontal swipe
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+      // Horizontal swipe: left → next, right → previous
+      goToSlide(deltaX < 0 ? 1 : -1);
+    }
+    // Fall back to vertical swipe if horizontal isn't detected
+    else if (Math.abs(deltaY) > 40) {
+      // Vertical swipe: up → next, down → previous
+      goToSlide(deltaY < 0 ? 1 : -1);
     }
 
+    touchStartX.current = null;
     touchStartY.current = null;
   };
 
@@ -310,7 +321,7 @@ export default function MyLabPage() {
                   <div className="flex justify-center items-center gap-4 text-sm text-[#f5f5f0] opacity-70">
                     <div className="flex items-center gap-2">
                       <span className="h-px w-12 bg-[#00A4FF]/60" />
-                      <span>Scroll down to explore projects</span>
+                      <span>Scroll down / Swipe to explore projects</span>
                       <span className="h-px w-12 bg-[#00A4FF]/60" />
                     </div>
                   </div>
@@ -469,14 +480,30 @@ export default function MyLabPage() {
             </motion.div>
           </AnimatePresence>
 
-          {/* --- Side bullets indicator --- */}
-          <div className="pointer-events-none absolute inset-y-0 right-4 flex flex-col items-center justify-center gap-3 text-xs text-slate-500 md:right-10">
+          {/* --- Side bullets indicator (Desktop) --- */}
+          <div className="pointer-events-none absolute inset-y-0 right-4 md:flex hidden flex-col items-center justify-center gap-3 text-xs text-slate-500 md:right-10">
             {PROJECTS.map((p, i) => (
               <div
                 key={p.id}
                 className={`h-7 w-[1px] overflow-hidden rounded-full ${
                   i === index
                     ? "bg-gradient-to-b from-[#00A4FF] to-[#8abaff]"
+                    : "bg-slate-600/40"
+                }`}
+              >
+                <div className="h-full w-full" />
+              </div>
+            ))}
+          </div>
+
+          {/* --- Bottom bullets indicator (Mobile) --- */}
+          <div className="pointer-events-none absolute bottom-6 left-1/2 transform -translate-x-1/2 flex md:hidden items-center justify-center gap-3 text-xs text-slate-500">
+            {PROJECTS.map((p, i) => (
+              <div
+                key={p.id}
+                className={`w-7 h-[1px] overflow-hidden rounded-full ${
+                  i === index
+                    ? "bg-gradient-to-r from-[#00A4FF] to-[#8abaff]"
                     : "bg-slate-600/40"
                 }`}
               >
