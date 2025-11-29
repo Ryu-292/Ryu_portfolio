@@ -224,16 +224,45 @@ export default function ThreeCanvas() {
           renderer.domElement.style.cursor = "default";
         };
 
+        // --- TOUCH EVENTS FOR MOBILE -----------------------------------------
+        let isTouching = false;
+        let previousTouchX = 0;
+
+        const onTouchStart = (e: TouchEvent) => {
+          e.preventDefault();
+          isTouching = true;
+          previousTouchX = e.touches[0].clientX;
+        };
+
+        const onTouchMove = (e: TouchEvent) => {
+          if (!isTouching) return;
+          e.preventDefault();
+          
+          const deltaX = e.touches[0].clientX - previousTouchX;
+          dragDelta += deltaX * dragSensitivity;
+          previousTouchX = e.touches[0].clientX;
+        };
+
+        const onTouchEnd = (e: TouchEvent) => {
+          e.preventDefault();
+          isTouching = false;
+        };
+
         renderer.domElement.addEventListener("mousedown", onMouseDown);
         renderer.domElement.addEventListener("mousemove", onMouseMove);
         renderer.domElement.addEventListener("mouseup", onMouseUp);
         renderer.domElement.addEventListener("mouseleave", onMouseLeave);
+        
+        // Add touch event listeners
+        renderer.domElement.addEventListener("touchstart", onTouchStart, { passive: false });
+        renderer.domElement.addEventListener("touchmove", onTouchMove, { passive: false });
+        renderer.domElement.addEventListener("touchend", onTouchEnd, { passive: false });
 
         // --- LOAD SPIN DECELERATION ------------------------------------------
         let loadStartTime = Date.now();
         const decelerationDuration = 4000; // 5 seconds for longer, smoother decay
         const maxLoadSpeed = 0.3; // fast initial spin speed
-        const normalSpeed = 0.0000011; // normal spin speed
+        const normalSpeed = 0.00001; // normal spin speed
 
         // Reset spin when page becomes visible
         const resetSpin = () => {
@@ -296,6 +325,11 @@ export default function ThreeCanvas() {
           renderer.domElement.removeEventListener("mousemove", onMouseMove as any);
           renderer.domElement.removeEventListener("mouseup", onMouseUp as any);
           renderer.domElement.removeEventListener("mouseleave", onMouseLeave as any);
+          
+          // Remove touch event listeners
+          renderer.domElement.removeEventListener("touchstart", onTouchStart as any);
+          renderer.domElement.removeEventListener("touchmove", onTouchMove as any);
+          renderer.domElement.removeEventListener("touchend", onTouchEnd as any);
 
           ringGroup.children.forEach((g) => {
             for (const child of (g as THREE.Group).children) {
