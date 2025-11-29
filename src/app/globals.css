@@ -26,7 +26,6 @@ body {
 main {
   padding-left: 60px;
   min-height: 100vh;
-  padding-bottom: 80px; /* Space for footer */
 }
 
 @media (max-width: 768px) {
@@ -633,4 +632,11 @@ body::-webkit-scrollbar {
   .scanlines {
     padding-bottom: 80px !important;
   }
+}
+
+/* Disable scrolling on MyLab page */
+.scanlines {
+  height: 100vh;
+  overflow: hidden;
+  padding-bottom: 0 !important; /* Remove main bottom padding */
 }

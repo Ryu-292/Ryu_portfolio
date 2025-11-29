@@ -28,6 +28,37 @@ const PROJECTS: LabProject[] = [
     image: "/images/Arduino/wiring.png",
   },
   {
+    id: "audio-reactive-sakura",
+    title: "Audio Reactive Sakura Generation",
+    tag: "TouchDesigner • StreamDiffusion • Audio Visual",
+    description:
+      "Real-time audio-reactive image generation using TouchDesigner and StreamDiffusion plugin. Creates blooming sakura flowers that dynamically respond to audio frequencies, transforming sound into visual poetry.",
+    images: [
+      "/images/Touchdesigner/Audiosakura.mp4",
+      "/images/Touchdesigner/TDSakura.png"
+    ],
+  },
+  {
+    id: "sakekagami-poster",
+    title: "Sakekagami Poster",
+    tag: "Photoshop • Figma",
+    description:
+      "Poster made for internship to present my Sakekagami project showcasing the masu. I used a background that resembles washi paper, traditional Japanese paper, and made shapes to show water ripples/waves with my hand holding the masu in the center.",
+    image: "/images/Sakekagami/sakekagamiPoster.png",
+  },
+  {
+    id: "portfolio-website",
+    title: "Portfolio",
+    tag: "HTML • CSS • Next.js • Three.js",
+    description:
+      "Personal portfolio website showcasing creative projects and technical skills. Built with Next.js and Three.js for immersive 3D experiences, featuring responsive design and interactive elements.",
+    images: [
+      "/images/portfolio/home.png",
+      "/images/portfolio/projects.png",
+      "/images/portfolio/myLab.png"
+    ],
+  },
+  {
     id: "arduino-laser-game",
     title: "Arduino Laser Game",
     tag: "Arduino • Laser • Photography",
@@ -42,6 +73,15 @@ const PROJECTS: LabProject[] = [
     ],
   },
   {
+    id: "mnist-classifier",
+    title: "MNIST Digit Classifier",
+    tag: "Machine Learning • Neural Network • Web App",
+    description:
+      "Browser-based digit recognition using TinyGrad and WebGPU. Train MLP/CNN models in Python, export to safetensors, and run real-time inference directly in your browser without servers.",
+    image: "/images/Mnist/mnist1.png",
+    link: "https://ryu-292.github.io/MNIST_DigitClassifier/"
+  },
+  {
     id: "laser-security-system",
     title: "Ryu VS Lucas", 
     tag: "ESP32 • Mini Game • WebSocket",
@@ -54,6 +94,21 @@ const PROJECTS: LabProject[] = [
       "/images/Arduino/board.jpg", 
       "/images/Arduino/board2.jpg",
       "/images/Arduino/board3.jpg",
+    ],
+  },
+  {
+    id: "satellite-antenna",
+    title: "Satellite Signal Reception",
+    tag: "RF Engineering • SDR • Signal Processing",
+    description:
+      "Built V-dipole antenna system to intercept NOAA weather satellite transmissions at 137-138 MHz. Used RTL-SDR and WXtoImg to decode satellite images, then created cyanotype prints using traditional photographic processes.",
+    images: [
+      "/images/Antenna/Antenna.png",
+      "/images/Antenna/Antenna1.png",
+      "/images/Antenna/Antenna2.png",
+      "/images/Antenna/Antenna3.jpg",
+      "/images/Antenna/Antenna4.jpg",
+      "/images/Antenna/Antenna5.png"
     ],
   },
   {
@@ -74,41 +129,7 @@ const PROJECTS: LabProject[] = [
       "/images/3D/HondaJet3D4.png"
     ],
   },
-  {
-    id: "mnist-classifier",
-    title: "MNIST Digit Classifier",
-    tag: "Machine Learning • Neural Network • Web App",
-    description:
-      "Browser-based digit recognition using TinyGrad and WebGPU. Train MLP/CNN models in Python, export to safetensors, and run real-time inference directly in your browser without servers.",
-    image: "/images/Mnist/mnist1.png",
-    link: "https://ryu-292.github.io/MNIST_DigitClassifier/"
-  },
-  {
-    id: "satellite-antenna",
-    title: "Satellite Signal Reception",
-    tag: "RF Engineering • SDR • Signal Processing",
-    description:
-      "Built V-dipole antenna system to intercept NOAA weather satellite transmissions at 137-138 MHz. Used RTL-SDR and WXtoImg to decode satellite images, then created cyanotype prints using traditional photographic processes.",
-    images: [
-      "/images/Antenna/Antenna.png",
-      "/images/Antenna/Antenna1.png",
-      "/images/Antenna/Antenna2.png",
-      "/images/Antenna/Antenna3.jpg",
-      "/images/Antenna/Antenna4.jpg",
-      "/images/Antenna/Antenna5.png"
-    ],
-  },
-  {
-    id: "audio-reactive-sakura",
-    title: "Audio Reactive Sakura Generation",
-    tag: "TouchDesigner • StreamDiffusion • Audio Visual",
-    description:
-      "Real-time audio-reactive image generation using TouchDesigner and StreamDiffusion plugin. Creates blooming sakura flowers that dynamically respond to audio frequencies, transforming sound into visual poetry.",
-    images: [
-      "/images/Touchdesigner/Audiosakura.mp4",
-      "/images/Touchdesigner/TDSakura.png"
-    ],
-  },
+
 ];
 
 type Direction = 1 | -1;
@@ -119,6 +140,8 @@ export default function MyLabPage() {
   const [isAnimating, setIsAnimating] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState<string | null>(null);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
@@ -139,6 +162,18 @@ export default function MyLabPage() {
         return prev === 0 ? current.images!.length - 1 : prev - 1;
       }
     });
+  };
+
+  // Open image modal
+  const openImageModal = (imageSrc: string) => {
+    setModalImage(imageSrc);
+    setIsModalOpen(true);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalImage(null);
   };
 
   // ---- Helpers ----
@@ -394,51 +429,54 @@ export default function MyLabPage() {
                       transition={{ type: "spring", stiffness: 120, damping: 16 }}
                     >
                       {/* image/video with auto-cycle */}
-                      {currentImage?.endsWith('.mp4') ? (
-                        <motion.video
-                          key={currentImage}
-                          autoPlay
-                          loop={false}
-                          muted
-                          playsInline
-                          controls={false}
-                          preload="metadata"
-                          className="relative z-10 h-full w-full object-cover rounded-3xl"
-                          initial={{ scale: 1.1, opacity: 0 }}
-                          animate={{ scale: 1.02, opacity: 1 }}
-                          transition={{ duration: 0.6, ease: "easeOut" }}
-                          onPlay={() => setIsVideoPlaying(true)}
-                          onEnded={() => {
-                            setIsVideoPlaying(false);
-                            // Auto-advance to next image when video ends
-                            setTimeout(() => {
-                              setImageIndex((prev) => (prev + 1) % current.images!.length);
-                            }, 500);
-                          }}
-                          onLoadedData={(e) => {
-                            const video = e.target as HTMLVideoElement;
-                            video.play().catch(() => {
-                              // Fallback if autoplay fails
+                      <div 
+                        className="relative z-10 h-full w-full cursor-pointer hover:opacity-80 transition-opacity duration-200"
+                        onClick={() => openImageModal(currentImage)}
+                      >
+                        {currentImage?.endsWith('.mp4') ? (
+                          <motion.video
+                            key={currentImage}
+                            autoPlay
+                            loop={false}
+                            muted
+                            playsInline
+                            controls={false}
+                            preload="metadata"
+                            className="h-full w-full object-cover rounded-3xl pointer-events-none"
+                            initial={{ scale: 1.1, opacity: 0 }}
+                            animate={{ scale: 1.02, opacity: 1 }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            onPlay={() => setIsVideoPlaying(true)}
+                            onEnded={() => {
                               setIsVideoPlaying(false);
-                            });
-                          }}
-                        >
-                          <source src={currentImage} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </motion.video>
-                      ) : (
-                        <motion.img
-                          key={currentImage}
-                          src={currentImage}
-                          alt={current.title}
-                          className="relative z-10 h-full w-full object-cover rounded-3xl"
-                          initial={{ scale: 1.1, opacity: 0 }}
-                          animate={{ scale: 1.02, opacity: 1 }}
-                          transition={{ duration: 0.6, ease: "easeOut" }}
-                        />
-                      )}
-                      
-                      {/* Navigation arrows */}
+                              // Auto-advance to next image when video ends
+                              setTimeout(() => {
+                                setImageIndex((prev) => (prev + 1) % current.images!.length);
+                              }, 500);
+                            }}
+                            onLoadedData={(e) => {
+                              const video = e.target as HTMLVideoElement;
+                              video.play().catch(() => {
+                                // Fallback if autoplay fails
+                                setIsVideoPlaying(false);
+                              });
+                            }}
+                          >
+                            <source src={currentImage} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </motion.video>
+                        ) : (
+                          <motion.img
+                            key={currentImage}
+                            src={currentImage}
+                            alt={current.title}
+                            className="h-full w-full object-cover rounded-3xl"
+                            initial={{ scale: 1.1, opacity: 0 }}
+                            animate={{ scale: 1.02, opacity: 1 }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                          />
+                        )}
+                      </div>                      {/* Navigation arrows */}
                       {current.images && current.images.length > 1 && (
                         <>
                           <button
@@ -512,6 +550,54 @@ export default function MyLabPage() {
             ))}
           </div>
         </div>
+
+        {/* Image Modal */}
+        <AnimatePresence>
+          {isModalOpen && modalImage && (
+            <motion.div
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+            >
+                <motion.div
+                className="relative max-w-[90vw] max-h-[90vh] rounded-2xl border border-[#00A4FF]/40 bg-transparent shadow-[0_0_80px_rgba(0,164,255,0.5)] backdrop-blur-xl overflow-hidden"
+                initial={{ scale: 0.5, opacity: 0, y: 50 }}
+                animate={{ scale: 0.9, opacity: 1, y: 0 }}
+                exit={{ scale: 0.5, opacity: 0, y: 50 }}
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {modalImage?.endsWith('.mp4') ? (
+                  <video
+                    src={modalImage}
+                    controls
+                    autoPlay
+                    muted
+                    className="w-full h-full object-contain rounded-2xl"
+                    style={{ maxWidth: '90vw', maxHeight: '90vh' }}
+                  />
+                ) : (
+                  <img
+                    src={modalImage}
+                    alt="Enlarged view"
+                    className="w-full h-full object-contain rounded-2xl"
+                    style={{ maxWidth: '90vw', maxHeight: '90vh' }}
+                  />
+                )}                {/* Close button */}
+                <button
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#000021]/80 border border-[#00A4FF]/40 flex items-center justify-center text-[#f5f5f0] hover:bg-[#00A4FF]/20 transition-all duration-200 z-10"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                  </svg>
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </main>
   );
