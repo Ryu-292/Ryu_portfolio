@@ -13,13 +13,12 @@ html {
 }
 
 body {
-  height: 100%;
-  background: radial-gradient(
-    circle at top left,
-    #000021 0%,
-    #000021 40%,
-    #000021 100%
-  );
+  min-height: 100vh !important;
+  width: 100vw !important;
+  background: #000021 !important;
+  color: #f5f5f0;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
 }
 
 /* Main content wrapper - prevent overlap with navbar */
@@ -1133,9 +1132,11 @@ body::-webkit-scrollbar {
 
 /* Disable scrolling on MyLab page */
 .scanlines {
-  height: 100vh;
-  overflow: hidden;
-  padding-bottom: 0 !important; /* Remove main bottom padding */
+  min-height: 100vh !important;
+  width: 100vw !important;
+  background: #000021 !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
 }
 
 /* Animation delays for signaletic glowing buttons */
