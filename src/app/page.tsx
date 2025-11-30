@@ -29,7 +29,7 @@ export default function Projects() {
         <>
           {/* Left Button - My Lab */}
           <Link href="/mylab">
-            <div className="fixed left-4 md:left-8 top-1/2 transform -translate-y-1/2 z-[99999] group cursor-pointer">
+            <div className="fixed left-1 md:left-4 top-1/2 transform -translate-y-1/2 z-[9000] group cursor-pointer">
               <div className="holographic-arrow">
                 <img 
                   src="/images/arrowSVG.svg" 
@@ -47,7 +47,7 @@ export default function Projects() {
 
           {/* Right Button - Projects */}
           <Link href="/projects">
-            <div className="fixed right-4 md:right-8 top-1/2 transform -translate-y-1/2 z-[99999] group cursor-pointer">
+            <div className="fixed right-1 md:right-4 top-1/2 transform -translate-y-1/2 z-[9000] group cursor-pointer">
               <div className="holographic-arrow">
                 <img 
                   src="/images/arrowSVG.svg" 

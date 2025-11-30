@@ -227,11 +227,17 @@ export default function ThreeCanvas() {
         // --- TOUCH EVENTS FOR MOBILE -----------------------------------------
         let isTouching = false;
         let previousTouchX = 0;
+        let touchStartTime = 0;
+        let touchStartPosition = { x: 0, y: 0 };
+        let hasTouchMoved = false;
 
         const onTouchStart = (e: TouchEvent) => {
           e.preventDefault();
           isTouching = true;
           previousTouchX = e.touches[0].clientX;
+          touchStartTime = Date.now();
+          touchStartPosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+          hasTouchMoved = false;
         };
 
         const onTouchMove = (e: TouchEvent) => {
@@ -239,13 +245,43 @@ export default function ThreeCanvas() {
           e.preventDefault();
           
           const deltaX = e.touches[0].clientX - previousTouchX;
-          dragDelta += deltaX * dragSensitivity;
+          const totalMoveDistance = Math.abs(e.touches[0].clientX - touchStartPosition.x) + 
+                                   Math.abs(e.touches[0].clientY - touchStartPosition.y);
+          
+          // If moved more than 10px, consider it a drag, not a tap
+          if (totalMoveDistance > 10) {
+            hasTouchMoved = true;
+            dragDelta += deltaX * dragSensitivity;
+          }
+          
           previousTouchX = e.touches[0].clientX;
         };
 
         const onTouchEnd = (e: TouchEvent) => {
           e.preventDefault();
+          
+          const touchEndTime = Date.now();
+          const touchDuration = touchEndTime - touchStartTime;
+          
+          // If it was a quick tap (less than 300ms) and didn't move much, treat as click
+          if (!hasTouchMoved && touchDuration < 300) {
+            // Convert touch coordinates to mouse-like coordinates for raycaster
+            const touch = e.changedTouches[0];
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((touch.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((touch.clientY - rect.top) / rect.height) * 2 + 1;
+            
+            raycaster.setFromCamera(mouse, camera);
+            const hits = raycaster.intersectObjects(pickTargets, false);
+            const hit = hits[0]?.object as THREE.Mesh | undefined;
+            if (hit) {
+              const href = (hit.parent as THREE.Group).userData.href as string;
+              if (href) window.location.href = href;
+            }
+          }
+          
           isTouching = false;
+          hasTouchMoved = false;
         };
 
         renderer.domElement.addEventListener("mousedown", onMouseDown);

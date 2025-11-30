@@ -311,7 +311,7 @@ export default function MyLabPage() {
       </h1>
       <div
         ref={containerRef}
-        className="relative min-h-screen w-full overflow-hidden bg-[#000021] text-slate-100"
+        className="relative min-h-screen w-full bg-[#000021] text-slate-100 overflow-y-auto"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -321,7 +321,7 @@ export default function MyLabPage() {
        
 
         {/* --- Main carousel area --- */}
-        <div className="relative z-10 flex min-h-[calc(100vh-4rem)] items-center justify-center px-6 pb-10 pt-20 md:px-16">
+        <div className="relative z-10 flex min-h-screen items-center justify-center px-4 md:px-6 py-20 md:py-24 pb-32">
           <AnimatePresence
             custom={direction}
             mode="wait"
@@ -332,7 +332,7 @@ export default function MyLabPage() {
               className={`w-full max-w-6xl ${
                 current.id === "lab-introduction" 
                   ? "flex items-center justify-center" 
-                  : "grid items-center gap-12 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]"
+                  : "grid items-start gap-6 md:gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]"
               }`}
               custom={direction}
             >
