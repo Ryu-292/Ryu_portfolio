@@ -66,11 +66,13 @@ const PROJECTS: LabProject[] = [
     description:
       "Two-axis laser control system using servo motors and joystick input. Created light drawings through long-exposure photography, with automated flower patterns and dynamic zigzag effects from servo instability.",
     images: [
+      "/images/Arduino/videoLaserWall.mp4",
       "/images/Arduino/laser1.png",
       "/images/Arduino/laser2.png", 
       "/images/Arduino/laser3.png",
       "/images/Arduino/laser4.png",
       "/images/Arduino/wiring.png"
+
     ],
   },
   {
