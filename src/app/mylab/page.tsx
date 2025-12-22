@@ -1,11 +1,6 @@
 "use client";
 
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  TouchEvent as ReactTouchEvent,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
@@ -23,7 +18,7 @@ const PROJECTS: LabProject[] = [
   {
     id: "lab-introduction",
     title: "Welcome to My Lab",
-    tag: "Introduction • Philosophy • Exploration",
+    tag: "",
     description:
       "Welcome to my lab — a showcase of my side projects and coursework. Each project represents a different challenge I've tackled across various domains.",
     image: "/images/Arduino/wiring.png",
@@ -66,13 +61,12 @@ const PROJECTS: LabProject[] = [
     description:
       "Two-axis laser control system using servo motors and joystick input. Created light drawings through long-exposure photography, with automated flower patterns and dynamic zigzag effects from servo instability.",
     images: [
-      "/images/Arduino/videoLaserWall.mp4",
       "/images/Arduino/laser1.png",
       "/images/Arduino/laser2.png", 
       "/images/Arduino/laser3.png",
       "/images/Arduino/laser4.png",
-      "/images/Arduino/wiring.png"
-
+      "/images/Arduino/wiring.png",
+      "/images/Arduino/videoLaserWall.mp4"
     ],
   },
   {
@@ -121,13 +115,13 @@ const PROJECTS: LabProject[] = [
     description:
       "Full-scale 3D model of the HondaJet HA-420 in SolidWorks - the first aircraft to fly with renewable biofuel from Euglena microalgae. Complete assembly from blueprints with accurate proportions and component modeling.",
     images: [
+      "/images/3D/HondaJet3D2.png",
       "/images/3D/HondaJet3D_part1.png",
       "/images/3D/HondaJet3D_part2.png",
       "/images/3D/HondaJet3D_part3.png",
       "/images/3D/HondaJet3D_part4.png",
       "/images/3D/HondaJet3D_part5.png",
       "/images/3D/HondaJet3D_part6.png",
-      "/images/3D/HondaJet3D2.png",
       "/images/3D/HondaJet3D3.png",
       "/images/3D/HondaJet3D4.png"
     ],
@@ -135,510 +129,243 @@ const PROJECTS: LabProject[] = [
 
 ];
 
-type Direction = 1 | -1;
-
 export default function MyLabPage() {
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState<Direction>(1);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [imageIndex, setImageIndex] = useState(0);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalImage, setModalImage] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<LabProject | null>(null);
+  const [modalImageIndex, setModalImageIndex] = useState(0);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const touchStartX = useRef<number | null>(null);
-  const touchStartY = useRef<number | null>(null);
+  const introProject = PROJECTS.find((p) => p.id === "lab-introduction");
+  const gridProjects = PROJECTS.filter((p) => p.id !== "lab-introduction");
 
-  const current = PROJECTS[index];
-  const currentImages = current.images || (current.image ? [current.image] : []);
-  const currentImage = currentImages[imageIndex];
-
-  // Manual image navigation
-  const goToImage = (direction: 'next' | 'prev') => {
-    if (!current.images || current.images.length <= 1) return;
-    
-    setImageIndex(prev => {
-      if (direction === 'next') {
-        return (prev + 1) % current.images!.length;
-      } else {
-        return prev === 0 ? current.images!.length - 1 : prev - 1;
-      }
-    });
-  };
-
-  // Open image modal
-  const openImageModal = (imageSrc: string) => {
-    setModalImage(imageSrc);
-    setIsModalOpen(true);
-  };
-
-  // Close modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setModalImage(null);
-  };
-
-  // ---- Helpers ----
-  const goToSlide = (dir: Direction) => {
-    if (isAnimating) return;
-    setDirection(dir);
-    setIsAnimating(true);
-
-    setIndex((prev) => {
-      const next = (prev + dir + PROJECTS.length) % PROJECTS.length;
-      return next;
-    });
-  };
-
-  // Mouse wheel → change project
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const onWheel = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) < 25) return; // ignore micro scrolls
-      goToSlide(e.deltaY > 0 ? 1 : -1);
-    };
-
-    container.addEventListener("wheel", onWheel, { passive: true });
+    if (selectedProject) {
+      document.body.style.overflow = "hidden";
+      setModalImageIndex(0);
+    } else {
+      document.body.style.overflow = "auto";
+    }
     return () => {
-      container.removeEventListener("wheel", onWheel);
+      document.body.style.overflow = "auto";
     };
-  }, [isAnimating, goToSlide]);
+  }, [selectedProject]);
 
-  // Touch (mobile) → change project
-  const handleTouchStart = (e: ReactTouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX;
-    touchStartY.current = e.touches[0].clientY;
+  const nextModalImage = () => {
+    if (!selectedProject) return;
+    const images = selectedProject.images || (selectedProject.image ? [selectedProject.image] : []);
+    setModalImageIndex((prev) => (prev + 1) % images.length);
   };
 
-  const handleTouchEnd = (e: ReactTouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current == null || touchStartY.current == null) return;
-    
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
-    
-    // Check if it's primarily a horizontal swipe
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
-      // Horizontal swipe: left → next, right → previous
-      goToSlide(deltaX < 0 ? 1 : -1);
-    }
-    // Fall back to vertical swipe if horizontal isn't detected
-    else if (Math.abs(deltaY) > 40) {
-      // Vertical swipe: up → next, down → previous
-      goToSlide(deltaY < 0 ? 1 : -1);
-    }
-
-    touchStartX.current = null;
-    touchStartY.current = null;
-  };
-
-  // Auto-cycle through images every 3 seconds, or wait for video to end
-  useEffect(() => {
-    if (!current.images || current.images.length <= 1) return;
-    
-    // If current item is a video, don't auto-advance (let video end handler do it)
-    if (currentImage?.endsWith('.mp4') && isVideoPlaying) return;
-    
-    const interval = setInterval(() => {
-      setImageIndex((prev) => (prev + 1) % current.images!.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [current.images, currentImage, isVideoPlaying]);
-
-  // Reset image index when project changes
-  useEffect(() => {
-    setImageIndex(0);
-  }, [index]);
-
-  // ---- Framer Motion variants (parallax effect) ----
-  const textVariants = {
-    enter: (dir: Direction) => ({
-      y: dir * 40,
-      opacity: 0,
-      filter: "blur(6px)",
-    }),
-    center: {
-      y: 0,
-      opacity: 1,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.7,
-        ease: [0.16, 1, 0.3, 1] as const,
-      },
-    },
-    exit: (dir: Direction) => ({
-      y: -dir * 40,
-      opacity: 0,
-      filter: "blur(6px)",
-      transition: {
-        duration: 0.5,
-        ease: [0.7, 0, 0.84, 0] as const,
-      },
-    }),
-  };
-
-  const imageVariants = {
-    enter: (dir: Direction) => ({
-      y: dir * 80,
-      opacity: 0,
-      scale: 0.94,
-    }),
-    center: {
-      y: 0,
-      opacity: 1,
-      scale: 1.03,
-      transition: {
-        duration: 0.8,
-        ease: [0.19, 1, 0.22, 1] as const,
-      },
-    },
-    exit: (dir: Direction) => ({
-      y: -dir * 80,
-      opacity: 0,
-      scale: 0.97,
-      transition: {
-        duration: 0.55,
-        ease: [0.7, 0, 0.84, 0] as const,
-      },
-    }),
+  const prevModalImage = () => {
+    if (!selectedProject) return;
+    const images = selectedProject.images || (selectedProject.image ? [selectedProject.image] : []);
+    setModalImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   return (
-    <main className="scanlines" style={{ paddingLeft: 0 }}>
-      <h1 className="absolute top-8 left-1/2 transform -translate-x-1/2 text-4xl md:text-6xl font-bold text-[#f5f5f0] tracking-tight z-50">
-        My Lab
-      </h1>
-      <div
-        ref={containerRef}
-        className="relative min-h-screen w-full bg-[#000021] text-slate-100 overflow-y-auto"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        
+    <main className="scanlines min-h-screen w-full bg-[#000021] text-slate-100 overflow-y-auto pb-32">
+      {/* Title */}
+      <div className="pt-12 pb-8 text-center relative z-10">
+        <h1 className="text-4xl md:text-6xl font-bold text-[#f5f5f0] tracking-tight">
+          My Lab
+        </h1>
+      </div>
 
-        {/* --- Top bar --- */}
-       
-
-        {/* --- Main carousel area --- */}
-        <div className="relative z-10 flex min-h-screen items-center justify-center px-4 md:px-6 py-20 md:py-24 pb-32">
-          <AnimatePresence
-            custom={direction}
-            mode="wait"
-            onExitComplete={() => setIsAnimating(false)}
+      {/* Intro Section */}
+      {introProject && (
+        <div className="max-w-4xl mx-auto px-6 text-center mb-16 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <motion.div
-              key={current.id}
-              className={`w-full max-w-6xl ${
-                current.id === "lab-introduction" 
-                  ? "flex items-center justify-center" 
-                  : "grid items-start gap-6 md:gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]"
-              }`}
-              custom={direction}
-            >
-              {/* -------- INTRODUCTION LAYOUT -------- */}
-              {current.id === "lab-introduction" ? (
-                <motion.div
-                  variants={textVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  custom={direction}
-                  className="text-center max-w-4xl space-y-8"
-                >
-
-                  <p className="text-lg leading-relaxed text-[#f5f5f0] opacity-90 md:text-xl max-w-3xl mx-auto">
-                    {current.description}
-                    <br />
-                    <br />
-                    This is where I try, fail, and move on!
-                  </p>
-
-                  <div className="flex justify-center items-center gap-4 text-sm text-[#f5f5f0] opacity-70">
-                    <div className="flex items-center gap-2">
-                      <span className="h-px w-12 bg-[#00A4FF]/60" />
-                      <span>Scroll down / Swipe to explore projects</span>
-                      <span className="h-px w-12 bg-[#00A4FF]/60" />
-                    </div>
-                  </div>
-                </motion.div>
-              ) : (
-                <>
-                  {/* -------- LEFT: text -------- */}
-                  <motion.div
-                    variants={textVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    custom={direction}
-                    className="space-y-7"
-                  >
-                    <div className="inline-flex items-center gap-3 rounded-full border border-[#00A4FF]/40 bg-[#00A4FF]/5 px-3 py-1 text-[11px] uppercase tracking-[0.25em] text-[#8abaff]">
-                      <span className="h-1 w-1 rounded-full bg-[#00A4FF]" />
-                      <span>Experiment {index}</span>
-                      <span className="text-slate-500">/ {PROJECTS.length - 1}</span>
-                    </div>
-
-                    <div className="space-y-3">
-                      <h1 className="text-3xl font-semibold tracking-tight text-[#f5f5f0] md:text-4xl">
-                        {current.title}
-                      </h1>
-                      <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#8abaff]">
-                        {current.tag}
-                      </p>
-                    </div>
-
-                    <p className="max-w-xl text-sm leading-relaxed text-[#f5f5f0] opacity-90 md:text-base">
-                      {current.description}
-                    </p>
-
-                    {current.link && (
-                      <a
-                        href={current.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-[#00A4FF]/10 border border-[#00A4FF]/40 px-4 py-2 text-sm text-[#8abaff] hover:bg-[#00A4FF]/20 hover:text-[#f5f5f0] transition-all duration-200"
-                      >
-                        <span>Try It Live</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
-                        </svg>
-                      </a>
-                    )}
-
-                    <div className="flex flex-wrap items-center gap-4 text-xs text-[#f5f5f0] opacity-70">
-                      
-                      <div className="flex items-center gap-2">
-                        <span className="h-1 w-1 rounded-full bg-emerald-400" />
-                        <span>Scroll / swipe to switch project</span>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* -------- RIGHT: floating image "incubator" -------- */}
-                  <motion.div
-                    variants={imageVariants}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    custom={direction}
-                    className="flex justify-center md:justify-end"
-                  >
-                    <motion.div
-                      className="relative aspect-[3/2] w-full max-w-lg overflow-hidden rounded-3xl border border-[#00A4FF]/40 bg-transparent shadow-[0_0_60px_rgba(0,164,255,0.35)] backdrop-blur-xl"
-                      whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
-                      transition={{ type: "spring", stiffness: 120, damping: 16 }}
-                    >
-                      {/* image/video with auto-cycle */}
-                      <div 
-                        className="relative z-10 h-full w-full cursor-pointer hover:opacity-80 transition-opacity duration-200"
-                        onClick={() => openImageModal(currentImage)}
-                      >
-                        {currentImage?.endsWith('.mp4') ? (
-                          <motion.video
-                            key={currentImage}
-                            autoPlay
-                            loop={false}
-                            muted
-                            playsInline
-                            controls={false}
-                            preload="metadata"
-                            className="h-full w-full object-cover rounded-3xl pointer-events-none"
-                            initial={{ scale: 1.1, opacity: 0 }}
-                            animate={{ scale: 1.02, opacity: 1 }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
-                            onPlay={() => setIsVideoPlaying(true)}
-                            onEnded={() => {
-                              setIsVideoPlaying(false);
-                              // Auto-advance to next image when video ends
-                              setTimeout(() => {
-                                setImageIndex((prev) => (prev + 1) % current.images!.length);
-                              }, 500);
-                            }}
-                            onLoadedData={(e) => {
-                              const video = e.target as HTMLVideoElement;
-                              video.play().catch(() => {
-                                // Fallback if autoplay fails
-                                setIsVideoPlaying(false);
-                              });
-                            }}
-                          >
-                            <source src={currentImage} type="video/mp4" />
-                            Your browser does not support the video tag.
-                          </motion.video>
-                        ) : (
-                          <motion.img
-                            key={currentImage}
-                            src={currentImage}
-                            alt={current.title}
-                            className="h-full w-full object-cover rounded-3xl"
-                            initial={{ scale: 1.1, opacity: 0 }}
-                            animate={{ scale: 1.02, opacity: 1 }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
-                          />
-                        )}
-                      </div>                      {/* Navigation arrows */}
-                      {current.images && current.images.length > 1 && (
-                        <>
-                          <button
-                            onClick={() => goToImage('prev')}
-                            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#000021]/80 border border-[#00A4FF]/40 flex items-center justify-center text-[#f5f5f0] hover:bg-[#00A4FF]/20 transition-all duration-200"
-                          >
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                            </svg>
-                          </button>
-                          <button
-                            onClick={() => goToImage('next')}
-                            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-[#000021]/80 border border-[#00A4FF]/40 flex items-center justify-center text-[#f5f5f0] hover:bg-[#00A4FF]/20 transition-all duration-200"
-                          >
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                            </svg>
-                          </button>
-                        </>
-                      )}
-                      
-                      {/* Image indicators */}
-                      {current.images && current.images.length > 1 && (
-                        <div className="absolute z-50 bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1">
-                          {current.images.map((_, i) => (
-                            <div
-                              key={i}
-                              className={`h-1 w-6 rounded-full transition-all duration-300 ${
-                                i === imageIndex ? 'bg-[#00A4FF]' : 'bg-slate-600/40'
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      )}
-                    </motion.div>
-                  </motion.div>
-                </>
-              )}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* --- Side bullets indicator (Desktop) --- */}
-          <div className="pointer-events-none absolute inset-y-0 right-4 md:flex hidden flex-col items-center justify-center gap-3 text-xs text-slate-500 md:right-10">
-            {PROJECTS.map((p, i) => (
-              <div
-                key={p.id}
-                className={`h-7 w-[1px] overflow-hidden rounded-full ${
-                  i === index
-                    ? "bg-gradient-to-b from-[#00A4FF] to-[#8abaff]"
-                    : "bg-slate-600/40"
-                }`}
-              >
-                <div className="h-full w-full" />
-              </div>
-            ))}
-          </div>
-
-          {/* --- Bottom bullets indicator (Mobile) --- */}
-          <div className="pointer-events-none absolute bottom-6 left-1/2 transform -translate-x-1/2 flex md:hidden items-center justify-center gap-3 text-xs text-slate-500">
-            {PROJECTS.map((p, i) => (
-              <div
-                key={p.id}
-                className={`w-7 h-[1px] overflow-hidden rounded-full ${
-                  i === index
-                    ? "bg-gradient-to-r from-[#00A4FF] to-[#8abaff]"
-                    : "bg-slate-600/40"
-                }`}
-              >
-                <div className="h-full w-full" />
-              </div>
-            ))}
-          </div>
+            <p className="text-lg leading-relaxed text-[#f5f5f0] opacity-90 md:text-xl">
+              {introProject.description}
+            </p>
+          </motion.div>
         </div>
+      )}
 
-        {/* Image Modal */}
-        <AnimatePresence>
-          {isModalOpen && modalImage && (
+      {/* Projects Grid */}
+      <div className="max-w-7xl mx-auto pl-4 pr-8 md:pl-6 md:pr-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+        {gridProjects.map((project, idx) => {
+           const previewImage = project.image || (project.images && project.images[0]);
+           const isVideo = previewImage?.endsWith(".mp4");
+
+           return (
             <motion.div
-              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={closeModal}
+              key={project.id}
+              layoutId={`card-${project.id}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.1 }}
+              onClick={() => setSelectedProject(project)}
+              className="group relative aspect-[4/3] cursor-pointer rounded-2xl border border-[#00A4FF]/20 bg-[#00A4FF]/5 overflow-hidden hover:border-[#00A4FF]/60 hover:shadow-[0_0_30px_rgba(0,164,255,0.2)] transition-all duration-300"
             >
-                <motion.div
-                className="relative max-w-[90vw] max-h-[90vh] rounded-2xl border border-[#00A4FF]/40 bg-transparent shadow-[0_0_80px_rgba(0,164,255,0.5)] backdrop-blur-xl overflow-hidden"
-                initial={{ scale: 0.5, opacity: 0, y: 50 }}
-                animate={{ scale: 0.9, opacity: 1, y: 0 }}
-                exit={{ scale: 0.5, opacity: 0, y: 50 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                {modalImage?.endsWith('.mp4') ? (
+              <div className="absolute inset-0 bg-[#000021]/40 group-hover:bg-transparent transition-colors duration-300 z-10" />
+              
+              {/* Media */}
+              <div className="h-full w-full">
+                {isVideo ? (
                   <video
-                    src={modalImage}
-                    controls
-                    autoPlay
+                    src={previewImage}
                     muted
-                    className="w-full h-full object-contain rounded-2xl"
-                    style={{ maxWidth: '90vw', maxHeight: '90vh' }}
+                    loop
+                    autoPlay
+                    playsInline
+                    className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                   />
                 ) : (
                   <img
-                    src={modalImage}
-                    alt="Enlarged view"
-                    className="w-full h-full object-contain rounded-2xl"
-                    style={{ maxWidth: '90vw', maxHeight: '90vh' }}
+                    src={previewImage}
+                    alt={project.title}
+                    className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
                   />
-                )}                {/* Close button */}
-                <button
-                  onClick={closeModal}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#000021]/80 border border-[#00A4FF]/40 flex items-center justify-center text-[#f5f5f0] hover:bg-[#00A4FF]/20 transition-all duration-200 z-10"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                  </svg>
-                </button>
-              </motion.div>
+                )}
+              </div>
+
+              {/* Content Overlay */}
+              <div className="absolute inset-0 z-20 flex flex-col justify-end p-6 bg-gradient-to-t from-[#000021] via-[#000021]/50 to-transparent">
+                <h3 className="text-xl font-bold text-[#f5f5f0] mb-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-[#8abaff] uppercase tracking-wider opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                  {project.tag}
+                </p>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
+           );
+        })}
       </div>
 
-      {/* Floating Navigation Buttons */}
-      {/* Left Button - Projects */}
-      <Link href="/projects">
-        <div className="fixed left-1 md:left-8 top-1/2 transform -translate-y-1/2 z-10 group cursor-pointer">
-          <div className="holographic-arrow">
-            <img 
-              src="/images/arrowSVG.svg" 
-              alt="Previous" 
-              width="40" 
-              height="40" 
-              className="transform rotate-180" 
-            />
-          </div>
-          <div className="absolute left-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none">
-            <span className="text-sm text-white bg-[#000021]/95 px-4 py-2 rounded-full border border-[#00A4FF]/40 backdrop-blur-md shadow-[0_0_20px_rgba(0,164,255,0.3)] hover:shadow-[0_0_30px_rgba(0,164,255,0.5)] transition-all duration-300">Projects</span>
-          </div>
-        </div>
-      </Link>
+      {/* Hologram Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-6 right-6 z-50 p-2 rounded-full bg-[#000021]/80 border border-[#00A4FF]/30 text-[#00A4FF] hover:bg-[#00A4FF]/20 transition-colors"
+            >
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
 
-      {/* Right Button - Home */}
-      <Link href="/">
-        <div className="fixed right-1 md:right-8 top-1/2 transform -translate-y-1/2 z-10 group cursor-pointer">
-          <div className="holographic-arrow">
-            <img 
-              src="/images/arrowSVG.svg" 
-              alt="Next" 
-              width="40" 
-              height="40" 
-              className="" 
-            />
-          </div>
-          <div className="absolute right-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none">
-            <span className="text-sm text-white bg-[#000021]/95 px-4 py-2 rounded-full border border-[#00A4FF]/40 backdrop-blur-md shadow-[0_0_20px_rgba(0,164,255,0.3)] hover:shadow-[0_0_30px_rgba(0,164,255,0.5)] transition-all duration-300">Home</span>
-          </div>
-        </div>
-      </Link>
+            <motion.div
+              layoutId={`card-${selectedProject.id}`}
+              className="relative w-full max-w-6xl h-[85vh] flex flex-col md:flex-row rounded-2xl border border-[#00A4FF]/50 bg-[#000021]/95 shadow-[0_0_60px_rgba(0,164,255,0.35)] backdrop-blur-xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+
+               {/* Left: Content (Scrollable) */}
+               <div className="w-full md:w-1/2 p-6 md:p-10 overflow-y-auto custom-scrollbar">
+                  <div className="space-y-6">
+                    <div>
+                      <h2 className="text-3xl md:text-4xl font-bold text-[#f5f5f0] mb-2">{selectedProject.title}</h2>
+                      <p className="text-sm text-[#00A4FF] uppercase tracking-widest">{selectedProject.tag}</p>
+                    </div>
+                    
+                    <p className="text-slate-300 leading-relaxed text-lg">
+                      {selectedProject.description}
+                    </p>
+
+                    {selectedProject.link && (
+                      <a
+                        href={selectedProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00A4FF]/10 border border-[#00A4FF]/40 text-[#00A4FF] hover:bg-[#00A4FF] hover:text-white transition-all duration-300 group"
+                      >
+                        <span>View Project</span>
+                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
+               </div>
+
+               {/* Right: Carousel (Fixed) */}
+               <div className="w-full md:w-1/2 relative flex items-center justify-center p-4">
+                  {(() => {
+                    const images = selectedProject.images || (selectedProject.image ? [selectedProject.image] : []);
+                    const currentMedia = images[modalImageIndex];
+                    
+                    return (
+                      <div className="relative w-full aspect-[4/3] flex items-center justify-center border border-[#00A4FF]/30 rounded-xl overflow-hidden bg-black/20">
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={modalImageIndex}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="w-full h-full flex items-center justify-center"
+                          >
+                            {currentMedia?.endsWith('.mp4') ? (
+                              <video 
+                                src={currentMedia} 
+                                controls 
+                                className="w-full h-full object-cover" 
+                              />
+                            ) : (
+                              <img 
+                                src={currentMedia} 
+                                alt={`${selectedProject.title} ${modalImageIndex + 1}`} 
+                                className="w-full h-full object-cover" 
+                              />
+                            )}
+                          </motion.div>
+                        </AnimatePresence>
+
+                        {/* Carousel Controls */}
+                        {images.length > 1 && (
+                          <>
+                            <button
+                              onClick={prevModalImage}
+                              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-[#000021]/80 border border-[#00A4FF]/30 text-[#00A4FF] hover:bg-[#00A4FF]/20 transition-colors z-10"
+                            >
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M15 19l-7-7 7-7" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={nextModalImage}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-[#000021]/80 border border-[#00A4FF]/30 text-[#00A4FF] hover:bg-[#00A4FF]/20 transition-colors z-10"
+                            >
+                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+                            
+                            {/* Indicators */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                              {images.map((_, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={() => setModalImageIndex(idx)}
+                                  className={`w-2 h-2 rounded-full transition-all ${
+                                    idx === modalImageIndex ? "bg-[#00A4FF] w-4" : "bg-[#00A4FF]/30"
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    );
+                  })()}
+               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </main>
   );
 }

@@ -32,8 +32,8 @@ const Footer = () => {
 
           {/* CV Download */}
           <a
-            href="/fichier/CV_Ryu_OSADA.pdf"
-            download="CV_Ryu_OSADA.pdf"
+            href="/fichier/CV_RyuOSADA.pdf"
+            download="CV_RyuOSADA.pdf"
             className="inline-flex items-center gap-2 bg-[#00A4FF]/10 border border-[#00A4FF]/40 text-[#8abaff] hover:bg-[#00A4FF]/20 hover:text-[#f5f5f0] px-4 py-2 rounded-full text-sm transition-all duration-200"
           >
             <span>Download CV</span>
