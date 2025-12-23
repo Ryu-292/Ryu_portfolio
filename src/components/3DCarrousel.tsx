@@ -16,7 +16,7 @@ export default function ThreeCanvas() {
     const items: Item[] = [
       { src: "/images/NeuroPortals/neuroIntro.png", href: "/projects/neuroPortals" },
       { src: "/images/Elastup/Elastup1.png", href: "/projects/elastup" },
-      { src: "/images/Sakekagami/Poster.jpeg", href: "/projects/sakekagami" },
+      { src: "/images/Sakekagami/Poster.JPG", href: "/projects/sakekagami" },
       { src: "/images/Terubot/terubot1.jpeg", href: "/projects/terubot" }
     ];
 
