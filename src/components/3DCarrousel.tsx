@@ -17,7 +17,7 @@ export default function ThreeCanvas() {
       { src: "/images/NeuroPortals/neuroIntro.png", href: "/projects/neuroPortals" },
       { src: "/images/Elastup/Elastup1.png", href: "/projects/elastup" },
       { src: "/images/Sakekagami/Poster.JPG", href: "/projects/sakekagami" },
-      { src: "/images/Terubot/terubot1.jpeg", href: "/projects/terubot" }
+      { src: "/images/Terubot/Terubot_App.jpg", href: "/projects/terubot" }
     ];
 
     // --- LAYOUT -------------------------------------------------------------
