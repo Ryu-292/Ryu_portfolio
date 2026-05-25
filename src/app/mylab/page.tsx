@@ -196,10 +196,10 @@ export default function MyLabPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               onClick={() => setSelectedProject(project)}
-              className="group relative aspect-[4/3] cursor-pointer rounded-2xl border border-[#00A4FF]/20 bg-[#00A4FF]/5 overflow-hidden hover:border-[#00A4FF]/60 hover:shadow-[0_0_30px_rgba(0,164,255,0.2)] transition-all duration-300"
+              className="group relative aspect-[4/3] cursor-pointer rounded-2xl border border-[#00A4FF]/60 bg-[#00A4FF]/5 overflow-hidden shadow-[0_0_20px_rgba(0,164,255,0.2)] hover:border-[#00A4FF]/80 hover:shadow-[0_0_35px_rgba(0,164,255,0.35)] transition-all duration-300"
             >
-              <div className="absolute inset-0 bg-[#000021]/40 group-hover:bg-transparent transition-colors duration-300 z-10" />
-              
+              <div className="absolute inset-0 bg-transparent group-hover:bg-[#000021]/55 transition-colors duration-300 z-10" />
+
               {/* Media */}
               <div className="h-full w-full">
                 {isVideo ? (
@@ -209,13 +209,13 @@ export default function MyLabPage() {
                     loop
                     autoPlay
                     playsInline
-                    className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    className="h-full w-full object-cover opacity-100 group-hover:opacity-80 transition-opacity duration-300"
                   />
                 ) : (
                   <img
                     src={previewImage}
                     alt={project.title}
-                    className="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                    className="h-full w-full object-cover opacity-100 group-hover:opacity-80 transition-opacity duration-300"
                   />
                 )}
               </div>
