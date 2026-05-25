@@ -346,7 +346,7 @@ export default function TerubotPage() {
                   <span className="text-[#00A4FF] font-medium">Terubot</span> is a collaborative project by:
                 </p>
                 <p className="text-sm md:text-base text-white/70">
-                  Ryu OSADA • Fleuriane LAM • Amandine UNDERWOOD • Ludovic LI • Théo RENOUARD
+                  Ryu OSADA • Fleuriane LAM • Amandine UNDERWOOD • Théo RENOUARD • Ludovic LI
                 </p>
               </div>
             </Reveal>

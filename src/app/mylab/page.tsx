@@ -161,17 +161,15 @@ export default function MyLabPage() {
   };
 
   return (
-    <main className="scanlines min-h-screen w-full bg-[#000021] text-slate-100 overflow-y-auto pb-32">
+    <main className="scanlines relative min-h-screen w-full bg-[#000021] text-slate-100 overflow-y-auto pb-32">
       {/* Title */}
-      <div className="pt-12 pb-8 text-center relative z-10">
-        <h1 className="text-4xl md:text-6xl font-bold text-[#f5f5f0] tracking-tight">
-          My Lab
-        </h1>
-      </div>
+      <h1 className="absolute top-8 left-1/2 -translate-x-1/2 text-4xl md:text-6xl font-bold text-[#f5f5f0] tracking-tight z-10 whitespace-nowrap">
+        My Lab
+      </h1>
 
       {/* Intro Section */}
       {introProject && (
-        <div className="max-w-4xl mx-auto px-6 text-center mb-16 relative z-10">
+        <div className="max-w-4xl mx-auto px-6 text-center pt-32 mb-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
