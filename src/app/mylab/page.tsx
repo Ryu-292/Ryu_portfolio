@@ -161,7 +161,7 @@ export default function MyLabPage() {
   };
 
   return (
-    <main className="scanlines relative min-h-screen w-full bg-[#000021] text-slate-100 overflow-y-auto pb-32">
+    <main className="scanlines min-h-screen w-full bg-[#000021] text-slate-100 overflow-y-auto pb-32 -ml-[60px] max-md:ml-0">
       {/* Title */}
       <h1 className="absolute top-8 left-1/2 -translate-x-1/2 text-4xl md:text-6xl font-bold text-[#f5f5f0] tracking-tight z-10 whitespace-nowrap">
         My Lab
